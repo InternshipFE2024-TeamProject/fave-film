@@ -17,7 +17,6 @@ import {
   WatchListMovieCollectionContainer,
   WatchListTitle,
 } from "./WatchListPage.styled";
-import { pink } from "@mui/material/colors";
 
 const WatchListPage = () => {
   return (
