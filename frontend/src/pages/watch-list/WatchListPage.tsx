@@ -6,7 +6,6 @@ import { data } from "../../movies-data";
 import {
   DeleteMovieButton,
   MovieCardWatchList,
-  MovieDetails,
   MovieDetailsDescription,
   MovieDetailsLeft,
   MovieDetailsRight,
@@ -34,25 +33,26 @@ const WatchListPage = () => {
           {data.map((movie) => (
             <Card variant="collection">
               <MovieCardWatchList>
-                <div>
-                  <MoviePicture />
-                </div>
-                <MovieDetails>
-                  <MovieDetailsLeft>
+                <MovieDetailsLeft>
+                  <div>
+                    <MoviePicture />
+                  </div>
+                  <div>
                     <MovieDetailsTitle>{movie.title}</MovieDetailsTitle>
                     <MovieDetailsDescription>
                       {movie.description}
                     </MovieDetailsDescription>
-                  </MovieDetailsLeft>
-                  <MovieDetailsRight>
-                    <Rating>
-                      <StarIcon sx={{ color: FRENCH_MAUVE }} />
+                  </div>
+                </MovieDetailsLeft>
 
-                      <Score>4.5</Score>
-                    </Rating>
-                    <DeleteMovieButton>Delete from watchlist</DeleteMovieButton>
-                  </MovieDetailsRight>
-                </MovieDetails>
+                <MovieDetailsRight>
+                  <Rating>
+                    <StarIcon sx={{ color: FRENCH_MAUVE }} />
+
+                    <Score>4.5</Score>
+                  </Rating>
+                  <DeleteMovieButton>Delete from watchlist</DeleteMovieButton>
+                </MovieDetailsRight>
               </MovieCardWatchList>
             </Card>
           ))}

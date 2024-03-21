@@ -9,11 +9,11 @@ interface StyledCardProps {
 export const StyledCard = styled.div<StyledCardProps>`
   display: flex;
   align-items: center;
-  justify-content: center;
+  // justify-content: center;
   background-color: ${SPACE_CADET};
   border-radius: ${rem(10)};
   height: fit-content;
-  width: fit-content;
+  width: 100%;
   padding: ${rem(10)};
   ${({ variant }) =>
     variant === "collection"

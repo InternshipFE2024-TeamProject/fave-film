@@ -5,7 +5,6 @@ export const WatchListContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${rem(20)};
-  //   margin: ${rem(50)};
   margin: ${rem(100)} ${rem(100)} ${rem(100)} ${rem(200)};
   @media (max-width: 800px) {
     margin: ${rem(50)} ${rem(50)} ${rem(50)} ${rem(50)};
@@ -27,25 +26,20 @@ export const WatchListMovieCollectionContainer = styled.div`
 
 export const MovieCardWatchList = styled.div`
   display: flex;
-  gap: ${rem(20)};
-  @media (min-width: 1500px) {
-    width: 1000px;
-  }
+  gap: ${rem(30)};
+  justify-content: space-between;
+  width: 100%;
 `;
 
 export const MoviePicture = styled.img`
   width: 60px;
   height: 80px;
-  //   object-fit: cover;
 `;
 
-export const MovieDetails = styled.div`
+export const MovieDetailsLeft = styled.div`
   display: flex;
-  justify-content: space-between;
-  gap: 30px;
+  gap: ${rem(20)};
 `;
-
-export const MovieDetailsLeft = styled.div``;
 
 export const MovieDetailsTitle = styled.div`
   font-size: ${rem(24)};
@@ -57,7 +51,7 @@ export const MovieDetailsRight = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: right;
+  //   align-items: right;
 `;
 export const DeleteMovieButton = styled.button`
   font-size: ${rem(10)};
