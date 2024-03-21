@@ -13,7 +13,7 @@ interface AuthProviderProps {
 export const AuthContext = createContext<AuthContextType>({
   name: "John Doe",
   picture: "https://example.com/profile.jpg",
-  isAuthenticated: false,
+  isAuthenticated: true,
 });
 
 export const useAuth = () => {
@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
   const [user] = useState({
     name: "John Doe",
     picture: "https://example.com/profile.jpg",
-    isAuthenticated: false,
+    isAuthenticated: true,
   });
 
   return <AuthContext.Provider value={user}>{children}</AuthContext.Provider>;
