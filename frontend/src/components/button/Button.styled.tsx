@@ -2,12 +2,6 @@ import styled from "styled-components";
 import * as pallete from "../../Variables";
 import { rem } from "../../utils";
 
-export const ButtonContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
 interface ButtonProps {
   type: "primary" | "text";
 }
@@ -21,9 +15,11 @@ export const StyledButton = styled.button<ButtonProps>`
   color: ${(props) =>
     props.type === "text" ? `${pallete.PLATINUM}` : `${pallete.SPACE_CADET}`};
   font-size: ${rem(16)};
+
   &:hover {
     background-color: ${pallete.ULTRA_VIOLET};
   }
+
   @media (max-width: 600px) {
     font-size: ${rem(14)};
     padding: ${rem(10)};

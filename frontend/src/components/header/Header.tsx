@@ -28,7 +28,6 @@ const Header = () => {
             </SearchIcon>
           </InputContainer>
         </LeftSide>
-
         {!isAuthenticated && <Button type="text">Log In</Button>}
         {isAuthenticated && <Button type="primary">Watch List</Button>}
       </ComponentsContainer>

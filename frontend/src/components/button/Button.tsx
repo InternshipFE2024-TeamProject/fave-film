@@ -1,4 +1,4 @@
-import { ButtonContainer, StyledButton } from "./Button.styled";
+import { StyledButton } from "./Button.styled";
 
 interface ButtonProps {
   type: "primary" | "text";
@@ -6,11 +6,7 @@ interface ButtonProps {
 }
 
 const Button = ({ type, children }: ButtonProps) => {
-  return (
-    <ButtonContainer>
-      <StyledButton type={type}>{children}</StyledButton>
-    </ButtonContainer>
-  );
+  return <StyledButton type={type}>{children}</StyledButton>;
 };
 
 export default Button;
