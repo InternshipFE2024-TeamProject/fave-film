@@ -8,24 +8,24 @@ export const ButtonContainer = styled.div`
   align-items: center;
 `;
 
-export const TextButton = styled.button`
+interface ButtonProps {
+  type: "primary" | "text";
+}
+
+export const StyledButton = styled.button<ButtonProps>`
   cursor: pointer;
   padding: ${rem(15)};
-  background-color: transparent;
+  background-color: ${(props) =>
+    props.type === "text" ? "transparent" : `${pallete.PLATINUM} `};
   border-radius: ${rem(10)};
-  color: ${pallete.PLATINUM};
+  color: ${(props) =>
+    props.type === "text" ? `${pallete.PLATINUM}` : `${pallete.SPACE_CADET}`};
   font-size: ${rem(16)};
   &:hover {
     background-color: ${pallete.ULTRA_VIOLET};
   }
-`;
-
-export const PrimaryButon = styled.button`
-  cursor: pointer;
-  padding: ${rem(15)};
-  border-radius: ${rem(10)};
-  font-size: ${rem(16)};
-  &:hover {
-    background-color: ${pallete.ULTRA_VIOLET};
+  @media (max-width: 600px) {
+    font-size: ${rem(14)};
+    padding: ${rem(10)};
   }
 `;

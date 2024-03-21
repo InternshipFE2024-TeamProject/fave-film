@@ -11,4 +11,5 @@
   font-family: "Fira Sans Extra Condensed";
   font-size: 16px;
   color: #eaeaea;
+  min-width: 375px;
 }

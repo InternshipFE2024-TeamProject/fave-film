@@ -1,4 +1,4 @@
-import { ButtonContainer, TextButton, PrimaryButon } from "./Button.styled";
+import { ButtonContainer, StyledButton } from "./Button.styled";
 
 interface ButtonProps {
   type: "primary" | "text";
@@ -8,8 +8,7 @@ interface ButtonProps {
 const Button = ({ type, children }: ButtonProps) => {
   return (
     <ButtonContainer>
-      {type === "text" && <TextButton>{children}</TextButton>}
-      {type === "primary" && <PrimaryButon>{children}</PrimaryButon>}
+      <StyledButton type={type}>{children}</StyledButton>
     </ButtonContainer>
   );
 };

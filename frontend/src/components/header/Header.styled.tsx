@@ -21,6 +21,9 @@ export const ComponentsContainer = styled.div`
   justify-content: space-between;
   gap: ${rem(10)};
   align-items: center;
+  @media (max-width: 600px) {
+    gap: ${rem(0)};
+  }
 `;
 
 export const LeftSide = styled.div`
