@@ -1,4 +1,4 @@
-const movies = [
+const data = [
   {
     id: 1,
     title: "The Shawshank Redemption",
