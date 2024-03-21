@@ -3,7 +3,7 @@ import { SPACE_CADET, FRENCH_MAUVE } from "../../Variables";
 import { rem } from "../../utils";
 
 interface StyledCardProps {
-  variant?: "collection"; // Definiți tipurile acceptate pentru proprietatea variant
+  variant?: "collection";
 }
 
 export const StyledCard = styled.div<StyledCardProps>`

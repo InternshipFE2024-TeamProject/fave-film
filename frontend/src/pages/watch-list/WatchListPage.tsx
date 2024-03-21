@@ -1,6 +1,7 @@
 import Card from "../../components/card/Card";
 import StarIcon from "@mui/icons-material/Star";
 import { FRENCH_MAUVE } from "../../Variables";
+import "../../movies-data";
 
 import {
   DeleteMovieButton,
