@@ -7,3 +7,12 @@ export interface Movie {
   cast: [string];
   director: string;
 }
+
+export interface Review {
+  id: number;
+  rating: number;
+  comment: string;
+  userId: string;
+  movieId: number;
+  date: string;
+}

@@ -8,22 +8,57 @@ import {
   MovieTitleContainer,
   MovieSectionItems,
   MovieImageArrowsWrapper,
+  MovieReviewSection,
+  MovieReviewButton,
+  MovieReviewItemContainer,
+  MovieReviewUser,
+  MovieReviewRating,
+  MovieReviewDate,
+  MovieReviewComment,
 } from "./Movie.styled";
 import inception1 from "../../assets/inception/inception1.jpg";
 import inception2 from "../../assets/inception/inception2.jpg";
 import { movies } from "../../movies-data";
-import { Movie } from "../../types";
+import { Movie, Review } from "../../types";
 import { useState } from "react";
 import { IconButton } from "@mui/material";
-import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";
+import {
+  ArrowBackIosNew,
+  ArrowForwardIos,
+  Star,
+  StarBorder,
+} from "@mui/icons-material";
 import * as pallete from "../../Variables";
+import { reviews } from "../../review-data";
+import { useParams } from "react-router-dom";
 
-const MoviePage = () => {
+const MoviePage: React.FC = () => {
   const [currentImage, setCurrentImage] = useState(0);
+  const [ratingsActive, setRatingsActive] = useState(true);
+  const [commentsActive, setCommentsActive] = useState(false);
   const images = [inception1, inception2];
+  const { id } = useParams<{ id: string }>();
+
+  if (!id) {
+    return <div>No ID provided</div>;
+  }
+  const parsedId = parseInt(id, 10);
+
+  const movieReviews: Review[] = reviews
+    .filter((review) => review.movieId === parsedId)
+    .map((review) => ({
+      id: review.id as number,
+      rating: review.rating as number,
+      comment: review.comment as string,
+      userId: review.userName as string,
+      movieId: review.movieId as number,
+      date: review.date as string,
+    }));
+
+  console.log(movieReviews);
 
   const inceptionMovie: Movie[] = movies
-    .filter((movie) => movie.id === 3)
+    .filter((movie) => movie.id === parsedId)
     .map((movie) => ({
       id: movie.id as number,
       title: movie.title as string,
@@ -33,6 +68,20 @@ const MoviePage = () => {
       pictures: movie.pictures as [string],
       genres: movie.genres as [string],
     }));
+
+  const getRating = (rating: number) => {
+    const stars = [];
+    for (let i = 0; i < 5; i++) {
+      if (i < rating) {
+        stars.push(
+          <Star key={i} style={{ color: `${pallete.FRENCH_MAUVE}` }} />
+        );
+      } else {
+        stars.push(<StarBorder key={i} />);
+      }
+    }
+    return stars;
+  };
 
   const nextImage = () => {
     setCurrentImage(
@@ -46,6 +95,16 @@ const MoviePage = () => {
       //prevIndex === 0 ? inceptionMovie[0].pictures.length - 1 : prevIndex - 1
       prevIndex === 0 ? images.length - 1 : prevIndex - 1
     );
+  };
+
+  const handleRatings = () => {
+    setRatingsActive(true);
+    setCommentsActive(false);
+  };
+
+  const handleComments = () => {
+    setRatingsActive(false);
+    setCommentsActive(true);
   };
 
   return (
@@ -94,9 +153,45 @@ const MoviePage = () => {
         </MovieSectionItems>
       </MovieSectionContainer>
       <MovieSectionContainer>
-        <MovieSectionBorderedItems>Reviews</MovieSectionBorderedItems>
-        <MovieSectionBorderedItems>Comments</MovieSectionBorderedItems>
+        <MovieReviewButton active={ratingsActive} onClick={handleRatings}>
+          Ratings
+        </MovieReviewButton>
+        <MovieReviewButton active={commentsActive} onClick={handleComments}>
+          Comments
+        </MovieReviewButton>
       </MovieSectionContainer>
+      {ratingsActive && (
+        <MovieReviewSection>
+          {movieReviews.length > 0 ? (
+            movieReviews.map((review, index) => (
+              <MovieReviewItemContainer key={index}>
+                <MovieReviewUser>{review.userId}</MovieReviewUser>
+                <MovieReviewRating>
+                  {getRating(review.rating)}
+                </MovieReviewRating>
+                <MovieReviewDate>{review.date}</MovieReviewDate>
+              </MovieReviewItemContainer>
+            ))
+          ) : (
+            <div>There are no reviews.</div>
+          )}
+        </MovieReviewSection>
+      )}
+      {commentsActive && (
+        <MovieReviewSection>
+          {movieReviews.length > 0 ? (
+            movieReviews.map((review, index) => (
+              <MovieReviewItemContainer key={index}>
+                <MovieReviewUser>{review.userId}</MovieReviewUser>
+                <MovieReviewComment>{review.comment}</MovieReviewComment>
+                <MovieReviewDate>{review.date}</MovieReviewDate>
+              </MovieReviewItemContainer>
+            ))
+          ) : (
+            <div>There are no reviews.</div>
+          )}
+        </MovieReviewSection>
+      )}
     </MovieContainer>
   );
 };
