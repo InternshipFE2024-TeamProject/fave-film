@@ -42,7 +42,7 @@ export const MovieDetails = styled.div`
   }
   display: flex;
   justify-content: space-between;
-  gap: 20px;
+  gap: 30px;
 `;
 
 export const MovieDetailsLeft = styled.div``;
@@ -57,6 +57,7 @@ export const MovieDetailsRight = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: right;
 `;
 export const DeleteMovieButton = styled.button`
   font-size: ${rem(10)};
@@ -71,4 +72,16 @@ export const DeleteMovieButton = styled.button`
     background-color: #575c7b;
     cursor: pointer;
   }
+`;
+
+export const Rating = styled.div`
+  display: flex;
+  justify-content: end;
+  gap: ${rem(5)};
+`;
+
+export const Score = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

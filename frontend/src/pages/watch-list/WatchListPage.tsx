@@ -1,4 +1,7 @@
 import Card from "../../components/card/Card";
+import StarIcon from "@mui/icons-material/Star";
+import { FRENCH_MAUVE } from "../../Variables";
+
 import {
   DeleteMovieButton,
   MovieCardWatchList,
@@ -8,10 +11,13 @@ import {
   MovieDetailsRight,
   MovieDetailsTitle,
   MoviePicture,
+  Rating,
+  Score,
   WatchListContainer,
   WatchListMovieCollectionContainer,
   WatchListTitle,
 } from "./WatchListPage.styled";
+import { pink } from "@mui/material/colors";
 
 const WatchListPage = () => {
   return (
@@ -34,13 +40,16 @@ const WatchListPage = () => {
                   </MovieDetailsDescription>
                 </MovieDetailsLeft>
                 <MovieDetailsRight>
-                  <div></div>
+                  <Rating>
+                    <StarIcon sx={{ color: FRENCH_MAUVE }} />
+
+                    <Score>4.5</Score>
+                  </Rating>
                   <DeleteMovieButton>Delete from watchlist</DeleteMovieButton>
                 </MovieDetailsRight>
               </MovieDetails>
             </MovieCardWatchList>
           </Card>
-          <Card variant="collection">movie1</Card>
         </WatchListMovieCollectionContainer>
       </WatchListContainer>
     </>
