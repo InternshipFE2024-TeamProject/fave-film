@@ -1,9 +1,9 @@
 import { StyledCard } from "./Card.styled";
 
-type CardProps = {
+interface CardProps {
   children: React.ReactNode;
   variant?: "collection";
-};
+}
 
 function Card({ children, variant }: CardProps) {
   return (
