@@ -1,7 +1,14 @@
 import Card from "../../components/card/Card";
 import {
+  MovieCardWatchList,
+  MovieDetails,
+  MovieDetailsDescription,
+  MovieDetailsLeft,
+  MovieDetailsRight,
+  MovieDetailsTitle,
+  MoviePicture,
   WatchListContainer,
-  WatchListMovieCollection,
+  WatchListMovieCollectionContainer,
   WatchListTitle,
 } from "./WatchListPage.styled";
 
@@ -10,12 +17,25 @@ const WatchListPage = () => {
     <>
       <WatchListContainer>
         <WatchListTitle>WATCHLIST</WatchListTitle>
-        <WatchListMovieCollection>
+        <WatchListMovieCollectionContainer>
           <Card variant="collection">
-            <p>movie1</p>
+            <MovieCardWatchList>
+              <MoviePicture />
+              <MovieDetails>
+                <MovieDetailsLeft>
+                  <MovieDetailsTitle>Dune</MovieDetailsTitle>
+                  <MovieDetailsDescription>
+                    A noble family becomes embroiled in a war for control over
+                    the galaxy's most valuable asset while its heir becomes
+                    troubled by visions of a dark future.
+                  </MovieDetailsDescription>
+                </MovieDetailsLeft>
+                <MovieDetailsRight></MovieDetailsRight>
+              </MovieDetails>
+            </MovieCardWatchList>
           </Card>
           <Card variant="collection">movie1</Card>
-        </WatchListMovieCollection>
+        </WatchListMovieCollectionContainer>
       </WatchListContainer>
     </>
   );

@@ -16,11 +16,43 @@ export const WatchListTitle = styled.div`
   font-size: ${rem(48)};
 `;
 
-export const WatchListMovieCollection = styled.div`
+export const WatchListMovieCollectionContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${rem(50)};
   @media (max-height: 500px) {
     gap: ${rem(20)};
   }
+`;
+
+export const MovieCardWatchList = styled.div`
+  display: flex;
+  gap: ${rem(20)};
+`;
+
+export const MoviePicture = styled.img`
+  width: 60px;
+  height: 80px;
+`;
+
+export const MovieDetails = styled.div`
+  @media (min-width: 1400px) {
+    min-width: 1000px;
+  }
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const MovieDetailsLeft = styled.div``;
+
+export const MovieDetailsTitle = styled.div`
+  font-size: ${rem(24)};
+`;
+export const MovieDetailsDescription = styled.div`
+  font-size: ${rem(14)};
+`;
+export const MovieDetailsRight = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
