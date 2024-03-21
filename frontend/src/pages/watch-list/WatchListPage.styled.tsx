@@ -28,6 +28,9 @@ export const WatchListMovieCollectionContainer = styled.div`
 export const MovieCardWatchList = styled.div`
   display: flex;
   gap: ${rem(20)};
+  @media (min-width: 1500px) {
+    width: 1000px;
+  }
 `;
 
 export const MoviePicture = styled.img`
@@ -37,9 +40,6 @@ export const MoviePicture = styled.img`
 `;
 
 export const MovieDetails = styled.div`
-  @media (min-width: 1400px) {
-    min-width: 1000px;
-  }
   display: flex;
   justify-content: space-between;
   gap: 30px;
