@@ -4,15 +4,24 @@ import {
   MovieSectionText,
   MovieSectionBorderedItems,
   MovieSectionContainer,
-  MovieImageContainer,
+  MovieImagesContainer,
   MovieTitleContainer,
   MovieSectionItems,
+  MovieImageArrowsWrapper,
 } from "./Movie.styled";
-import inception from "../../assets/inception/inception1.jpg";
+import inception1 from "../../assets/inception/inception1.jpg";
+import inception2 from "../../assets/inception/inception2.jpg";
 import { movies } from "../../movies-data";
 import { Movie } from "../../types";
+import { useState } from "react";
+import { IconButton } from "@mui/material";
+import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";
+import * as pallete from "../../Variables";
 
 const MoviePage = () => {
+  const [currentImage, setCurrentImage] = useState(0);
+  const images = [inception1, inception2];
+
   const inceptionMovie: Movie[] = movies
     .filter((movie) => movie.id === 3)
     .map((movie) => ({
@@ -25,14 +34,34 @@ const MoviePage = () => {
       genres: movie.genres as [string],
     }));
 
-  console.log(inceptionMovie);
+  const nextImage = () => {
+    setCurrentImage(
+      //(prevIndex) => (prevIndex + 1) % inceptionMovie[0].pictures.length
+      (prevIndex) => (prevIndex + 1) % images.length
+    );
+  };
+
+  const prevImage = () => {
+    setCurrentImage((prevIndex) =>
+      //prevIndex === 0 ? inceptionMovie[0].pictures.length - 1 : prevIndex - 1
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
 
   return (
     <MovieContainer>
       <MovieTitleContainer>{inceptionMovie[0].title}</MovieTitleContainer>
-      <MovieImageContainer>
-        <img src={inception} />
-      </MovieImageContainer>
+      <MovieImagesContainer>
+        <MovieImageArrowsWrapper>
+          <IconButton onClick={prevImage}>
+            <ArrowBackIosNew sx={{ color: `${pallete.PLATINUM}` }} />
+          </IconButton>
+          <img src={images[currentImage]} />
+          <IconButton onClick={nextImage}>
+            <ArrowForwardIos sx={{ color: `${pallete.PLATINUM}` }} />
+          </IconButton>
+        </MovieImageArrowsWrapper>
+      </MovieImagesContainer>
       <MovieDescriptionContainer>
         {inceptionMovie[0].description}
       </MovieDescriptionContainer>

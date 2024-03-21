@@ -23,27 +23,32 @@ export const MovieTitleContainer = styled.div`
   }
 `;
 
-export const MovieImageContainer = styled.div`
+export const MovieImagesContainer = styled.div`
   display: flex;
   justify-content: center;
   margin: ${rem(40)} ${rem(250)} 0 ${rem(250)};
   background-color: rgba(234, 234, 234, 0.05);
-  img {
-    width: auto;
-    min-width: 300px;
-    height: auto;
-    object-fit: cover;
-  }
 
   @media (max-width: 880px) {
     margin: 30px 150px 0 150px;
   }
-  @media (max-width: 600px) {
+  @media (max-width: 660px) {
     margin: 20px 50px 0 50px;
   }
 
   @media (max-width: 400px) {
     margin: 30px 0 0 0;
+  }
+`;
+
+export const MovieImageArrowsWrapper = styled.div`
+  display: flex;
+
+  img {
+    //width: auto;
+    min-width: 300px;
+    height: auto;
+    object-fit: cover;
   }
 `;
 
@@ -58,7 +63,7 @@ export const MovieDescriptionContainer = styled.div`
   @media (max-width: 880px) {
     margin: 0 150px 0 150px;
   }
-  @media (max-width: 600px) {
+  @media (max-width: 660px) {
     margin: 0 50px 0 50px;
   }
 
@@ -78,7 +83,7 @@ export const MovieSectionContainer = styled.div`
   @media (max-width: 880px) {
     margin: 0 150px 0 150px;
   }
-  @media (max-width: 600px) {
+  @media (max-width: 660px) {
     margin: 0 50px 0 50px;
   }
 
