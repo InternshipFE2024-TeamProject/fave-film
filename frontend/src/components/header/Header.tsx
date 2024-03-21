@@ -29,7 +29,8 @@ const Header = () => {
           </InputContainer>
         </LeftSide>
 
-        {!isAuthenticated && <Button>Log In</Button>}
+        {!isAuthenticated && <Button type="text">Log In</Button>}
+        {isAuthenticated && <Button type="primary">Watch List</Button>}
       </ComponentsContainer>
     </HeaderContainer>
   );
