@@ -11,6 +11,8 @@ import {
   MovieReviewRating,
   MovieReviewDate,
   MovieReviewComment,
+  MovieTitle,
+  MovieRating,
 } from "./Movie.styled";
 import inception1 from "../../assets/inception/inception1.jpg";
 import inception2 from "../../assets/inception/inception2.jpg";
@@ -95,6 +97,22 @@ const MoviePage: React.FC = () => {
     );
   };
 
+  const calculateAverageRating = (ratings: number[]): number => {
+    if (ratings.length === 0) {
+      return 0; // Return 0 if the list is empty to avoid division by zero
+    }
+
+    const sum = ratings.reduce((acc, rating) => acc + rating, 0);
+    const average = sum / ratings.length;
+    return average;
+  };
+
+  const movieRatings: number[] = [];
+  movieReviews.map((review: Review) => {
+    movieRatings.push(review.rating);
+  });
+  console.log(movieRatings);
+
   const handleRatings = () => {
     setRatingsActive(true);
     setCommentsActive(false);
@@ -107,7 +125,15 @@ const MoviePage: React.FC = () => {
 
   return (
     <MovieContainer>
-      <MovieTitleContainer>{inceptionMovie[0].title}</MovieTitleContainer>
+      <MovieTitleContainer>
+        <MovieTitle>{inceptionMovie[0].title}</MovieTitle>
+        <MovieRating>
+          <Star
+            style={{ color: `${pallete.FRENCH_MAUVE}`, fontSize: "35px" }}
+          />
+          {calculateAverageRating(movieRatings)} / 5
+        </MovieRating>
+      </MovieTitleContainer>
       <MovieImagesContainer>
         <MovieImageArrowsWrapper>
           <IconButton onClick={prevImage}>
