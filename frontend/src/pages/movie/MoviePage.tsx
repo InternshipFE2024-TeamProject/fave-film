@@ -1,15 +1,11 @@
 import {
   MovieContainer,
   MovieDescriptionContainer,
-  MovieSectionText,
-  MovieSectionBorderedItems,
   MovieSectionContainer,
   MovieImagesContainer,
   MovieTitleContainer,
-  MovieSectionItems,
   MovieImageArrowsWrapper,
   MovieReviewSection,
-  MovieReviewButton,
   MovieReviewItemContainer,
   MovieReviewUser,
   MovieReviewRating,
@@ -31,6 +27,8 @@ import {
 import * as pallete from "../../Variables";
 import { reviews } from "../../review-data";
 import { useParams } from "react-router-dom";
+import { MovieDetailComponent } from "./MovieDetailComponent";
+import { ReviewButton } from "./ReviewButton";
 
 const MoviePage: React.FC = () => {
   const [currentImage, setCurrentImage] = useState(0);
@@ -124,41 +122,23 @@ const MoviePage: React.FC = () => {
       <MovieDescriptionContainer>
         {inceptionMovie[0].description}
       </MovieDescriptionContainer>
+      <MovieDetailComponent title="Genres:" list={inceptionMovie[0].genres} />
+      <MovieDetailComponent title="Cast:" list={inceptionMovie[0].cast} />
+      <MovieDetailComponent
+        title="Director:"
+        string={inceptionMovie[0].director}
+      />
       <MovieSectionContainer>
-        <MovieSectionText>Genres:</MovieSectionText>
-        <MovieSectionItems>
-          {inceptionMovie[0].genres.map((genre, index) => (
-            <MovieSectionBorderedItems key={index}>
-              {genre}
-            </MovieSectionBorderedItems>
-          ))}
-        </MovieSectionItems>
-      </MovieSectionContainer>
-      <MovieSectionContainer>
-        <MovieSectionText>Cast:</MovieSectionText>
-        <MovieSectionItems>
-          {inceptionMovie[0].cast.map((cast, index) => (
-            <MovieSectionBorderedItems key={index}>
-              {cast}
-            </MovieSectionBorderedItems>
-          ))}
-        </MovieSectionItems>
-      </MovieSectionContainer>
-      <MovieSectionContainer>
-        <MovieSectionText>Director:</MovieSectionText>
-        <MovieSectionItems>
-          <MovieSectionBorderedItems>
-            {inceptionMovie[0].director}
-          </MovieSectionBorderedItems>
-        </MovieSectionItems>
-      </MovieSectionContainer>
-      <MovieSectionContainer>
-        <MovieReviewButton active={ratingsActive} onClick={handleRatings}>
-          Ratings
-        </MovieReviewButton>
-        <MovieReviewButton active={commentsActive} onClick={handleComments}>
-          Comments
-        </MovieReviewButton>
+        <ReviewButton
+          active={ratingsActive}
+          func={handleRatings}
+          title="Ratings"
+        />
+        <ReviewButton
+          active={commentsActive}
+          func={handleComments}
+          title="Comments"
+        />
       </MovieSectionContainer>
       {ratingsActive && (
         <MovieReviewSection>
