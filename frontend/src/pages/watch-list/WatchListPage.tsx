@@ -1,5 +1,6 @@
 import Card from "../../components/card/Card";
 import {
+  WatchListContainer,
   WatchListMovieCollection,
   WatchListTitle,
 } from "./WatchListPage.styled";
@@ -7,11 +8,15 @@ import {
 const WatchListPage = () => {
   return (
     <>
-      <WatchListTitle>WATCHLIST</WatchListTitle>
-      <WatchListMovieCollection>
-        <Card variant="collection">movie1</Card>
-        <Card variant="collection">movie1</Card>
-      </WatchListMovieCollection>
+      <WatchListContainer>
+        <WatchListTitle>WATCHLIST</WatchListTitle>
+        <WatchListMovieCollection>
+          <Card variant="collection">
+            <p>movie1</p>
+          </Card>
+          <Card variant="collection">movie1</Card>
+        </WatchListMovieCollection>
+      </WatchListContainer>
     </>
   );
 };

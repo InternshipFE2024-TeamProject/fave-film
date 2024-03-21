@@ -18,5 +18,5 @@ export const StyledCard = styled.div<StyledCardProps>`
   ${({ variant }) =>
     variant === "collection"
       ? `border-left: ${rem(10)} solid ${FRENCH_MAUVE};`
-      : `border-top: ${rem(10)} solid ${FRENCH_MAUVE};`}
+      : `border-top: ${rem(10)} solid ${FRENCH_MAUVE};`};
 `;
