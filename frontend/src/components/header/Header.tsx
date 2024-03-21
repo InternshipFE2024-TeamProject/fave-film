@@ -9,8 +9,11 @@ import {
   LogoContainer,
   SearchIcon,
 } from "./Header.styled";
+import { useAuth } from "../../contexts/authContext";
 
 const Header = () => {
+  const { isAuthenticated } = useAuth();
+
   return (
     <HeaderContainer>
       <ComponentsContainer>
@@ -26,7 +29,7 @@ const Header = () => {
           </InputContainer>
         </LeftSide>
 
-        <Button>Log In</Button>
+        {!isAuthenticated && <Button>Log In</Button>}
       </ComponentsContainer>
     </HeaderContainer>
   );
