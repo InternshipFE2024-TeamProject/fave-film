@@ -1,5 +1,6 @@
 import Card from "../../components/card/Card";
 import {
+  DeleteMovieButton,
   MovieCardWatchList,
   MovieDetails,
   MovieDetailsDescription,
@@ -20,7 +21,9 @@ const WatchListPage = () => {
         <WatchListMovieCollectionContainer>
           <Card variant="collection">
             <MovieCardWatchList>
-              <MoviePicture />
+              <div>
+                <MoviePicture />
+              </div>
               <MovieDetails>
                 <MovieDetailsLeft>
                   <MovieDetailsTitle>Dune</MovieDetailsTitle>
@@ -30,7 +33,10 @@ const WatchListPage = () => {
                     troubled by visions of a dark future.
                   </MovieDetailsDescription>
                 </MovieDetailsLeft>
-                <MovieDetailsRight></MovieDetailsRight>
+                <MovieDetailsRight>
+                  <div></div>
+                  <DeleteMovieButton>Delete from watchlist</DeleteMovieButton>
+                </MovieDetailsRight>
               </MovieDetails>
             </MovieCardWatchList>
           </Card>
