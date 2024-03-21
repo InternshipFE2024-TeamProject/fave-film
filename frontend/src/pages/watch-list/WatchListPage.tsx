@@ -1,10 +1,17 @@
-import { WatchListTitle } from "./WatchListPage.styled";
+import Card from "../../components/card/Card";
+import {
+  WatchListMovieCollection,
+  WatchListTitle,
+} from "./WatchListPage.styled";
 
 const WatchListPage = () => {
   return (
     <>
       <WatchListTitle>WATCHLIST</WatchListTitle>
-      <div className="Title">aaaa</div>
+      <WatchListMovieCollection>
+        <Card variant="collection">movie1</Card>
+        <Card variant="collection">movie1</Card>
+      </WatchListMovieCollection>
     </>
   );
 };
