@@ -10,6 +10,7 @@ export const HeaderContainer = styled.div`
   padding: ${rem(40)} ${rem(60)};
   position: fixed;
   z-index: 999;
+
   @media (max-width: 600px) {
     padding: ${rem(40)} ${rem(10)};
   }
@@ -21,6 +22,7 @@ export const ComponentsContainer = styled.div`
   justify-content: space-between;
   gap: ${rem(10)};
   align-items: center;
+
   @media (max-width: 600px) {
     gap: ${rem(0)};
   }
@@ -31,6 +33,7 @@ export const LeftSide = styled.div`
   flex: 1;
   align-items: center;
   gap: ${rem(60)};
+
   @media (max-width: 600px) {
     gap: ${rem(0)};
   }
@@ -50,6 +53,7 @@ export const InputContainer = styled.div`
   max-width: ${rem(900)};
   min-width: ${rem(200)};
   max-height: ${rem(50)};
+  
   input {
     width: 100%;
     background-color: ${pallete.PLATINUM};
