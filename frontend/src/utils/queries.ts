@@ -41,6 +41,7 @@ export const GET_USERS = gql`
         password
         firstName
         lastName
+        watchedList
       }
     }
   }
@@ -54,6 +55,12 @@ query{
       email
       firstName
       lastName
+      watchedList{
+        id
+        title
+        description
+        imagesUrls
+      }
     }
   }
 }`;
@@ -100,10 +107,10 @@ export const GET_REVIEW_BY_MOVIE_ID = (movieId: number) => gql`
   }
 `;
 
-// export const ADD_MOVIE_TO_WATCHLIST = (userId: number, movieId: number) => gql`
-//   mutation {
-//     userMutation {
-//       addToWatchList(userId: ${userId}, movieId: ${movieId})
-//     }
-//   }
-// `;
+export const ADD_MOVIE_TO_WATCHLIST = (userId: number, movieId: number) => gql`
+  mutation {
+    userMutation {
+      addToWatchList(userId: ${userId}, movieId: ${movieId})
+    }
+  }
+`;

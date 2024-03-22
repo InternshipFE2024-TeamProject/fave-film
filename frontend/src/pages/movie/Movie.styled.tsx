@@ -165,6 +165,10 @@ export const MovieReviewButton = styled.button<ActiveProps>`
   }
 `;
 
+export const MovieAddToWatchlist = styled.div`
+  margin-left: auto;
+`;
+
 export const MovieReviewItemContainer = styled.div`
   display: flex;
   justify-content: space-between;

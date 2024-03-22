@@ -14,13 +14,16 @@ import {
   MovieTitle,
   MovieRating,
   MovieWrapper,
+  MovieAddToWatchlist,
 } from "./Movie.styled";
 import { Movie, Review } from "../../utils/types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IconButton } from "@mui/material";
 import {
   ArrowBackIosNew,
   ArrowForwardIos,
+  Favorite,
+  FavoriteBorder,
   Star,
   StarBorder,
 } from "@mui/icons-material";
@@ -28,34 +31,50 @@ import * as pallete from "../../Variables";
 import { useParams } from "react-router-dom";
 import { MovieDetailComponent } from "./components/MovieDetailComponent";
 import { ReviewButton } from "./components/ReviewButton";
-import { GET_MOVIE_BY_ID, GET_REVIEW_BY_MOVIE_ID } from "../../utils/queries";
-import { useQuery } from "@apollo/client";
+import {
+  ADD_MOVIE_TO_WATCHLIST,
+  GET_MOVIE_BY_ID,
+  GET_REVIEW_BY_MOVIE_ID,
+  GET_USER_BY_ID,
+} from "../../utils/queries";
+import { useQuery, useMutation } from "@apollo/client";
 import {
   calculateAverageRating,
   getReviewDate,
   getReviews,
 } from "./movie-functions";
+import { useAuth } from "../../contexts/authContext";
 
 const MoviePage: React.FC = () => {
+  const { userId, isAuthenticated } = useAuth();
   const [currentImage, setCurrentImage] = useState(0);
   const [ratingsActive, setRatingsActive] = useState("true");
   const [commentsActive, setCommentsActive] = useState("false");
-  const { id } = useParams<{ id: string }>();
+  const [isOnWatchedList, setIsOnWatchedList] = useState<boolean>(false);
 
+  const { id } = useParams<{ id: string }>();
   if (!id) {
     return <div>No movie ID provided.</div>;
   }
   const parsedId = parseInt(id, 10);
+
+  const { data: dataUser } = useQuery(GET_USER_BY_ID(userId));
   const { data: dataMovie } = useQuery(GET_MOVIE_BY_ID(parsedId));
-
   const { data: dataReview } = useQuery(GET_REVIEW_BY_MOVIE_ID(parsedId));
+  const [addToWatchlistMutation] = useMutation(
+    ADD_MOVIE_TO_WATCHLIST(userId, parsedId)
+  );
 
-  if (!dataMovie) return;
-  const movie: Movie = dataMovie.movieQuery.movie;
+  useEffect(() => {
+    if (!dataUser) return;
+    const watchedList: Movie[] = dataUser.userQuery.user.watchedList;
+    const watchedListMovies: number[] = watchedList.map(
+      (movie: Movie) => movie.id
+    );
+    const isMovieOnWatchedList: boolean = watchedListMovies.includes(parsedId);
 
-  if (!dataReview) return;
-  const reviews: Review[] = dataReview.reviewQuery.reviewMovie;
-  console.log(reviews);
+    setIsOnWatchedList(isMovieOnWatchedList);
+  }, [dataUser, parsedId]);
 
   const getRating = (rating: number) => {
     const stars = [];
@@ -90,6 +109,17 @@ const MoviePage: React.FC = () => {
     setRatingsActive("false");
     setCommentsActive("true");
   };
+
+  const handleAddToWatchlist = () => {
+    addToWatchlistMutation();
+    setIsOnWatchedList((prevState) => !prevState);
+    console.log("MERGE");
+  };
+
+  if (!dataMovie || !dataReview || !dataUser) return null;
+
+  const movie: Movie = dataMovie.movieQuery.movie;
+  const reviews: Review[] = dataReview.reviewQuery.reviewMovie;
 
   return (
     <MovieContainer>
@@ -135,6 +165,20 @@ const MoviePage: React.FC = () => {
             func={handleComments}
             title="Comments"
           />
+          <MovieAddToWatchlist>
+            {isAuthenticated && (
+              <IconButton
+                onClick={handleAddToWatchlist}
+                disabled={isOnWatchedList}
+              >
+                {isOnWatchedList ? (
+                  <Favorite sx={{ color: pallete.FRENCH_MAUVE }} />
+                ) : (
+                  <FavoriteBorder sx={{ color: pallete.PLATINUM }} />
+                )}
+              </IconButton>
+            )}
+          </MovieAddToWatchlist>
         </MovieSectionContainer>
 
         {ratingsActive === "true" && (

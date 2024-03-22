@@ -3,7 +3,7 @@ export interface Movie {
   title: string;
   description: string;
   imagesUrls: string[];
-  genres: [string];
+  genres: string[];
   cast: string[];
   director: string;
 }
@@ -23,4 +23,5 @@ export interface User {
   email: string;
   firstName: string;
   lastName: string;
+  watchedList: Movie[];
 }
