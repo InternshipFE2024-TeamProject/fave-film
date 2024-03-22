@@ -25,30 +25,6 @@ const WatchListPage = () => {
               title={movie.title}
               description={movie.description}
             />
-            // <Card variant="collection">
-            //   <MovieCardWatchList>
-            //     <MovieDetailsLeft>
-            //       <div>
-            //         <MoviePicture src={movie.pictures[0]} />
-            //       </div>
-            //       <div>
-            //         <MovieDetailsTitle>{movie.title}</MovieDetailsTitle>
-            //         <MovieDetailsDescription>
-            //           {movie.description}
-            //         </MovieDetailsDescription>
-            //       </div>
-            //     </MovieDetailsLeft>
-
-            //     <MovieDetailsRight>
-            //       <Rating>
-            //         <StarIcon sx={{ color: FRENCH_MAUVE }} />
-
-            //         <Score>4.5</Score>
-            //       </Rating>
-            //       <DeleteMovieButton>Delete from watchlist</DeleteMovieButton>
-            //     </MovieDetailsRight>
-            //   </MovieCardWatchList>
-            // </Card>
           ))}
         </WatchListMovieCollectionContainer>
       </WatchListContainer>
