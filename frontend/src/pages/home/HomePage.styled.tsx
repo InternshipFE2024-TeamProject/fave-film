@@ -76,26 +76,6 @@ export const MainContainer = styled.div`
   }
 `;
 
-export const MovieCardMainPage = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: ${rem(10)};
-  align-items: center;
-  img {
-    max-width: ${rem(80)};
-    object-fir: cover;
-  }
-`;
-
-export const LeftMovieDetails = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-export const RightMovieDetails = styled.div``;
-
-export const MovieRating = styled.div``;
-
 export const RightConatiner = styled.div`
   display: flex;
 `;

@@ -13,6 +13,8 @@ import { dummy_data as movies } from "../../movies-data";
 import Button from "../../components/button/Button";
 import { MovieGenres } from "../../utils/enums";
 import MovieCardContent from "../../components/movie-card-content/MovieCardContent";
+import { GET_MOVIES } from "../../utils/queries/getMovies";
+import { useQuery } from "@apollo/client";
 
 interface IMovie {
   id: number;
@@ -22,6 +24,10 @@ interface IMovie {
 }
 
 const HomePage = () => {
+  const { loading, error, data } = useQuery(GET_MOVIES);
+
+  console.log(data);
+
   return (
     <HomePageContainer>
       <HomePageComponents>
@@ -39,10 +45,10 @@ const HomePage = () => {
             </Card>
           </FilterContainer>
           <MainContainer>
-            {movies &&
-              movies.map((movie) => (
+            {data &&
+              data.movieQuery.movies.map((movie: IMovie) => (
                 <MovieCardContent
-                  picture={movie.pictures[0]}
+                  picture={movie.imagesUrls[0]}
                   title={movie.title}
                   description={movie.description}
                 />
