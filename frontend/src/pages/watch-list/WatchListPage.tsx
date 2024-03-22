@@ -1,18 +1,7 @@
-import Card from "../../components/card/Card";
-import StarIcon from "@mui/icons-material/Star";
-import { FRENCH_MAUVE } from "../../Variables";
+import MovieCardContent from "../../components/movie-card-content/MovieCardContent";
 import { data } from "../../movies-data";
 
 import {
-  DeleteMovieButton,
-  MovieCardWatchList,
-  MovieDetailsDescription,
-  MovieDetailsLeft,
-  MovieDetailsRight,
-  MovieDetailsTitle,
-  MoviePicture,
-  Rating,
-  Score,
   WatchListContainer,
   WatchListMovieCollectionContainer,
   WatchListTitle,
@@ -31,30 +20,35 @@ const WatchListPage = () => {
         <WatchListTitle>WATCHLIST</WatchListTitle>
         <WatchListMovieCollectionContainer>
           {data.map((movie) => (
-            <Card variant="collection">
-              <MovieCardWatchList>
-                <MovieDetailsLeft>
-                  <div>
-                    <MoviePicture />
-                  </div>
-                  <div>
-                    <MovieDetailsTitle>{movie.title}</MovieDetailsTitle>
-                    <MovieDetailsDescription>
-                      {movie.description}
-                    </MovieDetailsDescription>
-                  </div>
-                </MovieDetailsLeft>
+            <MovieCardContent
+              picture={movie.pictures[0]}
+              title={movie.title}
+              description={movie.description}
+            />
+            // <Card variant="collection">
+            //   <MovieCardWatchList>
+            //     <MovieDetailsLeft>
+            //       <div>
+            //         <MoviePicture src={movie.pictures[0]} />
+            //       </div>
+            //       <div>
+            //         <MovieDetailsTitle>{movie.title}</MovieDetailsTitle>
+            //         <MovieDetailsDescription>
+            //           {movie.description}
+            //         </MovieDetailsDescription>
+            //       </div>
+            //     </MovieDetailsLeft>
 
-                <MovieDetailsRight>
-                  <Rating>
-                    <StarIcon sx={{ color: FRENCH_MAUVE }} />
+            //     <MovieDetailsRight>
+            //       <Rating>
+            //         <StarIcon sx={{ color: FRENCH_MAUVE }} />
 
-                    <Score>4.5</Score>
-                  </Rating>
-                  <DeleteMovieButton>Delete from watchlist</DeleteMovieButton>
-                </MovieDetailsRight>
-              </MovieCardWatchList>
-            </Card>
+            //         <Score>4.5</Score>
+            //       </Rating>
+            //       <DeleteMovieButton>Delete from watchlist</DeleteMovieButton>
+            //     </MovieDetailsRight>
+            //   </MovieCardWatchList>
+            // </Card>
           ))}
         </WatchListMovieCollectionContainer>
       </WatchListContainer>
