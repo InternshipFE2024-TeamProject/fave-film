@@ -22,7 +22,7 @@ const Header = () => {
             <img src={logo} alt="logo" />
           </LogoContainer>
           <InputContainer>
-            <input type="text" />
+            <input type="text" placeholder="Search Movie" />
             <SearchIcon>
               <SearchOutlinedIcon />
             </SearchIcon>

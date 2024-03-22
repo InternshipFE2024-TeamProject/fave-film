@@ -8,7 +8,7 @@ import {
 
 interface MovieDetailProp {
   title: string;
-  list?: [React.ReactNode];
+  list?: string[];
   string?: string;
 }
 

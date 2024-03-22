@@ -2,9 +2,9 @@ export interface Movie {
   id: number;
   title: string;
   description: string;
-  pictures: [string];
+  imagesUrls: string[];
   genres: [string];
-  cast: [string];
+  cast: string[];
   director: string;
 }
 

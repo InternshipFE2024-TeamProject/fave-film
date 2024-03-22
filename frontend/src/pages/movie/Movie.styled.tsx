@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { rem } from "../../utils";
+import { rem } from "../../utils/utils";
 import * as pallete from "../../Variables";
 
 export const MovieContainer = styled.div`
@@ -29,7 +29,7 @@ export const MovieTitleContainer = styled.div`
 `;
 
 export const MovieTitle = styled.div`
-  font-size: 48px;
+  font-size: ${rem(48)};
 `;
 
 export const MovieRating = styled.div`
@@ -50,10 +50,27 @@ export const MovieImageArrowsWrapper = styled.div`
   display: flex;
 
   img {
-    //width: auto;
-    min-width: 300px;
-    height: auto;
+    height: 100%;
+    width: 100%;
+    max-width: ${rem(700)};
+    max-height: ${rem(700)};
+
     object-fit: cover;
+
+    @media (max-width: 1300px) {
+      max-width: ${rem(500)};
+      max-height: ${rem(400)};
+    }
+
+    @media (max-width: 1050px) {
+      max-width: ${rem(400)};
+      max-height: ${rem(400)};
+    }
+
+    @media (max-width: 930px) {
+      max-width: ${rem(200)};
+      max-height: ${rem(400)};
+    }
   }
 `;
 
@@ -124,7 +141,7 @@ interface ActiveProps {
 
 export const MovieReviewButton = styled.button<ActiveProps>`
   font-size: 14px;
-  margin-left: ${rem(20)};
+  margin-right: ${rem(20)};
   font-family: inherit;
   color: inherit;
   border: 1px solid ${pallete.PLATINUM};

@@ -15,10 +15,7 @@ import {
   MovieRating,
   MovieWrapper,
 } from "./Movie.styled";
-import inception1 from "../../assets/inception/inception1.jpg";
-import inception2 from "../../assets/inception/inception2.jpg";
-import { movies } from "../../movies-data";
-import { Movie, Review } from "../../types";
+import { Movie, Review } from "../../utils/types";
 import { useState } from "react";
 import { IconButton } from "@mui/material";
 import {
@@ -32,18 +29,26 @@ import { reviews } from "../../review-data";
 import { useParams } from "react-router-dom";
 import { MovieDetailComponent } from "./MovieDetailComponent";
 import { ReviewButton } from "./ReviewButton";
+import { GET_MOVIES } from "../../utils/queries";
+import { useQuery } from "@apollo/client";
 
 const MoviePage: React.FC = () => {
+  const { loading, error, data } = useQuery(GET_MOVIES);
   const [currentImage, setCurrentImage] = useState(0);
   const [ratingsActive, setRatingsActive] = useState("true");
   const [commentsActive, setCommentsActive] = useState("false");
-  const images = [inception1, inception2];
   const { id } = useParams<{ id: string }>();
 
   if (!id) {
     return <div>No movie ID provided.</div>;
   }
   const parsedId = parseInt(id, 10);
+
+  if (!data) return;
+
+  const movie: Movie = data.movieQuery.movies.find(
+    (movie: Movie) => movie.id === parsedId
+  );
 
   const movieReviews: Review[] = reviews
     .filter((review) => review.movieId === parsedId)
@@ -54,20 +59,6 @@ const MoviePage: React.FC = () => {
       userId: review.userName as string,
       movieId: review.movieId as number,
       date: review.date as string,
-    }));
-
-  console.log(movieReviews);
-
-  const inceptionMovie: Movie[] = movies
-    .filter((movie) => movie.id === parsedId)
-    .map((movie) => ({
-      id: movie.id as number,
-      title: movie.title as string,
-      description: movie.description as string,
-      director: movie.director as string,
-      cast: movie.cast as [string],
-      pictures: movie.pictures as [string],
-      genres: movie.genres as [string],
     }));
 
   const getRating = (rating: number) => {
@@ -85,22 +76,18 @@ const MoviePage: React.FC = () => {
   };
 
   const nextImage = () => {
-    setCurrentImage(
-      //(prevIndex) => (prevIndex + 1) % inceptionMovie[0].pictures.length
-      (prevIndex) => (prevIndex + 1) % images.length
-    );
+    setCurrentImage((prevIndex) => (prevIndex + 1) % movie.imagesUrls.length);
   };
 
   const prevImage = () => {
     setCurrentImage((prevIndex) =>
-      //prevIndex === 0 ? inceptionMovie[0].pictures.length - 1 : prevIndex - 1
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+      prevIndex === 0 ? movie.imagesUrls.length - 1 : prevIndex - 1
     );
   };
 
   const calculateAverageRating = (ratings: number[]): number => {
     if (ratings.length === 0) {
-      return 0; // Return 0 if the list is empty to avoid division by zero
+      return 0;
     }
 
     const sum = ratings.reduce((acc, rating) => acc + rating, 0);
@@ -128,7 +115,7 @@ const MoviePage: React.FC = () => {
     <MovieContainer>
       <MovieWrapper>
         <MovieTitleContainer>
-          <MovieTitle>{inceptionMovie[0].title}</MovieTitle>
+          <MovieTitle>{movie.title}</MovieTitle>
           <MovieRating>
             <Star
               style={{ color: `${pallete.FRENCH_MAUVE}`, fontSize: "35px" }}
@@ -141,21 +128,18 @@ const MoviePage: React.FC = () => {
             <IconButton onClick={prevImage}>
               <ArrowBackIosNew sx={{ color: `${pallete.PLATINUM}` }} />
             </IconButton>
-            <img src={images[currentImage]} />
+            <img src={movie.imagesUrls[currentImage]} alt={movie.title} />
             <IconButton onClick={nextImage}>
               <ArrowForwardIos sx={{ color: `${pallete.PLATINUM}` }} />
             </IconButton>
           </MovieImageArrowsWrapper>
         </MovieImagesContainer>
         <MovieDescriptionContainer>
-          {inceptionMovie[0].description}
+          {movie.description}
         </MovieDescriptionContainer>
-        <MovieDetailComponent title="Genres:" list={inceptionMovie[0].genres} />
-        <MovieDetailComponent title="Cast:" list={inceptionMovie[0].cast} />
-        <MovieDetailComponent
-          title="Director:"
-          string={inceptionMovie[0].director}
-        />
+        <MovieDetailComponent title="Genres:" list={movie.genres} />
+        <MovieDetailComponent title="Cast:" list={movie.cast} />
+        <MovieDetailComponent title="Director:" string={movie.director} />
         <MovieSectionContainer>
           <ReviewButton
             active={ratingsActive}
