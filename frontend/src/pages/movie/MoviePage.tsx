@@ -29,11 +29,10 @@ import { reviews } from "../../review-data";
 import { useParams } from "react-router-dom";
 import { MovieDetailComponent } from "./MovieDetailComponent";
 import { ReviewButton } from "./ReviewButton";
-import { GET_MOVIES } from "../../utils/queries";
+import { GET_MOVIE_BY_ID } from "../../utils/queries";
 import { useQuery } from "@apollo/client";
 
 const MoviePage: React.FC = () => {
-  const { loading, error, data } = useQuery(GET_MOVIES);
   const [currentImage, setCurrentImage] = useState(0);
   const [ratingsActive, setRatingsActive] = useState("true");
   const [commentsActive, setCommentsActive] = useState("false");
@@ -43,12 +42,10 @@ const MoviePage: React.FC = () => {
     return <div>No movie ID provided.</div>;
   }
   const parsedId = parseInt(id, 10);
+  const { loading, error, data } = useQuery(GET_MOVIE_BY_ID(parsedId));
 
   if (!data) return;
-
-  const movie: Movie = data.movieQuery.movies.find(
-    (movie: Movie) => movie.id === parsedId
-  );
+  const movie: Movie = data.movieQuery.movie;
 
   const movieReviews: Review[] = reviews
     .filter((review) => review.movieId === parsedId)

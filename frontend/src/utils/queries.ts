@@ -15,3 +15,19 @@ export const GET_MOVIES = gql`
     }
   }
 `;
+
+export const GET_MOVIE_BY_ID = (id: number) => gql`
+  query {
+    movieQuery {
+      movie(id : ${id}) {
+        id
+        title
+        description
+        imagesUrls
+        genres
+        director
+        cast
+      }
+    }
+  }
+`;
