@@ -4,7 +4,11 @@ import { rem } from "../../utils/rem";
 export const HomePageContainer = styled.div`
   width: 100%;
   height: 100vh;
-  padding: ${rem(100)} ${rem(60)} ${rem(0)} ${rem(60)};
+  padding: ${rem(100)} ${rem(140)} ${rem(0)} ${rem(25)};
+
+  @media (max-width: 1270px) {
+    padding: ${rem(100)} ${rem(60)} ${rem(0)} ${rem(25)};
+  }
 
   @media (max-width: 600px) {
     padding: ${rem(80)} ${rem(10)} ${rem(0)} ${rem(10)};
@@ -16,26 +20,31 @@ export const HomePageComponents = styled.div`
   justify-content: space-between;
   gap: ${rem(10)};
 
-  @media (max-width: 600px) {
-    gap: ${rem(0)};
-  }
+  //   @media (max-width: 600px) {
+  //     gap: ${rem(0)};
+  //   }
 `;
 
 export const LeftContainer = styled.div`
   display: flex;
   flex: 1;
-  gap: ${rem(60)};
+  gap: ${rem(40)};
 
-  @media (max-width: 600px) {
-    gap: ${rem(0)};
-  }
+  //   @media (max-width: 600px) {
+  //     gap: ${rem(0)};
+  //   }
 `;
 
 export const FilterContainer = styled.div`
   display: flex;
+  gap: ${rem(10)};
 
   div {
-    width: ${rem(100)};
+    width: ${rem(150)};
+  }
+
+  button {
+    margin: 5px;
   }
 `;
 

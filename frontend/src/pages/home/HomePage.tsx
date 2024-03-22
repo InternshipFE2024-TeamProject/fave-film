@@ -13,6 +13,7 @@ import { HomePageContainer } from "./HomePage.styled";
 import Card from "../../components/card/Card";
 import { movies } from "../../movies-data";
 import Button from "../../components/button/Button";
+import { MovieGenres } from "../../utils/enums";
 
 interface IMovie {
   id: number;
@@ -30,7 +31,11 @@ const HomePage = () => {
             <Card>
               <CardFilters>
                 <h2>Filters</h2>
-                <Button type="secondary">Action</Button>
+                {Object.keys(MovieGenres).map((genreKey) => (
+                  <Button key={genreKey} type="secondary">
+                    {MovieGenres[genreKey as keyof typeof MovieGenres]}
+                  </Button>
+                ))}
               </CardFilters>
             </Card>
           </FilterContainer>
