@@ -13,8 +13,9 @@ export const MovieCardWatchList = styled.div`
 `;
 
 export const MoviePicture = styled.img`
-  width: 60px;
-  height: 80px;
+  max-width: ${rem(60)};
+  max-height: ${rem(80)};
+  object-fit: cover;
 `;
 
 export const MovieDetailsLeft = styled.div`
@@ -40,6 +41,7 @@ export const MovieDetailsRight = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: end;
 `;
 export const DeleteMovieButton = styled.button`
   font-size: ${rem(10)};

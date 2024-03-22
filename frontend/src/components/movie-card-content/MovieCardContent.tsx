@@ -28,9 +28,7 @@ function MovieCardContent({
     <Card variant="collection">
       <MovieCardWatchList>
         <MovieDetailsLeft>
-          <div>
-            <MoviePicture src={picture} />
-          </div>
+          <MoviePicture src={picture} />
           <div>
             <MovieDetailsTitle>{title}</MovieDetailsTitle>
             <MovieDetailsDescription>{description}</MovieDetailsDescription>
