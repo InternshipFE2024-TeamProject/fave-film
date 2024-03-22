@@ -4,7 +4,7 @@ import { MovieReviewButton } from "./Movie.styled";
 
 interface ReviewButton {
   title: string;
-  active: boolean;
+  active: string;
   func: (event: MouseEvent<HTMLButtonElement>) => void;
 }
 export const ReviewButton = ({ title, active, func }: ReviewButton) => {

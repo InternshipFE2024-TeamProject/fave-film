@@ -13,6 +13,7 @@ import {
   MovieReviewComment,
   MovieTitle,
   MovieRating,
+  MovieWrapper,
 } from "./Movie.styled";
 import inception1 from "../../assets/inception/inception1.jpg";
 import inception2 from "../../assets/inception/inception2.jpg";
@@ -34,13 +35,13 @@ import { ReviewButton } from "./ReviewButton";
 
 const MoviePage: React.FC = () => {
   const [currentImage, setCurrentImage] = useState(0);
-  const [ratingsActive, setRatingsActive] = useState(true);
-  const [commentsActive, setCommentsActive] = useState(false);
+  const [ratingsActive, setRatingsActive] = useState("true");
+  const [commentsActive, setCommentsActive] = useState("false");
   const images = [inception1, inception2];
   const { id } = useParams<{ id: string }>();
 
   if (!id) {
-    return <div>No ID provided</div>;
+    return <div>No movie ID provided.</div>;
   }
   const parsedId = parseInt(id, 10);
 
@@ -114,90 +115,92 @@ const MoviePage: React.FC = () => {
   console.log(movieRatings);
 
   const handleRatings = () => {
-    setRatingsActive(true);
-    setCommentsActive(false);
+    setRatingsActive("true");
+    setCommentsActive("false");
   };
 
   const handleComments = () => {
-    setRatingsActive(false);
-    setCommentsActive(true);
+    setRatingsActive("false");
+    setCommentsActive("true");
   };
 
   return (
     <MovieContainer>
-      <MovieTitleContainer>
-        <MovieTitle>{inceptionMovie[0].title}</MovieTitle>
-        <MovieRating>
-          <Star
-            style={{ color: `${pallete.FRENCH_MAUVE}`, fontSize: "35px" }}
+      <MovieWrapper>
+        <MovieTitleContainer>
+          <MovieTitle>{inceptionMovie[0].title}</MovieTitle>
+          <MovieRating>
+            <Star
+              style={{ color: `${pallete.FRENCH_MAUVE}`, fontSize: "35px" }}
+            />
+            {calculateAverageRating(movieRatings)} / 5
+          </MovieRating>
+        </MovieTitleContainer>
+        <MovieImagesContainer>
+          <MovieImageArrowsWrapper>
+            <IconButton onClick={prevImage}>
+              <ArrowBackIosNew sx={{ color: `${pallete.PLATINUM}` }} />
+            </IconButton>
+            <img src={images[currentImage]} />
+            <IconButton onClick={nextImage}>
+              <ArrowForwardIos sx={{ color: `${pallete.PLATINUM}` }} />
+            </IconButton>
+          </MovieImageArrowsWrapper>
+        </MovieImagesContainer>
+        <MovieDescriptionContainer>
+          {inceptionMovie[0].description}
+        </MovieDescriptionContainer>
+        <MovieDetailComponent title="Genres:" list={inceptionMovie[0].genres} />
+        <MovieDetailComponent title="Cast:" list={inceptionMovie[0].cast} />
+        <MovieDetailComponent
+          title="Director:"
+          string={inceptionMovie[0].director}
+        />
+        <MovieSectionContainer>
+          <ReviewButton
+            active={ratingsActive}
+            func={handleRatings}
+            title="Ratings"
           />
-          {calculateAverageRating(movieRatings)} / 5
-        </MovieRating>
-      </MovieTitleContainer>
-      <MovieImagesContainer>
-        <MovieImageArrowsWrapper>
-          <IconButton onClick={prevImage}>
-            <ArrowBackIosNew sx={{ color: `${pallete.PLATINUM}` }} />
-          </IconButton>
-          <img src={images[currentImage]} />
-          <IconButton onClick={nextImage}>
-            <ArrowForwardIos sx={{ color: `${pallete.PLATINUM}` }} />
-          </IconButton>
-        </MovieImageArrowsWrapper>
-      </MovieImagesContainer>
-      <MovieDescriptionContainer>
-        {inceptionMovie[0].description}
-      </MovieDescriptionContainer>
-      <MovieDetailComponent title="Genres:" list={inceptionMovie[0].genres} />
-      <MovieDetailComponent title="Cast:" list={inceptionMovie[0].cast} />
-      <MovieDetailComponent
-        title="Director:"
-        string={inceptionMovie[0].director}
-      />
-      <MovieSectionContainer>
-        <ReviewButton
-          active={ratingsActive}
-          func={handleRatings}
-          title="Ratings"
-        />
-        <ReviewButton
-          active={commentsActive}
-          func={handleComments}
-          title="Comments"
-        />
-      </MovieSectionContainer>
-      {ratingsActive && (
-        <MovieReviewSection>
-          {movieReviews.length > 0 ? (
-            movieReviews.map((review, index) => (
-              <MovieReviewItemContainer key={index}>
-                <MovieReviewUser>{review.userId}</MovieReviewUser>
-                <MovieReviewRating>
-                  {getRating(review.rating)}
-                </MovieReviewRating>
-                <MovieReviewDate>{review.date}</MovieReviewDate>
-              </MovieReviewItemContainer>
-            ))
-          ) : (
-            <div>There are no reviews.</div>
-          )}
-        </MovieReviewSection>
-      )}
-      {commentsActive && (
-        <MovieReviewSection>
-          {movieReviews.length > 0 ? (
-            movieReviews.map((review, index) => (
-              <MovieReviewItemContainer key={index}>
-                <MovieReviewUser>{review.userId}</MovieReviewUser>
-                <MovieReviewComment>{review.comment}</MovieReviewComment>
-                <MovieReviewDate>{review.date}</MovieReviewDate>
-              </MovieReviewItemContainer>
-            ))
-          ) : (
-            <div>There are no reviews.</div>
-          )}
-        </MovieReviewSection>
-      )}
+          <ReviewButton
+            active={commentsActive}
+            func={handleComments}
+            title="Comments"
+          />
+        </MovieSectionContainer>
+        {ratingsActive === "true" && (
+          <MovieReviewSection>
+            {movieReviews.length > 0 ? (
+              movieReviews.map((review, index) => (
+                <MovieReviewItemContainer key={index}>
+                  <MovieReviewUser>{review.userId}</MovieReviewUser>
+                  <MovieReviewRating>
+                    {getRating(review.rating)}
+                  </MovieReviewRating>
+                  <MovieReviewDate>{review.date}</MovieReviewDate>
+                </MovieReviewItemContainer>
+              ))
+            ) : (
+              <div>There are no reviews.</div>
+            )}
+          </MovieReviewSection>
+        )}
+        {commentsActive === "true" && (
+          <MovieReviewSection>
+            {movieReviews.length > 0 ? (
+              movieReviews.map((review, index) => (
+                <MovieReviewItemContainer key={index}>
+                  <MovieReviewUser>{review.userId}</MovieReviewUser>
+                  <MovieReviewComment>{review.comment}</MovieReviewComment>
+                  <MovieReviewDate>{review.date}</MovieReviewDate>
+                </MovieReviewItemContainer>
+              ))
+            ) : (
+              <div>There are no reviews.</div>
+            )}
+          </MovieReviewSection>
+        )}
+      </MovieWrapper>
     </MovieContainer>
   );
 };
