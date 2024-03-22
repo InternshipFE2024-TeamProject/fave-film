@@ -1,10 +1,9 @@
-import React from "react";
 import {
   MovieSectionText,
   MovieSectionBorderedItems,
   MovieSectionContainer,
   MovieSectionItems,
-} from "./Movie.styled";
+} from "../Movie.styled";
 
 interface MovieDetailProp {
   title: string;

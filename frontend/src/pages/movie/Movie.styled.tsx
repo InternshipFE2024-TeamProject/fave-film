@@ -176,6 +176,7 @@ export const MovieReviewItemContainer = styled.div`
 
 export const MovieReviewUser = styled.div`
   display: flex;
+  margin-right: 10px;
 `;
 
 export const MovieReviewRating = styled.div`
@@ -188,4 +189,5 @@ export const MovieReviewComment = styled.div`
 
 export const MovieReviewDate = styled.div`
   display: flex;
+  margin-left: 10px;
 `;

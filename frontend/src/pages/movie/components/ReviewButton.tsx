@@ -1,6 +1,5 @@
-import React from "react";
 import { MouseEvent } from "react";
-import { MovieReviewButton } from "./Movie.styled";
+import { MovieReviewButton } from "../Movie.styled";
 
 interface ReviewButton {
   title: string;

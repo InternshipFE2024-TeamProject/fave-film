@@ -25,12 +25,16 @@ import {
   StarBorder,
 } from "@mui/icons-material";
 import * as pallete from "../../Variables";
-import { reviews } from "../../review-data";
 import { useParams } from "react-router-dom";
-import { MovieDetailComponent } from "./MovieDetailComponent";
-import { ReviewButton } from "./ReviewButton";
-import { GET_MOVIE_BY_ID } from "../../utils/queries";
+import { MovieDetailComponent } from "./components/MovieDetailComponent";
+import { ReviewButton } from "./components/ReviewButton";
+import { GET_MOVIE_BY_ID, GET_REVIEW_BY_MOVIE_ID } from "../../utils/queries";
 import { useQuery } from "@apollo/client";
+import {
+  calculateAverageRating,
+  getReviewDate,
+  getReviews,
+} from "./movie-functions";
 
 const MoviePage: React.FC = () => {
   const [currentImage, setCurrentImage] = useState(0);
@@ -42,21 +46,16 @@ const MoviePage: React.FC = () => {
     return <div>No movie ID provided.</div>;
   }
   const parsedId = parseInt(id, 10);
-  const { loading, error, data } = useQuery(GET_MOVIE_BY_ID(parsedId));
+  const { data: dataMovie } = useQuery(GET_MOVIE_BY_ID(parsedId));
 
-  if (!data) return;
-  const movie: Movie = data.movieQuery.movie;
+  const { data: dataReview } = useQuery(GET_REVIEW_BY_MOVIE_ID(parsedId));
 
-  const movieReviews: Review[] = reviews
-    .filter((review) => review.movieId === parsedId)
-    .map((review) => ({
-      id: review.id as number,
-      rating: review.rating as number,
-      comment: review.comment as string,
-      userId: review.userName as string,
-      movieId: review.movieId as number,
-      date: review.date as string,
-    }));
+  if (!dataMovie) return;
+  const movie: Movie = dataMovie.movieQuery.movie;
+
+  if (!dataReview) return;
+  const reviews: Review[] = dataReview.reviewQuery.reviewMovie;
+  console.log(reviews);
 
   const getRating = (rating: number) => {
     const stars = [];
@@ -82,22 +81,6 @@ const MoviePage: React.FC = () => {
     );
   };
 
-  const calculateAverageRating = (ratings: number[]): number => {
-    if (ratings.length === 0) {
-      return 0;
-    }
-
-    const sum = ratings.reduce((acc, rating) => acc + rating, 0);
-    const average = sum / ratings.length;
-    return average;
-  };
-
-  const movieRatings: number[] = [];
-  movieReviews.map((review: Review) => {
-    movieRatings.push(review.rating);
-  });
-  console.log(movieRatings);
-
   const handleRatings = () => {
     setRatingsActive("true");
     setCommentsActive("false");
@@ -117,9 +100,10 @@ const MoviePage: React.FC = () => {
             <Star
               style={{ color: `${pallete.FRENCH_MAUVE}`, fontSize: "35px" }}
             />
-            {calculateAverageRating(movieRatings)} / 5
+            {calculateAverageRating(getReviews(reviews))} / 5
           </MovieRating>
         </MovieTitleContainer>
+
         <MovieImagesContainer>
           <MovieImageArrowsWrapper>
             <IconButton onClick={prevImage}>
@@ -131,12 +115,15 @@ const MoviePage: React.FC = () => {
             </IconButton>
           </MovieImageArrowsWrapper>
         </MovieImagesContainer>
+
         <MovieDescriptionContainer>
           {movie.description}
         </MovieDescriptionContainer>
+
         <MovieDetailComponent title="Genres:" list={movie.genres} />
         <MovieDetailComponent title="Cast:" list={movie.cast} />
         <MovieDetailComponent title="Director:" string={movie.director} />
+
         <MovieSectionContainer>
           <ReviewButton
             active={ratingsActive}
@@ -149,16 +136,21 @@ const MoviePage: React.FC = () => {
             title="Comments"
           />
         </MovieSectionContainer>
+
         {ratingsActive === "true" && (
           <MovieReviewSection>
-            {movieReviews.length > 0 ? (
-              movieReviews.map((review, index) => (
+            {reviews.length > 0 ? (
+              reviews.map((review, index) => (
                 <MovieReviewItemContainer key={index}>
-                  <MovieReviewUser>{review.userId}</MovieReviewUser>
+                  <MovieReviewUser>
+                    {review.user.firstName} {review.user.lastName}
+                  </MovieReviewUser>
                   <MovieReviewRating>
                     {getRating(review.rating)}
                   </MovieReviewRating>
-                  <MovieReviewDate>{review.date}</MovieReviewDate>
+                  <MovieReviewDate>
+                    {getReviewDate(review.date)}
+                  </MovieReviewDate>
                 </MovieReviewItemContainer>
               ))
             ) : (
@@ -166,14 +158,19 @@ const MoviePage: React.FC = () => {
             )}
           </MovieReviewSection>
         )}
+
         {commentsActive === "true" && (
           <MovieReviewSection>
-            {movieReviews.length > 0 ? (
-              movieReviews.map((review, index) => (
+            {reviews.length > 0 ? (
+              reviews.map((review, index) => (
                 <MovieReviewItemContainer key={index}>
-                  <MovieReviewUser>{review.userId}</MovieReviewUser>
+                  <MovieReviewUser>
+                    {review.user.firstName} {review.user.lastName}
+                  </MovieReviewUser>
                   <MovieReviewComment>{review.comment}</MovieReviewComment>
-                  <MovieReviewDate>{review.date}</MovieReviewDate>
+                  <MovieReviewDate>
+                    {getReviewDate(review.date)}
+                  </MovieReviewDate>
                 </MovieReviewItemContainer>
               ))
             ) : (
