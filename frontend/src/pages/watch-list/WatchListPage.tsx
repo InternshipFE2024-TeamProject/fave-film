@@ -1,5 +1,5 @@
 import MovieCardContent from "../../components/movie-card-content/MovieCardContent";
-import { data } from "../../movies-data";
+import { useQuery, gql } from "@apollo/client";
 
 import {
   WatchListContainer,
@@ -7,26 +7,49 @@ import {
   WatchListTitle,
 } from "./WatchListPage.styled";
 
-data.forEach((movie: { title: any; description: any; pictures: any[] }) => {
-  console.log("Title:", movie.title);
-  console.log("Description:", movie.description);
-  console.log("First Picture:", movie.pictures[0]);
-});
+const GET_MOVIES = gql`
+  {
+    userQuery {
+      user(id: 1) {
+        id
+        watchedList {
+          id
+          title
+          description
+          imagesUrls
+        }
+      }
+    }
+  }
+`;
+interface IMovie {
+  id: number;
+  title: string;
+  description: string;
+  imagesUrls: string[];
+}
 
 const WatchListPage = () => {
+  const { loading, error, data } = useQuery(GET_MOVIES);
+  console.log({ data });
+
+  // if (!data)
+  // data.movieQuery.movies.map((movie: IMovie) => console.log(movie));
   return (
     <>
       <WatchListContainer>
         <WatchListTitle>WATCHLIST</WatchListTitle>
         <WatchListMovieCollectionContainer>
-          {data.map((movie) => (
-            <MovieCardContent
-              key={movie.id}
-              picture={movie.pictures[0]}
-              title={movie.title}
-              description={movie.description}
-            />
-          ))}
+          {data &&
+            data.userQuery.user.watchedList.map((movie: IMovie) => (
+              <MovieCardContent
+                key={movie.id}
+                picture={movie.imagesUrls[1]}
+                // picture={""}
+                title={movie.title}
+                description={movie.description}
+              />
+            ))}
         </WatchListMovieCollectionContainer>
       </WatchListContainer>
     </>
