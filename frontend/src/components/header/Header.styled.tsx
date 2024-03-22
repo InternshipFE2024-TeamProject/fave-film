@@ -1,7 +1,7 @@
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import styled from "styled-components";
 import * as pallete from "../../Variables";
-import { rem } from "../../utils";
+import { rem } from "../../utils/rem";
 
 export const HeaderContainer = styled.div`
   width: 100%;
@@ -53,7 +53,7 @@ export const InputContainer = styled.div`
   max-width: ${rem(900)};
   min-width: ${rem(200)};
   max-height: ${rem(50)};
-  
+
   input {
     width: 100%;
     background-color: ${pallete.PLATINUM};

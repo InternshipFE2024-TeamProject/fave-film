@@ -1,10 +1,14 @@
-[
+export const movies = [
   {
     id: 1,
     title: "The Shawshank Redemption",
     description:
       "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
-    pictures: ["shawshank1.jpg", "shawshank2.jpg", "shawshank3.jpg"],
+    pictures: [
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuf5BB5Lt70A5G1li0Vz03BkIg9LphCCKQtQ&usqp=CAU",
+      "shawshank2.jpg",
+      "shawshank3.jpg",
+    ],
     director: "Frank Darabont",
     genres: ["Drama", "Crime"],
     cast: ["Tim Robbins", "Morgan Freeman", "Bob Gunton"],

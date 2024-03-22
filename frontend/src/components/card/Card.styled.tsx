@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import { SPACE_CADET, FRENCH_MAUVE } from "../../Variables";
-import { rem } from "../../utils";
+import { rem } from "../../utils/rem";
 
 interface StyledCardProps {
   variant?: "collection"; // Definiți tipurile acceptate pentru proprietatea variant
 }
 
 export const StyledCard = styled.div<StyledCardProps>`
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
