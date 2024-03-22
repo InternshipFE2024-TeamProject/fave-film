@@ -21,6 +21,7 @@ const WatchListPage = () => {
         <WatchListMovieCollectionContainer>
           {data.map((movie) => (
             <MovieCardContent
+              key={movie.id}
               picture={movie.pictures[0]}
               title={movie.title}
               description={movie.description}
