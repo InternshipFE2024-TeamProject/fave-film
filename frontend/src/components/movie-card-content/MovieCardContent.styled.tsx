@@ -6,6 +6,9 @@ export const MovieCardWatchList = styled.div`
   gap: ${rem(30)};
   justify-content: space-between;
   width: 100%;
+  @media (max-width: 450px) {
+    gap: ${rem(5)};
+  }
 `;
 
 export const MoviePicture = styled.img`
@@ -16,10 +19,16 @@ export const MoviePicture = styled.img`
 export const MovieDetailsLeft = styled.div`
   display: flex;
   gap: ${rem(20)};
+  @media (max-width: 450px) {
+    gap: ${rem(5)};
+  }
 `;
 
 export const MovieDetailsTitle = styled.div`
   font-size: ${rem(24)};
+  @media (max-width: 450px) {
+    font-size: ${rem(20)};
+  }
 `;
 export const MovieDetailsDescription = styled.div`
   font-size: ${rem(14)};

@@ -5,9 +5,10 @@ export const WatchListContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${rem(20)};
-  margin: ${rem(100)} ${rem(100)} ${rem(100)} ${rem(200)};
+  margin: ${rem(0)} ${rem(100)} ${rem(100)} ${rem(200)};
+  padding-top: ${rem(150)};
   @media (max-width: 800px) {
-    margin: ${rem(50)} ${rem(50)} ${rem(50)} ${rem(50)};
+    margin: ${rem(0)} ${rem(50)} ${rem(50)} ${rem(50)};
   }
 `;
 
