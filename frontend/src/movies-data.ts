@@ -1,4 +1,4 @@
-[
+export const dummy_data = [
   {
     id: 1,
     title: "The Shawshank Redemption",
