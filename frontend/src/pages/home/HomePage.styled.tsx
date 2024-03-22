@@ -2,10 +2,9 @@ import styled from "styled-components";
 import { rem } from "../../utils/rem";
 
 export const HomePageContainer = styled.div`
-  padding: ${rem(100)} ${rem(60)} ${rem(0)} ${rem(60)};
   width: 100%;
   height: 100vh;
-  display: flex;
+  padding: ${rem(100)} ${rem(60)} ${rem(0)} ${rem(60)};
 
   @media (max-width: 600px) {
     padding: ${rem(80)} ${rem(10)} ${rem(0)} ${rem(10)};
@@ -13,7 +12,6 @@ export const HomePageContainer = styled.div`
 `;
 
 export const HomePageComponents = styled.div`
-  height: 100%;
   display: flex;
   justify-content: space-between;
   gap: ${rem(10)};
@@ -51,17 +49,27 @@ export const CardFilters = styled.div`
     min-width: ${rem(80)};
   }
 `;
+
 export const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
+  flex: 1;
+  max-width: ${rem(880)};
+  min-width: ${rem(180)};
   gap: ${rem(15)};
-  max-width: ${rem(900)};
+
+  @media (max-width: 1400px) {
+    max-width: ${rem(680)};
+  }
+
+  div {
+    width: 100%;
+  }
 `;
 
 export const CardContent = styled.div`
   display: flex;
   flex-direction: row;
-  width: 100%;
 
   img {
     max-width: ${rem(80)};
@@ -75,9 +83,7 @@ export const CardMainContent = styled.div`
 `;
 
 export const RightConatiner = styled.div`
-  div {
-    display: flex;
-  }
+  display: flex;
 `;
 
 export const CardContentRecommandation = styled.div`
@@ -85,6 +91,8 @@ export const CardContentRecommandation = styled.div`
   flex-direction: column;
 
   img {
+    max-width: ${rem(200)};
+    object-fir: cover;
   }
 
   p {

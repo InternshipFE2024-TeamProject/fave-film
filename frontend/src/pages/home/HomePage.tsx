@@ -1,4 +1,3 @@
-import { useQuery } from "@apollo/client";
 import {
   CardContent,
   CardContentRecommandation,
@@ -12,7 +11,6 @@ import {
 } from "./HomePage.styled";
 import { HomePageContainer } from "./HomePage.styled";
 import Card from "../../components/card/Card";
-import { GET_MOVIES } from "../../utils/queries/getMovies";
 import { movies } from "../../movies-data";
 import Button from "../../components/button/Button";
 
