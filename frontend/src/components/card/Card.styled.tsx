@@ -9,7 +9,6 @@ interface StyledCardProps {
 export const StyledCard = styled.div<StyledCardProps>`
   display: flex;
   align-items: center;
-  // justify-content: center;
   background-color: ${SPACE_CADET};
   border-radius: ${rem(10)};
   height: fit-content;

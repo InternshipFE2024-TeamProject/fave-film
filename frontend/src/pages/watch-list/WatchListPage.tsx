@@ -33,8 +33,6 @@ const WatchListPage = () => {
   const { loading, error, data } = useQuery(GET_MOVIES);
   console.log({ data });
 
-  // if (!data)
-  // data.movieQuery.movies.map((movie: IMovie) => console.log(movie));
   return (
     <>
       <WatchListContainer>
@@ -45,7 +43,6 @@ const WatchListPage = () => {
               <MovieCardContent
                 key={movie.id}
                 picture={movie.imagesUrls[1]}
-                // picture={""}
                 title={movie.title}
                 description={movie.description}
               />

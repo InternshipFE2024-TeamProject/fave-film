@@ -19,14 +19,14 @@ interface IMovie {
 }
 
 const HomePage = () => {
-  // const { loading, error, data } = useQuery(GET_MOVIES);
+  const { loading, error, data } = useQuery(GET_MOVIES);
 
-  // console.log({ loading });
-  // console.log({ error });
-  // console.log({ data });
+  console.log({ loading });
+  console.log({ error });
+  console.log({ data });
 
-  // if (!data) return;
-  // data.movieQuery.movies.map((movie: IMovie) => console.log(movie));
+  if (!data) return;
+  data.movieQuery.movies.map((movie: IMovie) => console.log(movie));
   return <div>HomePage</div>;
 };
 
