@@ -10,6 +10,7 @@ export const StyledButton = styled.button<ButtonProps>`
   cursor: pointer;
   padding: ${rem(12)};
   border-radius: ${rem(10)};
+  font-size: ${rem(10)};
   background-color: ${(props) =>
     props.type === "primary" && `${pallete.PLATINUM} `};
   background-color: ${(props) => props.type === "secondary" && `transparent`};
@@ -20,7 +21,6 @@ export const StyledButton = styled.button<ButtonProps>`
 
   border: ${(props) =>
     props.type === "secondary" ? `1px solid ${pallete.PLATINUM}` : "none"};
-  font-size: ${rem(12)};
 
   &:hover {
     background-color: ${pallete.ULTRA_VIOLET};

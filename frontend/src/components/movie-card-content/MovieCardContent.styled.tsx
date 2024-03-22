@@ -15,6 +15,7 @@ export const MovieCardWatchList = styled.div`
 export const MoviePicture = styled.img`
   max-width: ${rem(80)};
   max-height: ${rem(80)};
+  min-height: ${rem(60)}
   object-fit: cover;
 `;
 

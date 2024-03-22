@@ -44,7 +44,7 @@ export const FilterContainer = styled.div`
   }
 
   button {
-    margin: 5px;
+    margin-top: ${rem(5)};
   }
 `;
 
@@ -53,9 +53,10 @@ export const CardFilters = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  font-size: ${rem(12)};
 
   button {
-    min-width: ${rem(110)};
+    min-width: ${rem(90)};
   }
 `;
 
