@@ -28,9 +28,7 @@ function MovieCardContent({
     <Card variant="collection">
       <MovieCardWatchList>
         <MovieDetailsLeft>
-          <div>
-            <MoviePicture src={picture} />
-          </div>
+          <MoviePicture src={picture} />
           <div>
             <MovieDetailsTitle>{title}</MovieDetailsTitle>
             <MovieDetailsDescription>{description}</MovieDetailsDescription>
@@ -40,9 +38,9 @@ function MovieCardContent({
         <MovieDetailsRight>
           <Rating>
             <StarIcon sx={{ color: FRENCH_MAUVE }} />
-
             <Score>4.5</Score>
           </Rating>
+
           <DeleteMovieButton>Delete from watchlist</DeleteMovieButton>
         </MovieDetailsRight>
       </MovieCardWatchList>

@@ -1,8 +1,6 @@
 import {
-  CardContent,
   CardContentRecommandation,
   CardFilters,
-  CardMainContent,
   FilterContainer,
   HomePageComponents,
   LeftContainer,
@@ -11,9 +9,10 @@ import {
 } from "./HomePage.styled";
 import { HomePageContainer } from "./HomePage.styled";
 import Card from "../../components/card/Card";
-import { movies } from "../../movies-data";
+import { dummy_data as movies } from "../../movies-data";
 import Button from "../../components/button/Button";
 import { MovieGenres } from "../../utils/enums";
+import MovieCardContent from "../../components/movie-card-content/MovieCardContent";
 
 interface IMovie {
   id: number;
@@ -42,15 +41,11 @@ const HomePage = () => {
           <MainContainer>
             {movies &&
               movies.map((movie) => (
-                <Card variant="collection">
-                  <CardContent>
-                    <img src={movies[0].pictures[0]} alt="" />
-                    <CardMainContent>
-                      <h2>{movie.title}</h2>
-                      <p>{movie.description}</p>
-                    </CardMainContent>
-                  </CardContent>
-                </Card>
+                <MovieCardContent
+                  picture={movie.pictures[0]}
+                  title={movie.title}
+                  description={movie.description}
+                />
               ))}
           </MainContainer>
         </LeftContainer>

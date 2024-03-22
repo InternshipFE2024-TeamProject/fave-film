@@ -55,7 +55,7 @@ export const CardFilters = styled.div`
   flex-direction: column;
 
   button {
-    min-width: ${rem(80)};
+    min-width: ${rem(110)};
   }
 `;
 
@@ -71,25 +71,30 @@ export const MainContainer = styled.div`
     max-width: ${rem(680)};
   }
 
-  div {
-    width: 100%;
+  p {
+    font-size: ${rem(14)};
   }
 `;
 
-export const CardContent = styled.div`
+export const MovieCardMainPage = styled.div`
   display: flex;
   flex-direction: row;
-
+  gap: ${rem(10)};
+  align-items: center;
   img {
     max-width: ${rem(80)};
     object-fir: cover;
   }
 `;
 
-export const CardMainContent = styled.div`
+export const LeftMovieDetails = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
+export const RightMovieDetails = styled.div``;
+
+export const MovieRating = styled.div``;
 
 export const RightConatiner = styled.div`
   display: flex;

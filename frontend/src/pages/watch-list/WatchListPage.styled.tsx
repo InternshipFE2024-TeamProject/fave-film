@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { rem } from "../../utils";
+import { rem } from "../../utils/rem";
 
 export const WatchListContainer = styled.div`
   display: flex;
