@@ -29,6 +29,10 @@ interface IMovie {
   imagesUrls: string[];
 }
 
+const handleDelete = () => {
+  console.log("Delete");
+};
+
 const WatchListPage = () => {
   const { loading, error, data } = useQuery(GET_MOVIES);
   console.log({ data });
@@ -45,6 +49,7 @@ const WatchListPage = () => {
                 picture={movie.imagesUrls[1]}
                 title={movie.title}
                 description={movie.description}
+                handleButton={handleDelete}
               />
             ))}
         </WatchListMovieCollectionContainer>

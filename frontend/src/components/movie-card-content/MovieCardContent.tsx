@@ -18,11 +18,13 @@ interface MovieCardContentProps {
   picture: string;
   title: string;
   description: string;
+  handleButton: () => {};
 }
 function MovieCardContent({
   picture,
   title,
   description,
+  handleButton,
 }: MovieCardContentProps) {
   return (
     <Card variant="collection">
@@ -41,7 +43,9 @@ function MovieCardContent({
 
             <Score>4.5</Score>
           </Rating>
-          <DeleteMovieButton>Delete from watchlist</DeleteMovieButton>
+          <DeleteMovieButton onClick={handleButton}>
+            Delete from watchlist
+          </DeleteMovieButton>
         </MovieDetailsRight>
       </MovieCardWatchList>
     </Card>
