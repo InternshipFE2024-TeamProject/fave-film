@@ -43,6 +43,7 @@ import {
   MovieRating,
   MovieWrapper,
   MovieAddToWatchlist,
+  MovieAddToWatchListWarpper,
 } from "./Movie.styled";
 
 const MoviePage: React.FC = () => {
@@ -166,16 +167,23 @@ const MoviePage: React.FC = () => {
           />
           <MovieAddToWatchlist>
             {isAuthenticated && (
-              <IconButton
-                onClick={handleAddToWatchlist}
-                disabled={isOnWatchedList}
-              >
+              <MovieAddToWatchListWarpper>
                 {isOnWatchedList ? (
-                  <Favorite sx={{ color: pallete.FRENCH_MAUVE }} />
+                  <p>Added to watch list</p>
                 ) : (
-                  <FavoriteBorder sx={{ color: pallete.PLATINUM }} />
+                  <p>Add to watch list</p>
                 )}
-              </IconButton>
+                <IconButton
+                  onClick={handleAddToWatchlist}
+                  disabled={isOnWatchedList}
+                >
+                  {isOnWatchedList ? (
+                    <Favorite sx={{ color: pallete.FRENCH_MAUVE }} />
+                  ) : (
+                    <FavoriteBorder sx={{ color: pallete.PLATINUM }} />
+                  )}
+                </IconButton>
+              </MovieAddToWatchListWarpper>
             )}
           </MovieAddToWatchlist>
         </MovieSectionContainer>

@@ -168,6 +168,12 @@ export const MovieAddToWatchlist = styled.div`
   margin-left: auto;
 `;
 
+export const MovieAddToWatchListWarpper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 export const MovieReviewItemContainer = styled.div`
   display: flex;
   justify-content: space-between;
