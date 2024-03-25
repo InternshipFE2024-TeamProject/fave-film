@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import ClearIcon from "@mui/icons-material/Clear";
 import * as pallete from "../../utils/Variables";
 import { rem } from "../../utils/rem";
 
@@ -20,11 +21,14 @@ export const ComponentsContainer = styled.div`
   height: 100%;
   display: flex;
   justify-content: space-between;
-  gap: ${rem(10)};
   align-items: center;
 
-  @media (max-width: 600px) {
-    gap: ${rem(0)};
+  @media (max-width: 1280px) {
+    gap: ${rem(100)};
+  }
+
+  @media (min-width: 1280px) {
+    gap: ${rem(200)};
   }
 `;
 
@@ -59,16 +63,31 @@ export const InputContainer = styled.div`
     background-color: ${pallete.PLATINUM};
     padding: ${rem(7)};
     border-radius: ${rem(10)};
-  }
+    outline: none;
 
-  @media (max-width: 1400px) {
-    max-width: ${rem(700)};
+    &:focus {
+      border: 2px solid ${pallete.FRENCH_MAUVE};
+    }
   }
 `;
 
 export const SearchIcon = styled(SearchOutlinedIcon)`
   position: relative;
   position: absolut;
+  text: ceter;
   left: ${rem(-30)};
+  color: ${pallete.SPACE_CADET};
+`;
+
+interface ClearInputProps {
+  hidden: boolean;
+}
+
+export const ClearInput = styled(ClearIcon)<ClearInputProps>`
+  visibility: ${(props) => props.hidden === true && "hidden"};
+  position: relative;
+  position: absolut;
+  text: ceter;
+  left: ${rem(-80)};
   color: ${pallete.SPACE_CADET};
 `;

@@ -6,7 +6,7 @@ export const HomePageContainer = styled.div`
   height: 100vh;
   padding: ${rem(100)} ${rem(140)} ${rem(0)} ${rem(25)};
 
-  @media (max-width: 1270px) {
+  @media (max-width: 1280px) {
     padding: ${rem(100)} ${rem(60)} ${rem(0)} ${rem(25)};
   }
 
@@ -59,10 +59,6 @@ export const MainContainer = styled.div`
   max-width: ${rem(880)};
   min-width: ${rem(180)};
   gap: ${rem(15)};
-
-  @media (max-width: 1400px) {
-    max-width: ${rem(680)};
-  }
 
   p {
     font-size: ${rem(14)};
