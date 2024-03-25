@@ -3,12 +3,12 @@ import { StyledButton } from "./Button.styled";
 interface ButtonProps {
   type: "primary" | "text" | "secondary";
   children: React.ReactNode;
-  onClick?: () => void;
+  onClickFunction?: () => void;
 }
 
-const Button = ({ type, children, onClick }: ButtonProps) => {
+const Button = ({ type, children, onClickFunction }: ButtonProps) => {
   return (
-    <StyledButton type={type} onClick={onClick}>
+    <StyledButton onClick={onClickFunction} type={type}>
       {children}
     </StyledButton>
   );
