@@ -1,16 +1,5 @@
-import { useQuery, gql } from "@apollo/client";
-
-const GET_MOVIES = gql`
-  query {
-    movieQuery {
-      movies {
-        id
-        title
-        description
-      }
-    }
-  }
-`;
+import { useQuery } from "@apollo/client";
+import { GET_MOVIES } from "../../utils/queries";
 
 interface IMovie {
   id: number;
