@@ -1,6 +1,6 @@
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import styled from "styled-components";
-import * as pallete from "../../Variables";
+import * as pallete from "../../utils/Variables";
 import { rem } from "../../utils/utils";
 
 export const HeaderContainer = styled.div`

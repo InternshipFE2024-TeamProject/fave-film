@@ -1,3 +1,15 @@
+import { useEffect, useState } from "react";
+import { IconButton } from "@mui/material";
+import { useQuery, useMutation } from "@apollo/client";
+import { useParams } from "react-router-dom";
+import {
+  ArrowBackIosNew,
+  ArrowForwardIos,
+  Favorite,
+  FavoriteBorder,
+  Star,
+  StarBorder,
+} from "@mui/icons-material";
 import {
   MovieContainer,
   MovieDescriptionContainer,
@@ -17,18 +29,7 @@ import {
   MovieAddToWatchlist,
 } from "./Movie.styled";
 import { Movie, Review } from "../../utils/types";
-import { useEffect, useState } from "react";
-import { IconButton } from "@mui/material";
-import {
-  ArrowBackIosNew,
-  ArrowForwardIos,
-  Favorite,
-  FavoriteBorder,
-  Star,
-  StarBorder,
-} from "@mui/icons-material";
-import * as pallete from "../../Variables";
-import { useParams } from "react-router-dom";
+import * as pallete from "../../utils/Variables";
 import { MovieDetailComponent } from "./components/MovieDetailComponent";
 import { ReviewButton } from "./components/ReviewButton";
 import {
@@ -37,7 +38,6 @@ import {
   GET_REVIEW_BY_MOVIE_ID,
   GET_USER_BY_ID,
 } from "../../utils/queries";
-import { useQuery, useMutation } from "@apollo/client";
 import {
   calculateAverageRating,
   getReviewDate,
