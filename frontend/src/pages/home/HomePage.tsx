@@ -1,5 +1,4 @@
 import {
-  CardContentRecommandation,
   CardFilters,
   FilterContainer,
   HomePageComponents,
@@ -9,7 +8,6 @@ import {
 } from "./HomePage.styled";
 import { HomePageContainer } from "./HomePage.styled";
 import Card from "../../components/card/Card";
-import { dummy_data as dummyMovies } from "../../movies-data";
 import Button from "../../components/button/Button";
 import { MovieGenres } from "../../utils/enums";
 import MovieCardContent from "../../components/movie-card-content/MovieCardContent";
@@ -68,7 +66,7 @@ const HomePage = () => {
                   <Button
                     key={genreKey}
                     type="secondary"
-                    onClick={() =>
+                    onClickFunction={() =>
                       handleAddFilter(
                         MovieGenres[genreKey as keyof typeof MovieGenres]
                       )
@@ -93,12 +91,12 @@ const HomePage = () => {
           </MainContainer>
         </LeftContainer>
         <RightConatiner>
-          <Card>
+          {/* <Card>
             <CardContentRecommandation>
               <img src={dummyMovies[0].pictures[0]} alt="movie-image" />
               <p>{dummyMovies[0].description}</p>
             </CardContentRecommandation>
-          </Card>
+          </Card> */}
         </RightConatiner>
       </HomePageComponents>
     </HomePageContainer>

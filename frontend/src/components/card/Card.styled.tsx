@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { SPACE_CADET, FRENCH_MAUVE } from "../../utils/Variables";
-import { rem } from "../../utils/utils";
+import { rem } from "../../utils/rem";
 
 interface StyledCardProps {
   variant?: "collection";

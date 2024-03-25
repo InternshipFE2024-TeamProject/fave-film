@@ -18,7 +18,7 @@ interface MovieCardContentProps {
   picture: string;
   title: string;
   description: string;
-  handleButton: () => void;
+  handleButton?: () => void;
 }
 function MovieCardContent({
   picture,
