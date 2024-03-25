@@ -19,20 +19,12 @@ export const HomePageComponents = styled.div`
   display: flex;
   justify-content: space-between;
   gap: ${rem(10)};
-
-  //   @media (max-width: 600px) {
-  //     gap: ${rem(0)};
-  //   }
 `;
 
 export const LeftContainer = styled.div`
   display: flex;
   flex: 1;
   gap: ${rem(40)};
-
-  //   @media (max-width: 600px) {
-  //     gap: ${rem(0)};
-  //   }
 `;
 
 export const FilterContainer = styled.div`

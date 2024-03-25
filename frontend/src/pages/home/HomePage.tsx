@@ -4,7 +4,7 @@ import Card from "../../components/card/Card";
 import Button from "../../components/button/Button";
 import { MovieGenres } from "../../utils/enums";
 import MovieCardContent from "../../components/movie-card-content/MovieCardContent";
-import { GET_MOVIES_BY_GENRE } from "../../utils/queries/getMoviesByGenre";
+import { GET_MOVIES_BY_GENRE } from "../../utils/queries";
 import { useMovies } from "../../contexts/movieContext";
 import { Movie } from "../../utils/types";
 import {
@@ -104,7 +104,7 @@ const HomePage = () => {
         <RightConatiner>
           {recommendations &&
             recommendations.slice(0, 2).map((movie: Movie) => (
-              <Card>
+              <Card key={movie.id}>
                 <CardContentRecommandation>
                   <img src={movie.imagesUrls[0]} alt="movie-image" />
                   <p>{movie.description}</p>

@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { Movie } from "../../src/utils/types";
 import { useQuery } from "@apollo/client";
+import { Movie } from "../../src/utils/types";
 import { GET_MOVIES } from "../utils/queries";
 
 export interface MovieContextType {
