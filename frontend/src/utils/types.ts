@@ -3,9 +3,9 @@ export interface Movie {
   title: string;
   description: string;
   imagesUrls: string[];
-  genres: string[];
-  cast: string[];
-  director: string;
+  genres?: string[];
+  cast?: string[];
+  director?: string;
 }
 
 export interface Review {

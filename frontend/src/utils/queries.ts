@@ -128,3 +128,11 @@ export const ADD_MOVIE_TO_WATCHLIST = (userId: number, movieId: number) => gql`
     }
   }
 `;
+
+export const DELETE_MOVIE_FROM_WATCHLIST = gql`
+  mutation DeleteMovie($userId: Int!, $movieId: Int!) {
+    userMutation {
+      deleteFromWatchList(userId: $userId, movieId: $movieId)
+    }
+  }
+`;
