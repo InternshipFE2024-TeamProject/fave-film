@@ -36,6 +36,7 @@ export const MovieDetailsTitle = styled.div`
 `;
 export const MovieDetailsDescription = styled.div`
   font-size: ${rem(14)};
+  text-align: justify;
 `;
 export const MovieDetailsRight = styled.div`
   display: flex;

@@ -1,4 +1,15 @@
+import { useEffect, useState } from "react";
+import { useQuery } from "@apollo/client";
+import Card from "../../components/card/Card";
+import Button from "../../components/button/Button";
+import { MovieGenres } from "../../utils/enums";
+import MovieCardContent from "../../components/movie-card-content/MovieCardContent";
+import { GET_MOVIES_BY_GENRE } from "../../utils/queries/getMoviesByGenre";
+import { useMovies } from "../../contexts/movieContext";
+import { Movie } from "../../utils/types";
 import {
+  CardContentRecommandation,
+  HomePageContainer,
   CardFilters,
   FilterContainer,
   HomePageComponents,
@@ -6,48 +17,26 @@ import {
   MainContainer,
   RightConatiner,
 } from "./HomePage.styled";
-import { HomePageContainer } from "./HomePage.styled";
-import Card from "../../components/card/Card";
-import Button from "../../components/button/Button";
-import { MovieGenres } from "../../utils/enums";
-import MovieCardContent from "../../components/movie-card-content/MovieCardContent";
-import { GET_MOVIES } from "../../utils/queries/getMovies";
-import { useQuery } from "@apollo/client";
-import { GET_MOVIES_BY_GENRE } from "../../utils/queries/getMoviesByGenre";
-import { useEffect, useState } from "react";
-
-interface IMovie {
-  id: number;
-  title: string;
-  description: string;
-  imagesUrls: string[];
-}
 
 const HomePage = () => {
-  const [movies, setMovies] = useState<IMovie[] | null>(null);
-  const { data: dataMovie } = useQuery(GET_MOVIES);
+  const { movies } = useMovies();
+  const [displayedMovies, setDisplayedMovies] = useState<Movie[]>();
 
   const { refetch: refetchMoviesByGenre } = useQuery(GET_MOVIES_BY_GENRE, {
     skip: true,
   });
 
   useEffect(() => {
-    if (!dataMovie) return;
-    const movies: IMovie[] = dataMovie.movieQuery.movies;
-    setMovies(movies);
-  }, [dataMovie]);
+    if (movies) setDisplayedMovies(movies);
+  }, [movies]);
 
   const handleAddFilter = async (genre: string) => {
-    console.log(genre);
-
     try {
       const { data: filteredMoviesData } = await refetchMoviesByGenre({
         genre: genre,
       });
       if (filteredMoviesData) {
-        console.log(filteredMoviesData.movieQuery.moviesByGenre);
-
-        setMovies(filteredMoviesData.movieQuery.moviesByGenre);
+        setDisplayedMovies(filteredMoviesData.movieQuery.moviesByGenre);
       }
     } catch (error) {
       console.error("Error fetching movies by genre:", error);
@@ -79,8 +68,8 @@ const HomePage = () => {
             </Card>
           </FilterContainer>
           <MainContainer>
-            {movies &&
-              movies.map((movie: IMovie) => (
+            {displayedMovies &&
+              displayedMovies.map((movie: Movie) => (
                 <MovieCardContent
                   key={movie.id}
                   picture={movie.imagesUrls[0]}
@@ -91,12 +80,15 @@ const HomePage = () => {
           </MainContainer>
         </LeftContainer>
         <RightConatiner>
-          {/* <Card>
-            <CardContentRecommandation>
-              <img src={dummyMovies[0].pictures[0]} alt="movie-image" />
-              <p>{dummyMovies[0].description}</p>
-            </CardContentRecommandation>
-          </Card> */}
+          {displayedMovies &&
+            displayedMovies.slice(0, 2).map((movie: Movie) => (
+              <Card>
+                <CardContentRecommandation>
+                  <img src={movie.imagesUrls[0]} alt="movie-image" />
+                  <p>{movie.description}</p>
+                </CardContentRecommandation>
+              </Card>
+            ))}
         </RightConatiner>
       </HomePageComponents>
     </HomePageContainer>

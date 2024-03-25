@@ -79,18 +79,35 @@ export const MainContainer = styled.div`
 
 export const RightConatiner = styled.div`
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: ${rem(10)};
 `;
 
 export const CardContentRecommandation = styled.div`
+  height: ${rem(300)};
+  overflow: hidden;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  gap: ${rem(5)};
 
   img {
-    max-width: ${rem(200)};
+    max-width: ${rem(100)};
     object-fir: cover;
   }
 
   p {
     max-width: ${rem(200)};
+    font-size: ${rem(14)};
+    text-align: justify;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 9;
+    overflow: hidden;
+  }
+
+  p::after {
+    content: "...";
   }
 `;
