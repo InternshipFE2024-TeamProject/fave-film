@@ -18,19 +18,19 @@ interface MovieCardContentProps {
   picture: string;
   title: string;
   description: string;
+  handleButton: () => void;
 }
 function MovieCardContent({
   picture,
   title,
   description,
+  handleButton,
 }: MovieCardContentProps) {
   return (
     <Card variant="collection">
       <MovieCardWatchList>
         <MovieDetailsLeft>
-          <div>
-            <MoviePicture src={picture} />
-          </div>
+          <MoviePicture src={picture} />
           <div>
             <MovieDetailsTitle>{title}</MovieDetailsTitle>
             <MovieDetailsDescription>{description}</MovieDetailsDescription>
@@ -43,7 +43,9 @@ function MovieCardContent({
 
             <Score>4.5</Score>
           </Rating>
-          <DeleteMovieButton>Delete from watchlist</DeleteMovieButton>
+          <DeleteMovieButton onClick={handleButton}>
+            Delete from watchlist
+          </DeleteMovieButton>
         </MovieDetailsRight>
       </MovieCardWatchList>
     </Card>
