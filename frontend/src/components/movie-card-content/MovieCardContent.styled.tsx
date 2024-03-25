@@ -61,7 +61,7 @@ export const DeleteMovieButton = styled.button`
 
 export const Rating = styled.div`
   display: flex;
-  justify-content: end;
+  align-items: center;
   gap: ${rem(5)};
 `;
 
