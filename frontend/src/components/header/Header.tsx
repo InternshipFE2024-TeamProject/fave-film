@@ -29,7 +29,7 @@ const Header = () => {
             </Link>
           </LogoContainer>
           <InputContainer>
-            <input type="text" />
+            <input type="text" placeholder="Search Movie" />
             <SearchIcon>
               <SearchOutlinedIcon />
             </SearchIcon>

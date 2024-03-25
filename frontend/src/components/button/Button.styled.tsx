@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import * as pallete from "../../Variables";
-import { rem } from "../../utils/rem";
+import * as pallete from "../../utils/Variables";
+import { rem } from "../../utils/utils";
 
 interface ButtonProps {
   type: "primary" | "text" | "secondary";
