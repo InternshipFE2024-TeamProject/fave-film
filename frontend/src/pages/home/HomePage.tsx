@@ -94,6 +94,7 @@ const HomePage = () => {
               displayedMovies.map((movie: Movie) => (
                 <MovieCardContent
                   key={movie.id}
+                  movieId={movie.id}
                   picture={movie.imagesUrls[0]}
                   title={movie.title}
                   description={movie.description}
