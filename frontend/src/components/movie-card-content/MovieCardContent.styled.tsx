@@ -66,7 +66,7 @@ export const Rating = styled.div`
 `;
 
 export const Score = styled.div`
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
