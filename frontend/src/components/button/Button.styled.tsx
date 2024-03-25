@@ -10,6 +10,7 @@ export const StyledButton = styled.button<ButtonProps>`
   cursor: pointer;
   border-radius: ${rem(10)};
   font-size: ${rem(12)};
+  padding: ${rem(12)};
   background-color: ${(props) =>
     props.type === "primary" && `${pallete.PLATINUM} `};
   background-color: ${(props) => props.type === "secondary" && `transparent`};

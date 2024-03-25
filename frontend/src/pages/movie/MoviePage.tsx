@@ -233,7 +233,7 @@ const MoviePage: React.FC = () => {
                 </MovieReviewItemContainer>
               ))
             ) : (
-              <div>There are no reviews.</div>
+              <div>There are no comments.</div>
             )}
           </MovieReviewSection>
         )}
