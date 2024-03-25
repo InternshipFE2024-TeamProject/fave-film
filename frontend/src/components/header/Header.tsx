@@ -10,10 +10,14 @@ import {
   SearchIcon,
 } from "./Header.styled";
 import { useAuth } from "../../contexts/authContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+  const redirectToWatchlist = () => {
+    navigate("/watchlist");
+  };
 
   return (
     <HeaderContainer>
@@ -32,7 +36,13 @@ const Header = () => {
           </InputContainer>
         </LeftSide>
         {!isAuthenticated && <Button type="text">Log In</Button>}
-        {isAuthenticated && <Button type="primary">Watch List</Button>}
+        {isAuthenticated && (
+          // <Link to="/watchlist">
+          <Button onClickFunction={redirectToWatchlist} type="primary">
+            Watch List
+          </Button>
+          // </Link>
+        )}
       </ComponentsContainer>
     </HeaderContainer>
   );
