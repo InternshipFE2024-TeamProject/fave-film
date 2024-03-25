@@ -44,6 +44,10 @@ const HomePage = () => {
     }
   };
 
+  const handleDeleteFilters = () => {
+    setDisplayedMovies(movies);
+  };
+
   const generateRecommendations = () => {
     if (movies.length < 2) {
       return;
@@ -86,6 +90,9 @@ const HomePage = () => {
                     {MovieGenres[genreKey as keyof typeof MovieGenres]}
                   </Button>
                 ))}
+                <Button type="primary" onClickFunction={handleDeleteFilters}>
+                  Delete filters
+                </Button>
               </CardFilters>
             </Card>
           </FilterContainer>
