@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import StarIcon from "@mui/icons-material/Star";
 import Card from "../../components/card/Card";
@@ -27,6 +28,7 @@ interface MovieCardContentProps {
   handleButton: () => void;
   movieId: number;
 }
+
 function MovieCardContent({
   picture,
   title,
@@ -34,13 +36,21 @@ function MovieCardContent({
   handleButton,
   movieId,
 }: MovieCardContentProps) {
+  const navigate = useNavigate();
+
   const { data: dataReview } = useQuery(GET_REVIEW_BY_MOVIE_ID(movieId));
 
   if (!dataReview) return null;
   const reviews: Review[] = dataReview.reviewQuery.reviewMovie;
 
+  const navigateToMovie = (id: number) => {
+    if (id) {
+      navigate(`/movies/${id}`);
+    }
+  };
+
   return (
-    <Card variant="collection">
+    <Card onClick={() => navigateToMovie(movieId)} variant="collection">
       <MovieCardWatchList>
         <MovieDetailsLeft>
           <MoviePicture src={picture} />

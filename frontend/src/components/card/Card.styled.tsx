@@ -14,6 +14,7 @@ export const StyledCard = styled.div<StyledCardProps>`
   height: fit-content;
   width: 100%;
   padding: ${rem(10)};
+  cursor: pointer;
   ${({ variant }) =>
     variant === "collection"
       ? `border-left: ${rem(10)} solid ${FRENCH_MAUVE};`
