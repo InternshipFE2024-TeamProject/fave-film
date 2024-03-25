@@ -51,6 +51,14 @@ function MovieCardContent({
     }
   };
 
+  const handleDelete = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+
+    if (handleButton) {
+      handleButton();
+    }
+  };
+
   return (
     <Card onClick={() => navigateToMovie(movieId)} variant="collection">
       <MovieCardWatchList>
@@ -68,7 +76,7 @@ function MovieCardContent({
             <Score>{calculateAverageRating(getReviews(reviews))}</Score>
           </Rating>
           {!isHomePage && (
-            <DeleteMovieButton onClick={handleButton}>
+            <DeleteMovieButton onClick={handleDelete}>
               Delete from watchlist
             </DeleteMovieButton>
           )}
