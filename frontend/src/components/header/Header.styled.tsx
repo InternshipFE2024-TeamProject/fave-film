@@ -59,6 +59,11 @@ export const InputContainer = styled.div`
     background-color: ${pallete.PLATINUM};
     padding: ${rem(7)};
     border-radius: ${rem(10)};
+    outline: none;
+
+    &:focus {
+      border: 2px solid ${pallete.FRENCH_MAUVE};
+    }
   }
 
   @media (max-width: 1400px) {

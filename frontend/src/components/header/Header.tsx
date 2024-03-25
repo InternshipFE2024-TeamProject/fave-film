@@ -13,10 +13,12 @@ import {
   SearchIcon,
 } from "./Header.styled";
 import { useSearchContext } from "../../contexts/searchContext";
+import { useMovies } from "../../contexts/movieContext";
 
 const Header = () => {
+  const { movies } = useMovies();
   const { isAuthenticated } = useAuth();
-  const { inputValue, setInputValue } = useSearchContext();
+  const { setInputValue, handleSearch } = useSearchContext();
 
   const navigate = useNavigate();
   const redirectToWatchlist = () => {
@@ -27,7 +29,10 @@ const Header = () => {
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const lowerCase = e.target.value.toLowerCase();
     setInputValue(lowerCase);
-    console.log(inputValue);
+  };
+
+  const handleSubmit = () => {
+    handleSearch(movies);
   };
 
   return (
@@ -44,10 +49,17 @@ const Header = () => {
               type="text"
               placeholder="Search Movie"
               onChange={(e) => handleInputChange(e)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleSubmit();
+                }
+              }}
             />
-            <SearchIcon>
-              <SearchOutlinedIcon />
-            </SearchIcon>
+            <Button type="icon" onClickFunction={handleSubmit}>
+              <SearchIcon>
+                <SearchOutlinedIcon />
+              </SearchIcon>
+            </Button>
           </InputContainer>
         </LeftSide>
         {!isAuthenticated && <Button type="text">Log In</Button>}
