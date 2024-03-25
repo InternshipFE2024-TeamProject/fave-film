@@ -73,8 +73,9 @@ function MovieCardContent({
         <MovieDetailsRight>
           <Rating>
             <StarIcon sx={{ color: FRENCH_MAUVE }} />
-            <Score>{calculateAverageRating(getReviews(reviews))}</Score>
+            <Score>{calculateAverageRating(getReviews(reviews))} / 5</Score>
           </Rating>
+
           {!isHomePage && (
             <DeleteMovieButton onClick={handleDelete}>
               Delete from watchlist

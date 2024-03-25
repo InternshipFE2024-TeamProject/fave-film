@@ -43,6 +43,7 @@ export const MovieDetailsRight = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: end;
+  min-width: 60px;
 `;
 export const DeleteMovieButton = styled.button`
   font-size: ${rem(10)};
