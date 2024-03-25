@@ -37,11 +37,9 @@ const Header = () => {
         </LeftSide>
         {!isAuthenticated && <Button type="text">Log In</Button>}
         {isAuthenticated && (
-          // <Link to="/watchlist">
           <Button onClickFunction={redirectToWatchlist} type="primary">
             Watch List
           </Button>
-          // </Link>
         )}
       </ComponentsContainer>
     </HeaderContainer>
