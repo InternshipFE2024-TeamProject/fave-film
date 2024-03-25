@@ -105,6 +105,7 @@ const HomePage = () => {
                   picture={movie.imagesUrls[0]}
                   title={movie.title}
                   description={movie.description}
+                  isHomePage={true}
                 />
               ))}
           </MainContainer>

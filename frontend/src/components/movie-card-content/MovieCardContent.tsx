@@ -27,6 +27,7 @@ interface MovieCardContentProps {
   description: string;
   handleButton?: () => void;
   movieId: number;
+  isHomePage: boolean;
 }
 
 function MovieCardContent({
@@ -35,6 +36,7 @@ function MovieCardContent({
   description,
   handleButton,
   movieId,
+  isHomePage,
 }: MovieCardContentProps) {
   const navigate = useNavigate();
 
@@ -46,6 +48,14 @@ function MovieCardContent({
   const navigateToMovie = (id: number) => {
     if (id) {
       navigate(`/movies/${id}`);
+    }
+  };
+
+  const handleDelete = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+
+    if (handleButton) {
+      handleButton();
     }
   };
 
@@ -65,9 +75,12 @@ function MovieCardContent({
             <StarIcon sx={{ color: FRENCH_MAUVE }} />
             <Score>{calculateAverageRating(getReviews(reviews))} / 5</Score>
           </Rating>
-          <DeleteMovieButton onClick={handleButton}>
-            Delete from watchlist
-          </DeleteMovieButton>
+
+          {!isHomePage && (
+            <DeleteMovieButton onClick={handleDelete}>
+              Delete from watchlist
+            </DeleteMovieButton>
+          )}
         </MovieDetailsRight>
       </MovieCardWatchList>
     </Card>
