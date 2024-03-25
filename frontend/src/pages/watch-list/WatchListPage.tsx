@@ -1,5 +1,5 @@
-import MovieCardContent from "../../components/movie-card-content/MovieCardContent";
 import { useQuery, gql, useMutation } from "@apollo/client";
+import MovieCardContent from "../../components/movie-card-content/MovieCardContent";
 import {
   WatchListContainer,
   WatchListMovieCollectionContainer,

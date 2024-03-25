@@ -1,5 +1,7 @@
+import { Link, useNavigate } from "react-router-dom";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import Button from "../button/Button";
+import { useAuth } from "../../contexts/authContext";
 import logo from "../../../public/favefilm-high-resolution-logo-transparent.png";
 import {
   ComponentsContainer,
@@ -9,8 +11,6 @@ import {
   LogoContainer,
   SearchIcon,
 } from "./Header.styled";
-import { useAuth } from "../../contexts/authContext";
-import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const { isAuthenticated } = useAuth();
