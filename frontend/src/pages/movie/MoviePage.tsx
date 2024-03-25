@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { IconButton } from "@mui/material";
 import { useQuery, useMutation } from "@apollo/client";
 import { useAuth } from "../../contexts/authContext";
@@ -52,6 +52,7 @@ const MoviePage: React.FC = () => {
   const [ratingsActive, setRatingsActive] = useState("true");
   const [commentsActive, setCommentsActive] = useState("false");
   const [isOnWatchedList, setIsOnWatchedList] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const { id } = useParams<{ id: string }>();
   if (!id) {
@@ -114,6 +115,10 @@ const MoviePage: React.FC = () => {
   const handleAddToWatchlist = () => {
     addToWatchlistMutation();
     setIsOnWatchedList((prevState) => !prevState);
+  };
+
+  const handleAddFeedback = () => {
+    navigate(`/movies/${id}/feedback-form`);
   };
 
   if (!dataMovie || !dataReview || !dataUser) return null;
@@ -186,6 +191,9 @@ const MoviePage: React.FC = () => {
               </MovieAddToWatchListWarpper>
             )}
           </MovieAddToWatchlist>
+          {isAuthenticated && (
+            <button onClick={handleAddFeedback}>Add feedback</button>
+          )}
         </MovieSectionContainer>
 
         {ratingsActive === "true" && (
