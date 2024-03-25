@@ -17,15 +17,21 @@ import {
   MainContainer,
   RightConatiner,
 } from "./HomePage.styled";
+import { useSearchContext } from "../../contexts/searchContext";
 
 const HomePage = () => {
   const { movies } = useMovies();
   const [displayedMovies, setDisplayedMovies] = useState<Movie[]>();
   const [recommendations, setRecommendations] = useState<Movie[]>([]);
+  const { results } = useSearchContext();
 
   const { refetch: refetchMoviesByGenre } = useQuery(GET_MOVIES_BY_GENRE, {
     skip: true,
   });
+
+  useEffect(() => {
+    if (results.length > 0) setDisplayedMovies(results);
+  }, [results]);
 
   useEffect(() => {
     if (movies) setDisplayedMovies(movies);
@@ -96,6 +102,7 @@ const HomePage = () => {
               </CardFilters>
             </Card>
           </FilterContainer>
+
           <MainContainer>
             {displayedMovies &&
               displayedMovies.map((movie: Movie) => (
@@ -110,6 +117,7 @@ const HomePage = () => {
               ))}
           </MainContainer>
         </LeftContainer>
+
         <RightConatiner>
           {recommendations &&
             recommendations.slice(0, 2).map((movie: Movie) => (

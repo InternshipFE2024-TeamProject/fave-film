@@ -1,7 +1,7 @@
 import { StyledButton } from "./Button.styled";
 
 interface ButtonProps {
-  type: "primary" | "text" | "secondary";
+  type: "primary" | "text" | "secondary" | "icon";
   children: React.ReactNode;
   onClickFunction?: () => void;
 }
