@@ -10,6 +10,7 @@ import {
   SearchIcon,
 } from "./Header.styled";
 import { useAuth } from "../../contexts/authContext";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const { isAuthenticated } = useAuth();
@@ -19,7 +20,9 @@ const Header = () => {
       <ComponentsContainer>
         <LeftSide>
           <LogoContainer>
-            <img src={logo} alt="logo" />
+            <Link to="/">
+              <img src={logo} alt="logo" />
+            </Link>
           </LogoContainer>
           <InputContainer>
             <input type="text" />
