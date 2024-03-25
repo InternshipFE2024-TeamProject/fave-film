@@ -1,4 +1,11 @@
-import { createContext, useState, useContext, ReactNode } from "react";
+import {
+  createContext,
+  useState,
+  useContext,
+  ReactNode,
+  Dispatch,
+  SetStateAction,
+} from "react";
 import { Movie } from "../utils/types";
 
 interface SearchContextType {
@@ -6,6 +13,7 @@ interface SearchContextType {
   setInputValue: (value: string) => void;
   results: Movie[];
   handleSearch: (movie: Movie[]) => void;
+  setResults: Dispatch<SetStateAction<Movie[]>>;
 }
 
 const SearchContext = createContext<SearchContextType | undefined>(undefined);
@@ -44,7 +52,7 @@ export const SearchProvider = ({
 
   return (
     <SearchContext.Provider
-      value={{ inputValue, setInputValue, results, handleSearch }}
+      value={{ inputValue, setInputValue, results, setResults, handleSearch }}
     >
       {children}
     </SearchContext.Provider>

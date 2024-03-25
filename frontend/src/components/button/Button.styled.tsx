@@ -28,6 +28,7 @@ export const StyledButton = styled.button<ButtonProps>`
 
   &:hover {
     background-color: ${pallete.ULTRA_VIOLET};
+    background-color: ${(props) => props.type === "icon" && "transparent"};
   }
 
   @media (max-width: 600px) {

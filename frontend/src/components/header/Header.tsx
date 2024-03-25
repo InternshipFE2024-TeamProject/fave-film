@@ -1,6 +1,5 @@
 import { ChangeEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import Button from "../button/Button";
 import { useAuth } from "../../contexts/authContext";
 import logo from "../../../public/favefilm-high-resolution-logo-transparent.png";
@@ -11,6 +10,7 @@ import {
   LeftSide,
   LogoContainer,
   SearchIcon,
+  ClearInput,
 } from "./Header.styled";
 import { useSearchContext } from "../../contexts/searchContext";
 import { useMovies } from "../../contexts/movieContext";
@@ -18,7 +18,8 @@ import { useMovies } from "../../contexts/movieContext";
 const Header = () => {
   const { movies } = useMovies();
   const { isAuthenticated } = useAuth();
-  const { setInputValue, handleSearch } = useSearchContext();
+  const { inputValue, setInputValue, handleSearch, setResults } =
+    useSearchContext();
 
   const navigate = useNavigate();
   const redirectToWatchlist = () => {
@@ -35,6 +36,11 @@ const Header = () => {
     handleSearch(movies);
   };
 
+  const handleClearInput = () => {
+    setInputValue("");
+    setResults(movies);
+  };
+
   return (
     <HeaderContainer>
       <ComponentsContainer>
@@ -49,6 +55,7 @@ const Header = () => {
               type="text"
               placeholder="Search Movie"
               onChange={(e) => handleInputChange(e)}
+              value={inputValue}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
                   handleSubmit();
@@ -56,9 +63,11 @@ const Header = () => {
               }}
             />
             <Button type="icon" onClickFunction={handleSubmit}>
-              <SearchIcon>
-                <SearchOutlinedIcon />
-              </SearchIcon>
+              <SearchIcon />
+            </Button>
+
+            <Button type="icon" onClickFunction={handleClearInput}>
+              <ClearInput hidden={inputValue === ""} />
             </Button>
           </InputContainer>
         </LeftSide>

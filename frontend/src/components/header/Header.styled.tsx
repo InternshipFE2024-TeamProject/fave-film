@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import ClearIcon from "@mui/icons-material/Clear";
 import * as pallete from "../../utils/Variables";
 import { rem } from "../../utils/rem";
 
@@ -74,6 +75,19 @@ export const InputContainer = styled.div`
 export const SearchIcon = styled(SearchOutlinedIcon)`
   position: relative;
   position: absolut;
+  text: ceter;
   left: ${rem(-30)};
+  color: ${pallete.SPACE_CADET};
+`;
+interface ClearInputProps {
+  hidden: boolean;
+}
+
+export const ClearInput = styled(ClearIcon)<ClearInputProps>`
+  visibility: ${(props) => props.hidden === true && "hidden"};
+  position: relative;
+  position: absolut;
+  text: ceter;
+  left: ${rem(-80)};
   color: ${pallete.SPACE_CADET};
 `;
