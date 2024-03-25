@@ -1,12 +1,13 @@
-import Card from "../../components/card/Card";
+import { useQuery } from "@apollo/client";
 import StarIcon from "@mui/icons-material/Star";
+import Card from "../../components/card/Card";
 import { FRENCH_MAUVE } from "../../utils/Variables";
 import {
   getReviews,
   calculateAverageRating,
 } from "../../pages/movie/movie-functions";
 import { GET_REVIEW_BY_MOVIE_ID } from "../../utils/queries";
-import { useQuery } from "@apollo/client";
+import { Review } from "../../utils/types";
 import {
   DeleteMovieButton,
   MovieCardWatchList,
@@ -18,7 +19,6 @@ import {
   Rating,
   Score,
 } from "./MovieCardContent.styled";
-import { Review } from "../../utils/types";
 
 interface MovieCardContentProps {
   picture: string;
