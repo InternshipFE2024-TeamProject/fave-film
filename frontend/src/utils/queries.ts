@@ -16,6 +16,20 @@ export const GET_MOVIES = gql`
   }
 `;
 
+export const GET_MOVIES_BY_GENRE = gql`
+  query GetMoviesByGenre($genre: String!) {
+    movieQuery {
+      moviesByGenre(genre: $genre) {
+        id
+        title
+        description
+        imagesUrls
+        genres
+      }
+    }
+  }
+`;
+
 export const GET_MOVIE_BY_ID = (id: number) => gql`
   query {
     movieQuery {

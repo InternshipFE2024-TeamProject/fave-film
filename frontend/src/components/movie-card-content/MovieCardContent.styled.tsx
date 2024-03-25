@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { rem } from "../../utils/utils";
+import { rem } from "../../utils/rem";
 
 export const MovieCardWatchList = styled.div`
   display: flex;
@@ -36,6 +36,7 @@ export const MovieDetailsTitle = styled.div`
 `;
 export const MovieDetailsDescription = styled.div`
   font-size: ${rem(14)};
+  text-align: justify;
 `;
 export const MovieDetailsRight = styled.div`
   display: flex;

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { rem } from "../../utils/utils";
+import { rem } from "../../utils/rem";
 import * as pallete from "../../utils/Variables";
 
 export const MovieContainer = styled.div`

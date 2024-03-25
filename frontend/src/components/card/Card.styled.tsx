@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import { SPACE_CADET, FRENCH_MAUVE } from "../../utils/Variables";
-import { rem } from "../../utils/utils";
+import { rem } from "../../utils/rem";
 
 interface StyledCardProps {
   variant?: "collection";
 }
 
 export const StyledCard = styled.div<StyledCardProps>`
+  width: 100%;
   display: flex;
   align-items: center;
   background-color: ${SPACE_CADET};
