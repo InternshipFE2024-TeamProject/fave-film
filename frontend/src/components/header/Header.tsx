@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import Button from "../button/Button";
@@ -12,10 +12,11 @@ import {
   LogoContainer,
   SearchIcon,
 } from "./Header.styled";
+import { useSearchContext } from "../../contexts/searchContext";
 
 const Header = () => {
   const { isAuthenticated } = useAuth();
-  const [searchedValue, setSearchedValue] = useState<String>();
+  const { inputValue, setInputValue } = useSearchContext();
 
   const navigate = useNavigate();
   const redirectToWatchlist = () => {
@@ -25,8 +26,8 @@ const Header = () => {
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const lowerCase = e.target.value.toLowerCase();
-    setSearchedValue(lowerCase);
-    console.log(searchedValue);
+    setInputValue(lowerCase);
+    console.log(inputValue);
   };
 
   return (
