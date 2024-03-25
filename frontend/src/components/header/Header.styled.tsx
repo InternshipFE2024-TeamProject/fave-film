@@ -1,5 +1,5 @@
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import styled from "styled-components";
+import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import * as pallete from "../../utils/Variables";
 import { rem } from "../../utils/utils";
 

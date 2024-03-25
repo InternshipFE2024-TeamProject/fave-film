@@ -13,6 +13,7 @@ export const MovieWrapper = styled.div`
   @media (max-width: 880px) {
     margin: 0 150px 0 150px;
   }
+
   @media (max-width: 660px) {
     margin: 0 50px 0 50px;
   }
@@ -54,8 +55,6 @@ export const MovieImageArrowsWrapper = styled.div`
     width: 100%;
     max-width: ${rem(700)};
     max-height: ${rem(700)};
-
-    object-fit: cover;
 
     @media (max-width: 1300px) {
       max-width: ${rem(500)};

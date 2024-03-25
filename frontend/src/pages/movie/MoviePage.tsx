@@ -11,6 +11,21 @@ import {
   Star,
   StarBorder,
 } from "@mui/icons-material";
+import { MovieDetailComponent } from "./components/MovieDetailComponent";
+import { ReviewButton } from "./components/ReviewButton";
+import {
+  ADD_MOVIE_TO_WATCHLIST,
+  GET_MOVIE_BY_ID,
+  GET_REVIEW_BY_MOVIE_ID,
+  GET_USER_BY_ID,
+} from "../../utils/queries";
+import {
+  calculateAverageRating,
+  getReviewDate,
+  getReviews,
+} from "./movie-functions";
+import { Movie, Review } from "../../utils/types";
+import * as pallete from "../../utils/Variables";
 import {
   MovieContainer,
   MovieDescriptionContainer,
@@ -29,21 +44,6 @@ import {
   MovieWrapper,
   MovieAddToWatchlist,
 } from "./Movie.styled";
-import { Movie, Review } from "../../utils/types";
-import * as pallete from "../../utils/Variables";
-import { MovieDetailComponent } from "./components/MovieDetailComponent";
-import { ReviewButton } from "./components/ReviewButton";
-import {
-  ADD_MOVIE_TO_WATCHLIST,
-  GET_MOVIE_BY_ID,
-  GET_REVIEW_BY_MOVIE_ID,
-  GET_USER_BY_ID,
-} from "../../utils/queries";
-import {
-  calculateAverageRating,
-  getReviewDate,
-  getReviews,
-} from "./movie-functions";
 
 const MoviePage: React.FC = () => {
   const { userId, isAuthenticated } = useAuth();
@@ -113,7 +113,6 @@ const MoviePage: React.FC = () => {
   const handleAddToWatchlist = () => {
     addToWatchlistMutation();
     setIsOnWatchedList((prevState) => !prevState);
-    console.log("MERGE");
   };
 
   if (!dataMovie || !dataReview || !dataUser) return null;
