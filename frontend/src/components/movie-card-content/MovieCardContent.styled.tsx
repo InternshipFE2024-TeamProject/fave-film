@@ -43,6 +43,7 @@ export const MovieDetailsRight = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: end;
+  min-width: 60px;
 `;
 export const DeleteMovieButton = styled.button`
   font-size: ${rem(10)};
@@ -61,7 +62,7 @@ export const DeleteMovieButton = styled.button`
 
 export const Rating = styled.div`
   display: flex;
-  justify-content: end;
+  align-items: center;
   gap: ${rem(5)};
 `;
 
