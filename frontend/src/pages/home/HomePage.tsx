@@ -21,6 +21,7 @@ import {
 const HomePage = () => {
   const { movies } = useMovies();
   const [displayedMovies, setDisplayedMovies] = useState<Movie[]>();
+  const [recommendations, setRecommendations] = useState<Movie[]>([]);
 
   const { refetch: refetchMoviesByGenre } = useQuery(GET_MOVIES_BY_GENRE, {
     skip: true,
@@ -42,6 +43,27 @@ const HomePage = () => {
       console.error("Error fetching movies by genre:", error);
     }
   };
+
+  const generateRecommendations = () => {
+    if (movies.length < 2) {
+      return;
+    }
+
+    const randomIndices: number[] = [];
+    while (randomIndices.length < 2) {
+      const randomIndex = Math.floor(Math.random() * movies.length);
+      if (!randomIndices.includes(randomIndex)) {
+        randomIndices.push(randomIndex);
+      }
+    }
+
+    const randomMovies = randomIndices.map((index) => movies[index]);
+    setRecommendations(randomMovies);
+  };
+
+  useEffect(() => {
+    generateRecommendations();
+  }, [movies]);
 
   return (
     <HomePageContainer>
@@ -80,8 +102,8 @@ const HomePage = () => {
           </MainContainer>
         </LeftContainer>
         <RightConatiner>
-          {displayedMovies &&
-            displayedMovies.slice(0, 2).map((movie: Movie) => (
+          {recommendations &&
+            recommendations.slice(0, 2).map((movie: Movie) => (
               <Card>
                 <CardContentRecommandation>
                   <img src={movie.imagesUrls[0]} alt="movie-image" />
