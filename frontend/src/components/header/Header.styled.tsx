@@ -21,11 +21,14 @@ export const ComponentsContainer = styled.div`
   height: 100%;
   display: flex;
   justify-content: space-between;
-  gap: ${rem(10)};
   align-items: center;
 
-  @media (max-width: 600px) {
-    gap: ${rem(0)};
+  @media (max-width: 1280px) {
+    gap: ${rem(100)};
+  }
+
+  @media (min-width: 1280px) {
+    gap: ${rem(200)};
   }
 `;
 
@@ -65,10 +68,6 @@ export const InputContainer = styled.div`
     &:focus {
       border: 2px solid ${pallete.FRENCH_MAUVE};
     }
-  }
-
-  @media (max-width: 1400px) {
-    max-width: ${rem(700)};
   }
 `;
 
