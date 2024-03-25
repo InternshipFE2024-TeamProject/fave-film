@@ -78,6 +78,7 @@ export const SearchIcon = styled(SearchOutlinedIcon)`
   left: ${rem(-30)};
   color: ${pallete.SPACE_CADET};
 `;
+
 interface ClearInputProps {
   hidden: boolean;
 }

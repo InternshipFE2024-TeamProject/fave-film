@@ -21,7 +21,6 @@ const Header = () => {
   const { inputValue, setInputValue, handleSearch, setResults } =
     useSearchContext();
   const location = useLocation();
-
   const navigate = useNavigate();
   const redirectToWatchlist = () => {
     navigate("/watchlist");
