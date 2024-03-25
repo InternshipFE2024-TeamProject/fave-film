@@ -44,6 +44,7 @@ const WatchListPage = () => {
                 description={movie.description}
                 handleButton={() => handleDelete(movie.id)}
                 movieId={movie.id}
+                isHomePage={false}
               />
             ))}
         </WatchListMovieCollectionContainer>
