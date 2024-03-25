@@ -17,6 +17,7 @@ const Header = () => {
   const navigate = useNavigate();
   const redirectToWatchlist = () => {
     navigate("/watchlist");
+    location.reload();
   };
 
   return (
