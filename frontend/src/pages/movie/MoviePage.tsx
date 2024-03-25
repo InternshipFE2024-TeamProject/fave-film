@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { IconButton } from "@mui/material";
 import { useQuery, useMutation } from "@apollo/client";
-import { useParams } from "react-router-dom";
+import { useAuth } from "../../contexts/authContext";
 import {
   ArrowBackIosNew,
   ArrowForwardIos,
@@ -43,7 +44,6 @@ import {
   getReviewDate,
   getReviews,
 } from "./movie-functions";
-import { useAuth } from "../../contexts/authContext";
 
 const MoviePage: React.FC = () => {
   const { userId, isAuthenticated } = useAuth();
