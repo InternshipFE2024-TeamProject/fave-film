@@ -1,6 +1,5 @@
+import { useQuery, gql, useMutation } from "@apollo/client";
 import MovieCardContent from "../../components/movie-card-content/MovieCardContent";
-import { useQuery, gql } from "@apollo/client";
-
 import {
   WatchListContainer,
   WatchListMovieCollectionContainer,
@@ -22,6 +21,7 @@ const GET_MOVIES = gql`
     }
   }
 `;
+
 interface IMovie {
   id: number;
   title: string;
@@ -29,22 +29,43 @@ interface IMovie {
   imagesUrls: string[];
 }
 
+const DELETE_MOVIE = gql`
+  mutation DeleteMovie($userId: Int!, $movieId: Int!) {
+    userMutation {
+      deleteFromWatchList(userId: $userId, movieId: $movieId)
+    }
+  }
+`;
+
 const WatchListPage = () => {
-  const { loading, error, data } = useQuery(GET_MOVIES);
-  console.log({ data });
+  const [deleteMovie] = useMutation(DELETE_MOVIE, {
+    refetchQueries: [GET_MOVIES],
+  });
+
+  const handleDelete = (movieId: number) => {
+    deleteMovie({
+      variables: {
+        userId: 1,
+        movieId: movieId,
+      },
+    });
+  };
+
+  const { data: dataAdded } = useQuery(GET_MOVIES);
 
   return (
     <>
       <WatchListContainer>
         <WatchListTitle>WATCHLIST</WatchListTitle>
         <WatchListMovieCollectionContainer>
-          {data &&
-            data.userQuery.user.watchedList.map((movie: IMovie) => (
+          {dataAdded &&
+            dataAdded.userQuery.user.watchedList.map((movie: IMovie) => (
               <MovieCardContent
                 key={movie.id}
-                picture={movie.imagesUrls[1]}
+                picture={movie.imagesUrls[0]}
                 title={movie.title}
                 description={movie.description}
+                handleButton={() => handleDelete(movie.id)}
               />
             ))}
         </WatchListMovieCollectionContainer>
