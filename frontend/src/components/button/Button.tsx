@@ -4,6 +4,7 @@ interface ButtonProps {
   type: "primary" | "text" | "secondary" | "icon" | "tertiary";
   children: React.ReactNode;
   onClickFunction?: () => void;
+  // isSubmit?: boolean;
 }
 
 const Button = ({ type, children, onClickFunction }: ButtonProps) => {

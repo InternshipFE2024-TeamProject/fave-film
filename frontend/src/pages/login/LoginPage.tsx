@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LOGGED_USER } from "../../utils/queries";
 import { useMutation } from "@apollo/client";
+import { useAuth } from "../../contexts/authContext";
+import Button from "../../components/button/Button";
 import Input from "../../components/input/Input";
 import Card from "../../components/card/Card";
 import {
@@ -10,7 +12,6 @@ import {
   LoginPageContainer,
   StyledForm,
 } from "./LoginPage.styled";
-import { useAuth } from "../../contexts/authContext";
 
 function LogIn() {
   const [username, setUsername] = useState("");
@@ -33,9 +34,8 @@ function LogIn() {
         },
       });
 
-      //Add after sign out button and routing userData in local storage
-      // localStorage.setItem("userId", response.data.userMutation.loginUser.id);
-      // localStorage.setItem("isAuthenticated", "true");
+      localStorage.setItem("userId", response.data.userMutation.loginUser.id);
+      localStorage.setItem("isAuthenticated", "true");
 
       setUserData({
         userId: response.data.userMutation.loginUser.id,
@@ -77,7 +77,7 @@ function LogIn() {
                 }}
               />
 
-              <button type="submit">Login</button>
+              <Button type="tertiary">Login</Button>
             </StyledForm>
             {error && <p>{error}</p>}
           </div>

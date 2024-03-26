@@ -45,6 +45,7 @@ const Header = () => {
   };
 
   const isHomePage = location.pathname === "/";
+  const isLoginPage = location.pathname === "/login";
 
   return (
     <HeaderContainer>
@@ -79,15 +80,18 @@ const Header = () => {
             </InputContainer>
           )}
         </LeftSide>
-        {!userData?.isAuthenticated && (
+
+        {!userData?.isAuthenticated && !isLoginPage && (
           <Button onClickFunction={redirectToLogin} type="text">
             Log In
           </Button>
         )}
         {userData?.isAuthenticated && (
-          <Button onClickFunction={redirectToWatchlist} type="primary">
-            Watch List
-          </Button>
+          <>
+            <Button onClickFunction={redirectToWatchlist} type="primary">
+              Watch List
+            </Button>
+          </>
         )}
       </ComponentsContainer>
     </HeaderContainer>

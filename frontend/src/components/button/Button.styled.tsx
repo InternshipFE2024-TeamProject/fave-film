@@ -4,6 +4,7 @@ import { rem } from "../../utils/rem";
 
 interface ButtonProps {
   type: "primary" | "text" | "secondary" | "icon" | "tertiary";
+  // isSubmit?: boolean;
 }
 
 export const StyledButton = styled.button<ButtonProps>`
