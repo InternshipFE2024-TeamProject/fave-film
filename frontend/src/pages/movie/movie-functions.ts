@@ -7,7 +7,7 @@ export const calculateAverageRating = (ratings: number[]): number => {
 
   const sum = ratings.reduce((acc, rating) => acc + rating, 0);
   const average = sum / ratings.length;
-  return average;
+  return parseFloat(average.toFixed(1));
 };
 
 export const getReviews = (reviews: Review[]) => {
@@ -17,6 +17,15 @@ export const getReviews = (reviews: Review[]) => {
   });
 
   return movieRatings;
+};
+
+export const getReviewsUserId = (reviews: Review[]) => {
+  const usersId: number[] = [];
+  reviews.map((review: Review) => {
+    usersId.push(review.userId);
+  });
+
+  return usersId;
 };
 
 export const getReviewDate = (date: string) => {

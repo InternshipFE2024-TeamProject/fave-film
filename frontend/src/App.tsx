@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import HomePage from "./pages/home/HomePage";
 import MoviePage from "./pages/movie/MoviePage";
+import FeedbackForm from "./pages/feedback/FeedbackForm";
 import WatchListPage from "./pages/watch-list/WatchListPage";
 import "./App.css";
 import Header from "./components/header/Header";
@@ -24,6 +25,7 @@ function App() {
           <Route path="/movies/:id" element={<MoviePage />} />
           {!userData && <Route path="/login" element={<LoginPage />} />}
           {userData && <Route path="/watchlist" element={<WatchListPage />} />}
+          <Route path="/movies/:id/feedback-form" element={<FeedbackForm />} />
         </Routes>
       </Router>
     </>

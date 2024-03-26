@@ -1,4 +1,5 @@
 import { gql } from "@apollo/client";
+import { Review } from "./types";
 
 export const GET_MOVIES = gql`
   query {
@@ -143,6 +144,13 @@ export const LOGGED_USER = gql`
       loginUser(email: $email, password: $password) {
         id
       }
+    }
+  }
+`;
+export const ADD_REVIEW = gql`
+  mutation AddReview($review: ReviewInputType) {
+    reviewMutation {
+      createReview(review: $review)
     }
   }
 `;
