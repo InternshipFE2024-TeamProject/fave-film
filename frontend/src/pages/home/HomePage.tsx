@@ -18,12 +18,15 @@ import {
   RightConatiner,
 } from "./HomePage.styled";
 import { useSearchContext } from "../../contexts/searchContext";
+import { useAuth } from "../../contexts/authContext";
 
 const HomePage = () => {
   const { movies } = useMovies();
   const [displayedMovies, setDisplayedMovies] = useState<Movie[]>();
   const [recommendations, setRecommendations] = useState<Movie[]>([]);
   const { results } = useSearchContext();
+
+  const { userData } = useAuth();
 
   const { refetch: refetchMoviesByGenre } = useQuery(GET_MOVIES_BY_GENRE, {
     skip: true,

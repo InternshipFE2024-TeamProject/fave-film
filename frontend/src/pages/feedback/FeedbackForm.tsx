@@ -27,7 +27,7 @@ const FeedbackForm = () => {
   const [comment, setComment] = useState<string>("");
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
-  const { userId } = useAuth();
+  const { userData } = useAuth();
   const [addReview] = useMutation(ADD_REVIEW);
   const { id } = useParams<{ id: string }>();
   if (!id) {
@@ -54,7 +54,7 @@ const FeedbackForm = () => {
       const newReview: Review = {
         rating: rating,
         comment: comment,
-        userId: userId,
+        userId: userData?.userId ?? 0,
         movieId: parsedId,
       };
 

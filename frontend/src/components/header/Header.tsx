@@ -17,13 +17,21 @@ import {
 
 const Header = () => {
   const { movies } = useMovies();
-  const { isAuthenticated } = useAuth();
+  const { userData, setUserData } = useAuth();
   const { inputValue, setInputValue, handleSearch, setResults } =
     useSearchContext();
   const location = useLocation();
   const navigate = useNavigate();
   const redirectToWatchlist = () => {
     navigate("/watchlist");
+  };
+  const redirectToLogin = () => {
+    navigate("/login");
+  };
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/");
+    setUserData(null);
   };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -42,6 +50,7 @@ const Header = () => {
   };
 
   const isHomePage = location.pathname === "/";
+  const isLoginPage = location.pathname === "/login";
 
   return (
     <HeaderContainer>
@@ -76,11 +85,21 @@ const Header = () => {
             </InputContainer>
           )}
         </LeftSide>
-        {!isAuthenticated && <Button type="text">Log In</Button>}
-        {isAuthenticated && (
-          <Button onClickFunction={redirectToWatchlist} type="primary">
-            Watch List
+
+        {!userData?.isAuthenticated && !isLoginPage && (
+          <Button onClickFunction={redirectToLogin} type="text">
+            Log In
           </Button>
+        )}
+        {userData?.isAuthenticated && (
+          <div>
+            <Button onClickFunction={redirectToWatchlist} type="primary">
+              Watch List
+            </Button>
+            <Button onClickFunction={handleLogout} type="text">
+              Log out
+            </Button>
+          </div>
         )}
       </ComponentsContainer>
     </HeaderContainer>

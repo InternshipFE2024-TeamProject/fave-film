@@ -1,21 +1,40 @@
-import { createContext, useState, useContext } from "react";
+import {
+  createContext,
+  useState,
+  useContext,
+  SetStateAction,
+  Dispatch,
+} from "react";
 
-interface AuthContextType {
+interface LoggedUserData {
   userId: number;
-  name: string;
-  picture: string;
   isAuthenticated: boolean;
 }
+interface AuthContextType {
+  userData: LoggedUserData | null;
+  setUserData: Dispatch<SetStateAction<LoggedUserData | null>>;
+}
+
+const getUserData = () => {
+  const userId = localStorage.getItem("userId");
+  const isAuthenticated = localStorage.getItem("isAuthenticated");
+
+  if (userId && isAuthenticated) {
+    return {
+      userId: Number(userId),
+      isAuthenticated: Boolean(isAuthenticated),
+    };
+  }
+  return null;
+};
 
 interface AuthProviderProps {
   children: React.ReactNode;
 }
 
 export const AuthContext = createContext<AuthContextType>({
-  userId: 1,
-  name: "John Doe",
-  picture: "https://example.com/profile.jpg",
-  isAuthenticated: true,
+  userData: getUserData(),
+  setUserData: () => {},
 });
 
 export const useAuth = () => {
@@ -23,12 +42,13 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
-  const [user] = useState({
-    userId: 1,
-    name: "John Doe",
-    picture: "https://example.com/profile.jpg",
-    isAuthenticated: true,
-  });
+  const [userData, setUserData] = useState<LoggedUserData | null>(
+    getUserData()
+  );
 
-  return <AuthContext.Provider value={user}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ userData, setUserData }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };

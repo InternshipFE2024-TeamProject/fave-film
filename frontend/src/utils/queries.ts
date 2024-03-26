@@ -138,6 +138,15 @@ export const DELETE_MOVIE_FROM_WATCHLIST = gql`
   }
 `;
 
+export const LOGGED_USER = gql`
+  mutation LoginUser($email: String!, $password: String!) {
+    userMutation {
+      loginUser(email: $email, password: $password) {
+        id
+      }
+    }
+  }
+`;
 export const ADD_REVIEW = gql`
   mutation AddReview($review: ReviewInputType) {
     reviewMutation {
