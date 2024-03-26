@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import Card from "../../components/card/Card";
 import Button from "../../components/button/Button";
@@ -25,6 +26,7 @@ const HomePage = () => {
   const [displayedMovies, setDisplayedMovies] = useState<Movie[]>();
   const [recommendations, setRecommendations] = useState<Movie[]>([]);
   const [resetFilters, setResetFilters] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const { results } = useSearchContext();
 
@@ -42,7 +44,8 @@ const HomePage = () => {
 
   const handleAddFilter = async (genre: string) => {
     setResetFilters(false);
-    console.log(genre);
+
+    if (!genre) return;
 
     try {
       const { data: filteredMoviesData } = await refetchMoviesByGenre({
@@ -115,9 +118,14 @@ const HomePage = () => {
         </LeftContainer>
 
         <RightConatiner>
+          <h2>Recommended Picks</h2>
           {recommendations &&
             recommendations.slice(0, 2).map((movie: Movie) => (
-              <Card key={movie.id}>
+              <Card
+                key={movie.id}
+                onClick={() => navigate(`/movies/${movie.id}`)}
+                variant="collection"
+              >
                 <CardContentRecommandation>
                   <img src={movie.imagesUrls[0]} alt="movie-image" />
                   <p>{movie.description}</p>

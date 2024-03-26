@@ -24,15 +24,15 @@ export const ComponentsContainer = styled.div`
   align-items: center;
 
   @media (max-width: 1280px) {
-    gap: ${rem(120)};
+    gap: ${rem(170)};
   }
 
   @media (min-width: 1280px) {
-    gap: ${rem(200)};
+    gap: ${rem(250)};
   }
 
-  @media (max-width: 800px) {
-    gap: ${rem(10)};
+  @media (max-width: 810px) {
+    gap: ${rem(20)};
   }
 `;
 
@@ -43,7 +43,7 @@ export const LeftSide = styled.div`
   gap: ${rem(60)};
 
   @media (max-width: 600px) {
-    // gap: ${rem(0)};
+    gap: ${rem(0)};
   }
 `;
 
@@ -55,17 +55,18 @@ export const LogoContainer = styled.div`
 `;
 
 export const InputContainer = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   flex: 1;
   max-width: ${rem(900)};
-  min-width: ${rem(200)};
+  min-width: ${rem(180)};
   max-height: ${rem(50)};
 
   input {
     width: 100%;
     background-color: ${pallete.PLATINUM};
-    padding: ${rem(7)};
+    padding: ${rem(7)} ${rem(10)} ${rem(7)} ${rem(12)};
     border-radius: ${rem(10)};
     outline: none;
 
@@ -73,13 +74,18 @@ export const InputContainer = styled.div`
       border: 2px solid ${pallete.FRENCH_MAUVE};
     }
   }
+
+  button {
+    position: absolute;
+    margin: ${rem(0)};
+    padding: ${rem(0)};
+    right: ${rem(-20)};
+    top: ${rem(2)};
+  }
 `;
 
 export const SearchIcon = styled(SearchOutlinedIcon)`
-  position: relative;
-  position: absolut;
-  text: ceter;
-  left: ${rem(-30)};
+  text: center;
   color: ${pallete.SPACE_CADET};
 `;
 
@@ -88,10 +94,9 @@ interface ClearInputProps {
 }
 
 export const ClearInput = styled(ClearIcon)<ClearInputProps>`
+  position: absolute;
+  right: ${rem(55)};
   visibility: ${(props) => props.hidden === true && "hidden"};
-  position: relative;
-  position: absolut;
-  text: ceter;
-  left: ${rem(-80)};
+  text: center;
   color: ${pallete.SPACE_CADET};
 `;

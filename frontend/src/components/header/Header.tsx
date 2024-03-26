@@ -66,6 +66,7 @@ const Header = () => {
                   }
                 }}
               />
+
               <Button type="icon" onClickFunction={handleSubmit}>
                 <SearchIcon />
               </Button>

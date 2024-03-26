@@ -8,7 +8,6 @@ interface StyledCardProps {
 
 export const StyledCard = styled.div<StyledCardProps>`
   width: 100%;
-  min-height: ${rem(150)};
   display: flex;
   align-items: center;
   justify-content: center;

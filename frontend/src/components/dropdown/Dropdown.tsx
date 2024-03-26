@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {
+  Background,
   DropDownContainer,
   DropDownHeader,
   DropDownList,
@@ -21,12 +22,12 @@ const Dropdown = ({ addFilter, reset }: any) => {
   };
 
   useEffect(() => {
-    console.log({ selectedOption });
     addFilter(selectedOption);
   }, [selectedOption]);
 
   return (
     <Main>
+      {isOpen && <Background blurred={isOpen} onClick={toggling} />}
       <DropDownContainer>
         <DropDownHeader onClick={toggling} isOpen={isOpen}>
           <span>

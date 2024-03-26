@@ -3,7 +3,24 @@ import { SPACE_CADET, PLATINUM, FRENCH_MAUVE } from "../../utils/Variables";
 import { rem } from "../../utils/rem";
 
 export const Main = styled("div")`
-  font-family: sans-serif;
+  width: 100%;
+`;
+
+interface BackgroundProps {
+  blurred: boolean;
+}
+
+export const Background = styled.div<BackgroundProps>`
+  @media (max-width: 600px) {
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(${(props) => (props.blurred ? "5px" : "0")});
+    position: fixed;
+    top: ${rem(80)};
+    left: 0;
+    z-index: 1;
+  }
 `;
 
 export const DropDownContainer = styled("div")`
@@ -14,12 +31,12 @@ export const DropDownContainer = styled("div")`
 interface DropDownHeaderProps {
   isOpen: boolean;
 }
+
 export const DropDownHeader = styled("div")<DropDownHeaderProps>`
   display: flex;
   justify-content: center;
+  flex-direction: row;
   align-items: center;
-  max-width: ${rem(100)};
-  margin-bottom: ${rem(5)};
   border: ${rem(1)} solid ${PLATINUM};
   padding: ${rem(10)};
   border-radius: ${rem(10)};
@@ -40,7 +57,7 @@ export const DropDownHeader = styled("div")<DropDownHeaderProps>`
     border-width: 0 ${rem(1)} ${rem(1)} 0;
     display: inline-block;
     padding: ${rem(3)};
-    transform: rotate(135deg);
+    transform: rotate(-45deg);
     transition: transform 0.3s ease;
   }
 
@@ -60,6 +77,8 @@ export const DropDownListContainer = styled("div")`
 `;
 
 export const DropDownList = styled("ul")`
+  min-width: ${rem(170)};
+  border-radius:${rem(10)};
   display: flex;
   flex-direction:column;
   align-items: center;
@@ -71,6 +90,11 @@ export const DropDownList = styled("ul")`
   &:first-child {
     padding-top: ${rem(5)}
   }
+
+   @media (max-width: 600px) {
+     background-color: transparent;
+     font-size:${rem(24)};
+   }
 `;
 
 export const ListItem = styled("li")`

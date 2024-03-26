@@ -16,6 +16,10 @@ export const MoviePicture = styled.img`
   max-width: ${rem(100)};
   max-height: ${rem(120)};
   object-fit: cover;
+
+  @media (max-width: 600px) {
+    max-height: ${rem(80)};
+  }
 `;
 
 export const MovieDetailsLeft = styled.div`
@@ -24,6 +28,10 @@ export const MovieDetailsLeft = styled.div`
 
   @media (max-width: 450px) {
     gap: ${rem(5)};
+
+    div {
+      max-width: ${rem(200)};
+    }
   }
 `;
 
@@ -39,8 +47,12 @@ export const MovieDetailsDescription = styled.div`
   text-align: justify;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 9;
+  -webkit-line-clamp: 7;
   overflow: hidden;
+
+  @media (max-width: 600px) {
+    font-size: ${rem(12)};
+  }
 `;
 export const MovieDetailsRight = styled.div`
   display: flex;

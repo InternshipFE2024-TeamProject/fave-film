@@ -13,7 +13,7 @@ export const HomePageContainer = styled.div`
   }
 
   @media (max-width: 600px) {
-    padding: ${rem(100)} ${rem(10)} ${rem(0)} ${rem(25)};
+    padding: ${rem(100)} ${rem(10)} ${rem(0)} ${rem(10)};
   }
 `;
 
@@ -28,7 +28,7 @@ export const LeftContainer = styled.div`
   flex: 1;
   gap: ${rem(40)};
 
-  @media (max-width: 601px) {
+  @media (max-width: 700px) {
     flex-direction: column;
   }
 `;
@@ -38,61 +38,32 @@ export const FilterContainer = styled.div`
   gap: ${rem(10)};
 
   div {
-    width: ${rem(150)};
-  }
-
-  button {
-    margin-top: ${rem(5)};
+    min-width: ${rem(150)};
   }
 `;
 
 export const CardFilters = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  jusity-content: center;
+  justity-content: space-between;
+  gap: ${rem(10)};
   font-size: ${rem(12)};
 
   h2 {
-    margin-bottom: ${rem(10)};
     color: ${pallete.FRENCH_MAUVE};
   }
 
   button {
     min-width: ${rem(90)};
-    margin-top: ${rem(20)};
   }
 
-  select {
-    background-color: $ ${pallete.PLATINUM};
-    color: ${pallete.SPACE_CADET};
-    height: ${rem(20)};
-    border-radius: ${rem(10)};
-    outline: none;
-    paddin: ${rem(10)};
+  @media (max-width: 700px) {
+    gap: ${rem(50)};
 
-    &:focus {
-      border: 2px solid ${pallete.FRENCH_MAUVE};
-    }
-
-    &:after {
-      position: absolute;
-      content: "";
-      top: 14px;
-      right: 10px;
-      width: 0;
-      height: 0;
-      border: 6px solid transparent;
-      border-color: #fff transparent transparent transparent;
-    }
-
-    option {
-    }
-  }
-
-  .select-selected {
-    background-color: DodgerBlue;
+    flex-direction: row;
+    align-items: center;
+    justity-content: space-between;
   }
 `;
 
@@ -116,7 +87,7 @@ export const RightConatiner = styled.div`
   align-items: center;
   gap: ${rem(10)};
 
-  @media (max-width: 815px) {
+  @media (max-width: 900px) {
     display: none;
   }
 `;
