@@ -5,7 +5,6 @@ import { rem } from "../../utils/rem";
 export const HomePageContainer = styled.div`
   width: 100%;
   height: 100vh;
-  overflow-y: auto;
   padding: ${rem(100)} ${rem(140)} ${rem(0)} ${rem(25)};
 
   @media (max-width: 1280px) {
@@ -18,9 +17,6 @@ export const HomePageContainer = styled.div`
 `;
 
 export const HomePageComponents = styled.div`
-  height: 100vh;
-  overflow: auto;
-  overflow-y: auto;
   display: flex;
   justify-content: space-between;
   gap: ${rem(20)};
