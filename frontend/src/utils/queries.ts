@@ -1,4 +1,5 @@
 import { gql } from "@apollo/client";
+import { Review } from "./types";
 
 export const GET_MOVIES = gql`
   query {
@@ -133,6 +134,14 @@ export const DELETE_MOVIE_FROM_WATCHLIST = gql`
   mutation DeleteMovie($userId: Int!, $movieId: Int!) {
     userMutation {
       deleteFromWatchList(userId: $userId, movieId: $movieId)
+    }
+  }
+`;
+
+export const ADD_REVIEW = gql`
+  mutation AddReview($review: ReviewInputType) {
+    reviewMutation {
+      createReview(review: $review)
     }
   }
 `;

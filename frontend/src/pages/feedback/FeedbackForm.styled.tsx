@@ -57,7 +57,10 @@ export const StyledInput = styled.input`
   }
 `;
 
-export const FeedbacFormRatingSection = styled.div``;
+export const FeedbacFormRatingSection = styled.div`
+  display: flex;
+  gap: 15px;
+`;
 
 export const FeedbackFormButtonsContainer = styled.div`
   display: flex;

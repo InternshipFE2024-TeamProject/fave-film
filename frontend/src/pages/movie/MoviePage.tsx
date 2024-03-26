@@ -9,7 +9,6 @@ import {
   Favorite,
   FavoriteBorder,
   Star,
-  StarBorder,
 } from "@mui/icons-material";
 import { MovieDetailComponent } from "./components/MovieDetailComponent";
 import { ReviewButton } from "./components/ReviewButton";
@@ -21,8 +20,8 @@ import {
 } from "../../utils/queries";
 import {
   calculateAverageRating,
-  getReviewDate,
   getReviews,
+  getReviewsUserId,
 } from "./movie-functions";
 import { Movie, Review } from "../../utils/types";
 import * as pallete from "../../utils/Variables";
@@ -34,17 +33,13 @@ import {
   MovieTitleContainer,
   MovieImageArrowsWrapper,
   MovieReviewSection,
-  MovieReviewItemContainer,
-  MovieReviewUser,
-  MovieReviewRating,
-  MovieReviewDate,
-  MovieReviewComment,
   MovieTitle,
   MovieRating,
   MovieWrapper,
   MovieAddToWatchlist,
   MovieAddToWatchListWarpper,
 } from "./Movie.styled";
+import ReviewSection from "./components/ReviewSection";
 
 const MoviePage: React.FC = () => {
   const { userId, isAuthenticated } = useAuth();
@@ -77,20 +72,6 @@ const MoviePage: React.FC = () => {
 
     setIsOnWatchedList(isMovieOnWatchedList);
   }, [dataUser, parsedId]);
-
-  const getRating = (rating: number) => {
-    const stars = [];
-    for (let i = 0; i < 5; i++) {
-      if (i < rating) {
-        stars.push(
-          <Star key={i} style={{ color: `${pallete.FRENCH_MAUVE}` }} />
-        );
-      } else {
-        stars.push(<StarBorder key={i} />);
-      }
-    }
-    return stars;
-  };
 
   const nextImage = () => {
     setCurrentImage((prevIndex) => (prevIndex + 1) % movie.imagesUrls.length);
@@ -125,6 +106,8 @@ const MoviePage: React.FC = () => {
 
   const movie: Movie = dataMovie.movieQuery.movie;
   const reviews: Review[] = dataReview.reviewQuery.reviewMovie;
+
+  const reviewUserId = getReviewsUserId(reviews).includes(userId);
 
   return (
     <MovieContainer>
@@ -170,6 +153,13 @@ const MoviePage: React.FC = () => {
             func={handleComments}
             title="Comments"
           />
+          {isAuthenticated && !reviewUserId && (
+            <ReviewButton
+              active="false"
+              func={handleAddFeedback}
+              title="Add Review"
+            />
+          )}
           <MovieAddToWatchlist>
             {isAuthenticated && (
               <MovieAddToWatchListWarpper>
@@ -191,26 +181,13 @@ const MoviePage: React.FC = () => {
               </MovieAddToWatchListWarpper>
             )}
           </MovieAddToWatchlist>
-          {isAuthenticated && (
-            <button onClick={handleAddFeedback}>Add feedback</button>
-          )}
         </MovieSectionContainer>
 
         {ratingsActive === "true" && (
           <MovieReviewSection>
             {reviews.length > 0 ? (
               reviews.map((review, index) => (
-                <MovieReviewItemContainer key={index}>
-                  <MovieReviewUser>
-                    {review.user.firstName} {review.user.lastName}
-                  </MovieReviewUser>
-                  <MovieReviewRating>
-                    {getRating(review.rating)}
-                  </MovieReviewRating>
-                  <MovieReviewDate>
-                    {getReviewDate(review.date)}
-                  </MovieReviewDate>
-                </MovieReviewItemContainer>
+                <ReviewSection review={review} index={index} rating={true} />
               ))
             ) : (
               <div>There are no reviews.</div>
@@ -222,15 +199,7 @@ const MoviePage: React.FC = () => {
           <MovieReviewSection>
             {reviews.length > 0 ? (
               reviews.map((review, index) => (
-                <MovieReviewItemContainer key={index}>
-                  <MovieReviewUser>
-                    {review.user.firstName} {review.user.lastName}
-                  </MovieReviewUser>
-                  <MovieReviewComment>{review.comment}</MovieReviewComment>
-                  <MovieReviewDate>
-                    {getReviewDate(review.date)}
-                  </MovieReviewDate>
-                </MovieReviewItemContainer>
+                <ReviewSection review={review} index={index} comment={true} />
               ))
             ) : (
               <div>There are no comments.</div>
