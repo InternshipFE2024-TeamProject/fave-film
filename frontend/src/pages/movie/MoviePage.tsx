@@ -187,7 +187,12 @@ const MoviePage: React.FC = () => {
           <MovieReviewSection>
             {reviews.length > 0 ? (
               reviews.map((review, index) => (
-                <ReviewSection review={review} index={index} rating={true} />
+                <ReviewSection
+                  review={review}
+                  index={index}
+                  rating={true}
+                  key={index}
+                />
               ))
             ) : (
               <div>There are no reviews.</div>
@@ -199,7 +204,12 @@ const MoviePage: React.FC = () => {
           <MovieReviewSection>
             {reviews.length > 0 ? (
               reviews.map((review, index) => (
-                <ReviewSection review={review} index={index} comment={true} />
+                <ReviewSection
+                  review={review}
+                  index={index}
+                  comment={true}
+                  key={index}
+                />
               ))
             ) : (
               <div>There are no comments.</div>
