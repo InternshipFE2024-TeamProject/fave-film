@@ -9,13 +9,13 @@ export interface Movie {
 }
 
 export interface Review {
-  id: number;
+  id?: number;
   rating: number;
   comment: string;
   userId: number;
-  user: User;
+  user?: User;
   movieId: number;
-  date: string;
+  date?: string;
 }
 
 export interface User {

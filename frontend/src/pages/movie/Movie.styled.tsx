@@ -188,11 +188,7 @@ export const MovieReviewUser = styled.div`
   margin-right: 10px;
 `;
 
-export const MovieReviewRating = styled.div`
-  display: flex;
-`;
-
-export const MovieReviewComment = styled.div`
+export const MovieReview = styled.div`
   display: flex;
 `;
 
