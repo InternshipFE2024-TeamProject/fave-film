@@ -109,7 +109,7 @@ const FeedbackForm = () => {
               label="Date"
               defaultValue={getReviewDate(formattedDateTime)}
               disable={true}
-            ></Input>
+            />
 
             <Input
               label="Comment"

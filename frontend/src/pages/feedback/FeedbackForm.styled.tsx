@@ -41,16 +41,16 @@ export const InputContainer = styled.div`
 
 export const StyledLabel = styled.label`
   font-size: ${rem(18)};
-  margin-bottom: 5px;
+  margin-bottom: ${rem(5)};
 `;
 
 export const StyledInput = styled.input`
-  background: #575c7b;
+  background: ${pallete.ULTRA_VIOLET};
   border-radius: ${rem(8)};
   height: ${rem(25)};
   width: ${rem(350)};
   color: ${pallete.PLATINUM};
-  padding: 20px;
+  padding: ${rem(20)};
 
   @media (max-width: 550px) {
     width: ${rem(300)};
@@ -59,7 +59,7 @@ export const StyledInput = styled.input`
 
 export const FeedbacFormRatingSection = styled.div`
   display: flex;
-  gap: 15px;
+  gap: ${rem(15)};
 `;
 
 export const FeedbackFormButtonsContainer = styled.div`
