@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { MovieGenres } from "../../utils/enums";
 import {
   Background,
   DropDownContainer,
@@ -8,7 +9,6 @@ import {
   ListItem,
   Main,
 } from "./Dropdown.styled";
-import { MovieGenres } from "../../utils/enums";
 
 const Dropdown = ({ addFilter, reset }: any) => {
   const [isOpen, setIsOpen] = useState(false);

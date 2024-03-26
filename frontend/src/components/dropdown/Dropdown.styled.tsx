@@ -11,7 +11,7 @@ interface BackgroundProps {
 }
 
 export const Background = styled.div<BackgroundProps>`
-  @media (max-width: 600px) {
+  @media (max-width: 700px) {
     width: 100%;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
@@ -41,6 +41,10 @@ export const DropDownHeader = styled("div")<DropDownHeaderProps>`
   padding: ${rem(10)};
   border-radius: ${rem(10)};
   font-size: ${rem(14)};
+
+  &:focuse {
+    border: 2px solid ${FRENCH_MAUVE};
+  }
 
   span {
     text-align: center;
@@ -91,7 +95,7 @@ export const DropDownList = styled("ul")`
     padding-top: ${rem(5)}
   }
 
-   @media (max-width: 600px) {
+   @media (max-width: 700px) {
      background-color: transparent;
      font-size:${rem(24)};
    }
@@ -103,5 +107,6 @@ export const ListItem = styled("li")`
 
   &:hover {
     color: ${FRENCH_MAUVE};
+    transform: scale(1.1);
   }
 `;

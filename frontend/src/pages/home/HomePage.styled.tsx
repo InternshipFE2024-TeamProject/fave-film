@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import * as pallete from "../../utils/Variables";
-
 import { rem } from "../../utils/rem";
 
 export const HomePageContainer = styled.div`
   width: 100%;
   height: 100vh;
+  overflow-y: auto;
   padding: ${rem(100)} ${rem(140)} ${rem(0)} ${rem(25)};
 
   @media (max-width: 1280px) {
@@ -18,6 +18,9 @@ export const HomePageContainer = styled.div`
 `;
 
 export const HomePageComponents = styled.div`
+  height: 100vh;
+  overflow: auto;
+  overflow-y: auto;
   display: flex;
   justify-content: space-between;
   gap: ${rem(20)};
@@ -60,7 +63,6 @@ export const CardFilters = styled.div`
 
   @media (max-width: 700px) {
     gap: ${rem(50)};
-
     flex-direction: row;
     align-items: center;
     justity-content: space-between;
@@ -82,10 +84,15 @@ export const MainContainer = styled.div`
 `;
 
 export const RightConatiner = styled.div`
+  min-height: ${rem(600)};
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: ${rem(10)};
+  gap: ${rem(20)};
+
+  h2 {
+    color: ${pallete.FRENCH_MAUVE};
+  }
 
   @media (max-width: 900px) {
     display: none;
@@ -93,12 +100,12 @@ export const RightConatiner = styled.div`
 `;
 
 export const CardContentRecommandation = styled.div`
-  height: ${rem(300)};
+  height: ${rem(280)};
   overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: ${rem(5)};
+  gap: ${rem(15)};
 
   img {
     max-width: ${rem(100)};

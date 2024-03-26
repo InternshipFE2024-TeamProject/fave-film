@@ -79,7 +79,7 @@ export const InputContainer = styled.div`
     position: absolute;
     margin: ${rem(0)};
     padding: ${rem(0)};
-    right: ${rem(-20)};
+    right: ${rem(0)};
     top: ${rem(2)};
   }
 `;
@@ -95,7 +95,7 @@ interface ClearInputProps {
 
 export const ClearInput = styled(ClearIcon)<ClearInputProps>`
   position: absolute;
-  right: ${rem(55)};
+  right: ${rem(25)};
   visibility: ${(props) => props.hidden === true && "hidden"};
   text: center;
   color: ${pallete.SPACE_CADET};

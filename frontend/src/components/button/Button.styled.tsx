@@ -11,6 +11,7 @@ export const StyledButton = styled.button<ButtonProps>`
   border-radius: ${rem(10)};
   font-size: ${rem(12)};
   padding: ${rem(12)};
+
   background-color: ${(props) =>
     props.type === "primary" && `${pallete.PLATINUM} `};
   background-color: ${(props) => props.type === "secondary" && `transparent`};
@@ -28,6 +29,7 @@ export const StyledButton = styled.button<ButtonProps>`
     background-color: ${pallete.ULTRA_VIOLET};
     color: ${(props) => props.type === "primary" && `${pallete.PLATINUM}`};
     background-color: ${(props) => props.type === "icon" && "transparent"};
+    transform: scale(1.1);
   }
 
   @media (max-width: 600px) {

@@ -3,11 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import Card from "../../components/card/Card";
 import Button from "../../components/button/Button";
-import { MovieGenres } from "../../utils/enums";
 import MovieCardContent from "../../components/movie-card-content/MovieCardContent";
 import { GET_MOVIES_BY_GENRE } from "../../utils/queries";
 import { useMovies } from "../../contexts/movieContext";
 import { Movie } from "../../utils/types";
+import { useSearchContext } from "../../contexts/searchContext";
+import Dropdown from "../../components/dropdown/Dropdown";
 import {
   CardContentRecommandation,
   HomePageContainer,
@@ -18,8 +19,6 @@ import {
   MainContainer,
   RightConatiner,
 } from "./HomePage.styled";
-import { useSearchContext } from "../../contexts/searchContext";
-import Dropdown from "../../components/dropdown/Dropdown";
 
 const HomePage = () => {
   const { movies } = useMovies();
@@ -94,7 +93,6 @@ const HomePage = () => {
               <CardFilters>
                 <h2>Filters</h2>
                 <Dropdown addFilter={handleAddFilter} reset={resetFilters} />
-
                 <Button type="secondary" onClickFunction={handleDeleteFilters}>
                   Delete Filters
                 </Button>
