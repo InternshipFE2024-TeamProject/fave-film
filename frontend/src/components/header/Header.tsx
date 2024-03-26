@@ -25,6 +25,9 @@ const Header = () => {
   const redirectToWatchlist = () => {
     navigate("/watchlist");
   };
+  const redirectToLogin = () => {
+    navigate("/login");
+  };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const lowerCase = e.target.value.toLowerCase();
@@ -76,7 +79,11 @@ const Header = () => {
             </InputContainer>
           )}
         </LeftSide>
-        {!userData?.isAuthenticated && <Button type="text">Log In</Button>}
+        {!userData?.isAuthenticated && (
+          <Button onClickFunction={redirectToLogin} type="text">
+            Log In
+          </Button>
+        )}
         {userData?.isAuthenticated && (
           <Button onClickFunction={redirectToWatchlist} type="primary">
             Watch List

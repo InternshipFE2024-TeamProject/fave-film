@@ -1,4 +1,9 @@
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import {
+  Navigate,
+  Route,
+  BrowserRouter as Router,
+  Routes,
+} from "react-router-dom";
 import HomePage from "./pages/home/HomePage";
 import MoviePage from "./pages/movie/MoviePage";
 import WatchListPage from "./pages/watch-list/WatchListPage";
@@ -17,8 +22,8 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/movies/:id" element={<MoviePage />} />
-          <Route path="/watchlist" element={<WatchListPage />} />
-          <Route path="/login" element={<LoginPage />} />
+          {!userData && <Route path="/login" element={<LoginPage />} />}
+          {userData && <Route path="/watchlist" element={<WatchListPage />} />}
         </Routes>
       </Router>
     </>

@@ -15,6 +15,7 @@ import { useAuth } from "../../contexts/authContext";
 function LogIn() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const navigate = useNavigate();
 
@@ -23,6 +24,7 @@ function LogIn() {
 
   const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     try {
       const response = await loginUser({
         variables: {
@@ -43,6 +45,11 @@ function LogIn() {
       navigate("/");
     } catch (error) {
       console.error(error);
+      if (!username || !password) {
+        setError("Missing details");
+      } else {
+        setError("Inalid username or password");
+      }
     }
   };
 
@@ -72,6 +79,7 @@ function LogIn() {
 
               <button type="submit">Login</button>
             </StyledForm>
+            {error && <p>{error}</p>}
           </div>
         </Card>
       </LoginPageCard>
