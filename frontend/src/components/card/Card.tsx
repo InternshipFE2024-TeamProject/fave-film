@@ -2,7 +2,7 @@ import { StyledCard } from "./Card.styled";
 
 interface CardProps {
   children: React.ReactNode;
-  variant?: "collection";
+  variant?: "collection" | "none";
   onClick?: () => void;
 }
 

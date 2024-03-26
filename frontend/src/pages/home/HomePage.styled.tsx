@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import * as pallete from "../../utils/Variables";
 import { rem } from "../../utils/rem";
 
 export const HomePageContainer = styled.div`
@@ -11,20 +12,24 @@ export const HomePageContainer = styled.div`
   }
 
   @media (max-width: 600px) {
-    padding: ${rem(80)} ${rem(10)} ${rem(0)} ${rem(10)};
+    padding: ${rem(100)} ${rem(10)} ${rem(0)} ${rem(10)};
   }
 `;
 
 export const HomePageComponents = styled.div`
   display: flex;
   justify-content: space-between;
-  gap: ${rem(10)};
+  gap: ${rem(20)};
 `;
 
 export const LeftContainer = styled.div`
   display: flex;
   flex: 1;
   gap: ${rem(40)};
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+  }
 `;
 
 export const FilterContainer = styled.div`
@@ -32,23 +37,31 @@ export const FilterContainer = styled.div`
   gap: ${rem(10)};
 
   div {
-    width: ${rem(150)};
-  }
-
-  button {
-    margin-top: ${rem(5)};
+    min-width: ${rem(150)};
   }
 `;
 
 export const CardFilters = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
+  justity-content: space-between;
+  gap: ${rem(10)};
   font-size: ${rem(12)};
+
+  h2 {
+    color: ${pallete.FRENCH_MAUVE};
+  }
 
   button {
     min-width: ${rem(90)};
+  }
+
+  @media (max-width: 700px) {
+    gap: ${rem(50)};
+    flex-direction: row;
+    align-items: center;
+    justity-content: space-between;
   }
 `;
 
@@ -58,7 +71,8 @@ export const MainContainer = styled.div`
   flex: 1;
   max-width: ${rem(880)};
   min-width: ${rem(180)};
-  gap: ${rem(15)};
+  gap: ${rem(23)};
+  flex-wrap: wrap;
 
   p {
     font-size: ${rem(14)};
@@ -66,19 +80,28 @@ export const MainContainer = styled.div`
 `;
 
 export const RightConatiner = styled.div`
+  min-height: ${rem(600)};
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: ${rem(10)};
+  gap: ${rem(20)};
+
+  h2 {
+    color: ${pallete.FRENCH_MAUVE};
+  }
+
+  @media (max-width: 900px) {
+    display: none;
+  }
 `;
 
 export const CardContentRecommandation = styled.div`
-  height: ${rem(300)};
+  height: ${rem(280)};
   overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: ${rem(5)};
+  gap: ${rem(15)};
 
   img {
     max-width: ${rem(100)};

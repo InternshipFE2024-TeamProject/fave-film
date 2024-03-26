@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import Card from "../../components/card/Card";
 import Button from "../../components/button/Button";
-import { MovieGenres } from "../../utils/enums";
 import MovieCardContent from "../../components/movie-card-content/MovieCardContent";
 import { GET_MOVIES_BY_GENRE } from "../../utils/queries";
 import { useMovies } from "../../contexts/movieContext";
 import { Movie } from "../../utils/types";
+import Dropdown from "../../components/dropdown/Dropdown";
+import { useSearchContext } from "../../contexts/searchContext";
 import {
   CardContentRecommandation,
   HomePageContainer,
@@ -17,16 +19,15 @@ import {
   MainContainer,
   RightConatiner,
 } from "./HomePage.styled";
-import { useSearchContext } from "../../contexts/searchContext";
-import { useAuth } from "../../contexts/authContext";
 
 const HomePage = () => {
   const { movies } = useMovies();
   const [displayedMovies, setDisplayedMovies] = useState<Movie[]>();
   const [recommendations, setRecommendations] = useState<Movie[]>([]);
-  const { results } = useSearchContext();
+  const [resetFilters, setResetFilters] = useState<boolean>(false);
+  const navigate = useNavigate();
 
-  const { userData } = useAuth();
+  const { results } = useSearchContext();
 
   const { refetch: refetchMoviesByGenre } = useQuery(GET_MOVIES_BY_GENRE, {
     skip: true,
@@ -41,6 +42,10 @@ const HomePage = () => {
   }, [movies]);
 
   const handleAddFilter = async (genre: string) => {
+    setResetFilters(false);
+
+    if (!genre) return;
+
     try {
       const { data: filteredMoviesData } = await refetchMoviesByGenre({
         genre: genre,
@@ -55,6 +60,7 @@ const HomePage = () => {
 
   const handleDeleteFilters = () => {
     setDisplayedMovies(movies);
+    setResetFilters(true);
   };
 
   const generateRecommendations = () => {
@@ -83,24 +89,12 @@ const HomePage = () => {
       <HomePageComponents>
         <LeftContainer>
           <FilterContainer>
-            <Card>
+            <Card variant="none">
               <CardFilters>
                 <h2>Filters</h2>
-                {Object.keys(MovieGenres).map((genreKey) => (
-                  <Button
-                    key={genreKey}
-                    type="secondary"
-                    onClickFunction={() =>
-                      handleAddFilter(
-                        MovieGenres[genreKey as keyof typeof MovieGenres]
-                      )
-                    }
-                  >
-                    {MovieGenres[genreKey as keyof typeof MovieGenres]}
-                  </Button>
-                ))}
-                <Button type="primary" onClickFunction={handleDeleteFilters}>
-                  Delete filters
+                <Dropdown addFilter={handleAddFilter} reset={resetFilters} />
+                <Button type="secondary" onClickFunction={handleDeleteFilters}>
+                  Delete Filters
                 </Button>
               </CardFilters>
             </Card>
@@ -122,9 +116,14 @@ const HomePage = () => {
         </LeftContainer>
 
         <RightConatiner>
+          <h2>Recommended Picks</h2>
           {recommendations &&
             recommendations.slice(0, 2).map((movie: Movie) => (
-              <Card key={movie.id}>
+              <Card
+                key={movie.id}
+                onClick={() => navigate(`/movies/${movie.id}`)}
+                variant="collection"
+              >
                 <CardContentRecommandation>
                   <img src={movie.imagesUrls[0]} alt="movie-image" />
                   <p>{movie.description}</p>

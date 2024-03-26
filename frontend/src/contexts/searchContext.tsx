@@ -37,8 +37,6 @@ export const SearchProvider = ({
   const [results, setResults] = useState<Movie[]>([]);
 
   const handleSearch = (movies: Movie[]) => {
-    console.log({ movies });
-
     const searchResults = movies.filter((movie) => {
       if (inputValue === "") {
         return movie;

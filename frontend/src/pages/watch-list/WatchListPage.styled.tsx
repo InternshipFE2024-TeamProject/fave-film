@@ -9,7 +9,7 @@ export const WatchListContainer = styled.div`
   padding-top: ${rem(150)};
 
   @media (max-width: 800px) {
-    margin: ${rem(0)} ${rem(50)} ${rem(50)} ${rem(50)};
+    margin: ${rem(0)} ${rem(10)} ${rem(50)} ${rem(10)};
   }
 `;
 

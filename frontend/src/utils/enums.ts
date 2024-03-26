@@ -10,5 +10,3 @@ export const MovieGenres = {
   THRILLER: "Thriller",
   DOCUMENTARY: "Documentary",
 };
-
-
