@@ -24,6 +24,8 @@ const HomePage = () => {
   const { movies } = useMovies();
   const [displayedMovies, setDisplayedMovies] = useState<Movie[]>();
   const [recommendations, setRecommendations] = useState<Movie[]>([]);
+  const [resetFilters, setResetFilters] = useState<boolean>(false);
+
   const { results } = useSearchContext();
 
   const { refetch: refetchMoviesByGenre } = useQuery(GET_MOVIES_BY_GENRE, {
@@ -39,6 +41,9 @@ const HomePage = () => {
   }, [movies]);
 
   const handleAddFilter = async (genre: string) => {
+    setResetFilters(false);
+    console.log(genre);
+
     try {
       const { data: filteredMoviesData } = await refetchMoviesByGenre({
         genre: genre,
@@ -53,6 +58,7 @@ const HomePage = () => {
 
   const handleDeleteFilters = () => {
     setDisplayedMovies(movies);
+    setResetFilters(true);
   };
 
   const generateRecommendations = () => {
@@ -83,26 +89,10 @@ const HomePage = () => {
           <FilterContainer>
             <Card variant="none">
               <CardFilters>
-              
-                {/* <select
-                  // value={selectedGenre}
-                  onChange={(e) => handleAddFilter(e.target.value)}
-                  >
-                  <option value="">Select Genre</option>
-                  {Object.values(MovieGenres).map((genre) => (
-                    <option key={genre} value={genre}>
-                    {genre}
-                    </option>
-                    ))}
-                    </select>
-                    <Button type="primary" onClickFunction={handleDeleteFilters}>
-                    Delete Filters
-                  </Button> */}
-
                 <h2>Filters</h2>
-                <Dropdown></Dropdown>
+                <Dropdown addFilter={handleAddFilter} reset={resetFilters} />
 
-                <Button type="primary" onClickFunction={handleDeleteFilters}>
+                <Button type="secondary" onClickFunction={handleDeleteFilters}>
                   Delete Filters
                 </Button>
               </CardFilters>

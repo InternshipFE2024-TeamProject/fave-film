@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   DropDownContainer,
   DropDownHeader,
@@ -9,7 +9,7 @@ import {
 } from "./Dropdown.styled";
 import { MovieGenres } from "../../utils/enums";
 
-const Dropdown = () => {
+const Dropdown = ({ addFilter, reset }: any) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
 
@@ -20,12 +20,17 @@ const Dropdown = () => {
     setIsOpen(false);
   };
 
+  useEffect(() => {
+    console.log({ selectedOption });
+    addFilter(selectedOption);
+  }, [selectedOption]);
+
   return (
     <Main>
       <DropDownContainer>
         <DropDownHeader onClick={toggling} isOpen={isOpen}>
           <span>
-            <p>{selectedOption || "Genres"}</p>
+            {reset ? <p>Genres</p> : <p>{selectedOption || "Genres"}</p>}
           </span>
         </DropDownHeader>
         {isOpen && (

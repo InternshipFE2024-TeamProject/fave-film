@@ -19,9 +19,9 @@ export const DropDownHeader = styled("div")<DropDownHeaderProps>`
   justify-content: center;
   align-items: center;
   max-width: ${rem(100)};
-  margin-bottom: ${rem(10)};
+  margin-bottom: ${rem(5)};
   border: ${rem(1)} solid ${PLATINUM};
-  padding: ${rem(5)};
+  padding: ${rem(10)};
   border-radius: ${rem(10)};
   font-size: ${rem(14)};
 

@@ -23,9 +23,6 @@ export const StyledButton = styled.button<ButtonProps>`
   color: ${(props) => props.type === "secondary" && `${pallete.PLATINUM}`};
   color: ${(props) => props.type === "primary" && `${pallete.SPACE_CADET}`};
 
-  border: ${(props) =>
-    props.type === "secondary" ? `1px solid ${pallete.PLATINUM}` : "none"};
-
   &:hover {
     background-color: ${pallete.ULTRA_VIOLET};
     background-color: ${(props) => props.type === "icon" && "transparent"};
