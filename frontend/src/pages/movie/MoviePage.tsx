@@ -58,7 +58,6 @@ const MoviePage: React.FC = () => {
     return <div>No movie ID provided.</div>;
   }
   const parsedId = parseInt(id, 10);
-  console.log(userData);
 
   const { data: dataUser } = useQuery(GET_USER_BY_ID(userData?.userId ?? 0));
   const { data: dataMovie } = useQuery(GET_MOVIE_BY_ID(parsedId));

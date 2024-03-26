@@ -15,10 +15,11 @@ import { useAuth } from "../../contexts/authContext";
 function LogIn() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
   const navigate = useNavigate();
 
   const [loginUser] = useMutation(LOGGED_USER);
-  const { userData, setUserData } = useAuth();
+  const { setUserData } = useAuth();
 
   const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -30,16 +31,15 @@ function LogIn() {
         },
       });
 
-      // console.log(response);
-      localStorage.setItem("userId", response.data.userMutation.loginUser.id);
-      localStorage.setItem("isAuthenticated", "true");
+      //Add after sign out button and routing userData in local storage
+      // localStorage.setItem("userId", response.data.userMutation.loginUser.id);
+      // localStorage.setItem("isAuthenticated", "true");
 
       setUserData({
         userId: response.data.userMutation.loginUser.id,
         isAuthenticated: true,
       });
 
-      console.log(userData);
       navigate("/");
     } catch (error) {
       console.error(error);

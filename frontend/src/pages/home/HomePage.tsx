@@ -28,8 +28,6 @@ const HomePage = () => {
 
   const { userData } = useAuth();
 
-  console.log(userData);
-
   const { refetch: refetchMoviesByGenre } = useQuery(GET_MOVIES_BY_GENRE, {
     skip: true,
   });

@@ -32,8 +32,6 @@ const WatchListPage = () => {
   const { data: dataAdded, refetch } = useQuery(
     GET_USER_BY_ID(userData?.userId ?? 0)
   );
-  console.log(dataAdded);
-  console.log(userData);
 
   useEffect(() => {
     refetch();

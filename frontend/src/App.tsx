@@ -9,6 +9,7 @@ import { useAuth } from "./contexts/authContext";
 
 function App() {
   const { userData } = useAuth();
+
   return (
     <>
       <Router>
