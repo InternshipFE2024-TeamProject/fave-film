@@ -13,8 +13,8 @@ export const MovieCardWatchList = styled.div`
 `;
 
 export const MoviePicture = styled.img`
-  max-width: ${rem(60)};
-  max-height: ${rem(80)};
+  max-width: ${rem(100)};
+  max-height: ${rem(120)};
   object-fit: cover;
 `;
 
@@ -37,6 +37,10 @@ export const MovieDetailsTitle = styled.div`
 export const MovieDetailsDescription = styled.div`
   font-size: ${rem(14)};
   text-align: justify;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 9;
+  overflow: hidden;
 `;
 export const MovieDetailsRight = styled.div`
   display: flex;

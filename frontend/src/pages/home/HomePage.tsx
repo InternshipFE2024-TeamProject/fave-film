@@ -18,6 +18,7 @@ import {
   RightConatiner,
 } from "./HomePage.styled";
 import { useSearchContext } from "../../contexts/searchContext";
+import Dropdown from "../../components/dropdown/Dropdown";
 
 const HomePage = () => {
   const { movies } = useMovies();
@@ -80,24 +81,29 @@ const HomePage = () => {
       <HomePageComponents>
         <LeftContainer>
           <FilterContainer>
-            <Card>
+            <Card variant="none">
               <CardFilters>
-                <h2>Filters</h2>
-                {Object.keys(MovieGenres).map((genreKey) => (
-                  <Button
-                    key={genreKey}
-                    type="secondary"
-                    onClickFunction={() =>
-                      handleAddFilter(
-                        MovieGenres[genreKey as keyof typeof MovieGenres]
-                      )
-                    }
+              
+                {/* <select
+                  // value={selectedGenre}
+                  onChange={(e) => handleAddFilter(e.target.value)}
                   >
-                    {MovieGenres[genreKey as keyof typeof MovieGenres]}
-                  </Button>
-                ))}
+                  <option value="">Select Genre</option>
+                  {Object.values(MovieGenres).map((genre) => (
+                    <option key={genre} value={genre}>
+                    {genre}
+                    </option>
+                    ))}
+                    </select>
+                    <Button type="primary" onClickFunction={handleDeleteFilters}>
+                    Delete Filters
+                  </Button> */}
+
+                <h2>Filters</h2>
+                <Dropdown></Dropdown>
+
                 <Button type="primary" onClickFunction={handleDeleteFilters}>
-                  Delete filters
+                  Delete Filters
                 </Button>
               </CardFilters>
             </Card>

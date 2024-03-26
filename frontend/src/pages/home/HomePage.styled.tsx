@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import * as pallete from "../../utils/Variables";
+
 import { rem } from "../../utils/rem";
 
 export const HomePageContainer = styled.div`
@@ -11,20 +13,24 @@ export const HomePageContainer = styled.div`
   }
 
   @media (max-width: 600px) {
-    padding: ${rem(80)} ${rem(10)} ${rem(0)} ${rem(10)};
+    padding: ${rem(100)} ${rem(10)} ${rem(0)} ${rem(25)};
   }
 `;
 
 export const HomePageComponents = styled.div`
   display: flex;
   justify-content: space-between;
-  gap: ${rem(10)};
+  gap: ${rem(20)};
 `;
 
 export const LeftContainer = styled.div`
   display: flex;
   flex: 1;
   gap: ${rem(40)};
+
+  @media (max-width: 601px) {
+    flex-direction: column;
+  }
 `;
 
 export const FilterContainer = styled.div`
@@ -41,14 +47,52 @@ export const FilterContainer = styled.div`
 `;
 
 export const CardFilters = styled.div`
+  width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
+  jusity-content: center;
   font-size: ${rem(12)};
+
+  h2 {
+    margin-bottom: ${rem(10)};
+    color: ${pallete.FRENCH_MAUVE};
+  }
 
   button {
     min-width: ${rem(90)};
+    margin-top: ${rem(20)};
+  }
+
+  select {
+    background-color: $ ${pallete.PLATINUM};
+    color: ${pallete.SPACE_CADET};
+    height: ${rem(20)};
+    border-radius: ${rem(10)};
+    outline: none;
+    paddin: ${rem(10)};
+
+    &:focus {
+      border: 2px solid ${pallete.FRENCH_MAUVE};
+    }
+
+    &:after {
+      position: absolute;
+      content: "";
+      top: 14px;
+      right: 10px;
+      width: 0;
+      height: 0;
+      border: 6px solid transparent;
+      border-color: #fff transparent transparent transparent;
+    }
+
+    option {
+    }
+  }
+
+  .select-selected {
+    background-color: DodgerBlue;
   }
 `;
 
@@ -58,7 +102,8 @@ export const MainContainer = styled.div`
   flex: 1;
   max-width: ${rem(880)};
   min-width: ${rem(180)};
-  gap: ${rem(15)};
+  gap: ${rem(23)};
+  flex-wrap: wrap;
 
   p {
     font-size: ${rem(14)};
@@ -70,6 +115,10 @@ export const RightConatiner = styled.div`
   flex-direction: column;
   align-items: center;
   gap: ${rem(10)};
+
+  @media (max-width: 815px) {
+    display: none;
+  }
 `;
 
 export const CardContentRecommandation = styled.div`

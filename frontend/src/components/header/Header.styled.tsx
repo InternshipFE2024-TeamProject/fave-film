@@ -24,11 +24,15 @@ export const ComponentsContainer = styled.div`
   align-items: center;
 
   @media (max-width: 1280px) {
-    gap: ${rem(100)};
+    gap: ${rem(120)};
   }
 
   @media (min-width: 1280px) {
     gap: ${rem(200)};
+  }
+
+  @media (max-width: 800px) {
+    gap: ${rem(10)};
   }
 `;
 
@@ -39,7 +43,7 @@ export const LeftSide = styled.div`
   gap: ${rem(60)};
 
   @media (max-width: 600px) {
-    gap: ${rem(0)};
+    // gap: ${rem(0)};
   }
 `;
 
