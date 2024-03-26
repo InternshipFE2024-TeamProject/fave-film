@@ -66,3 +66,7 @@ export const FeedbackFormButtonsContainer = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+
+export const FeedbackFormSuccessMessage = styled.div`
+  margin-bottom: 10px;
+`;

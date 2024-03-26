@@ -4,12 +4,12 @@ interface ButtonProps {
   type: "primary" | "text" | "secondary" | "icon" | "tertiary";
   children: React.ReactNode;
   onClickFunction?: () => void;
-  // isSubmit?: boolean;
+  disable?: boolean;
 }
 
-const Button = ({ type, children, onClickFunction }: ButtonProps) => {
+const Button = ({ type, children, onClickFunction, disable }: ButtonProps) => {
   return (
-    <StyledButton onClick={onClickFunction} type={type}>
+    <StyledButton onClick={onClickFunction} type={type} disabled={disable}>
       {children}
     </StyledButton>
   );
