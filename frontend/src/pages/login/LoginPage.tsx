@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { GET_USER_BY_ID, LOGGED_USER } from "../../utils/queries";
+import { useQuery, useMutation } from "@apollo/client";
+import Input from "../../components/input/Input";
 import Card from "../../components/card/Card";
 import {
   FormTitle,
@@ -7,18 +10,30 @@ import {
   LoginPageContainer,
   StyledForm,
 } from "./LoginPage.styled";
-import Input from "../../components/input/Input";
 
 function LogIn() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
+  const { data: dataAdded } = useQuery(GET_USER_BY_ID(1));
+
+  const [loginUser] = useMutation(LOGGED_USER);
+
+  const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (username === "my@email.com" && password === "pass") {
-      // navigate("/");
-      console.log("LoggedIn");
+    try {
+      const response = await loginUser({
+        variables: {
+          email: username,
+          password,
+        },
+      });
+      console.log(response);
+
+      navigate("/");
+    } catch (error) {
+      console.error(error);
     }
   };
 

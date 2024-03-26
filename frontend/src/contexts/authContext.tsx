@@ -1,4 +1,16 @@
 import { createContext, useState, useContext } from "react";
+// import { GET_USER_BY_ID } from "../utils/queries";
+// import { useQuery } from "@apollo/client";
+
+// const { data: dataAdded } = useQuery(GET_USER_BY_ID(1));
+
+// export const useAuth = () => {
+//   return useContext(AuthContext);
+// };
+
+// const AuthContext = createContext({
+//   data: dataAdded,
+// });
 
 interface AuthContextType {
   userId: number;
