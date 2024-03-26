@@ -1,21 +1,18 @@
-import { createContext, useState, useContext } from "react";
-// import { GET_USER_BY_ID } from "../utils/queries";
-// import { useQuery } from "@apollo/client";
+import {
+  createContext,
+  useState,
+  useContext,
+  SetStateAction,
+  Dispatch,
+} from "react";
 
-// const { data: dataAdded } = useQuery(GET_USER_BY_ID(1));
-
-// export const useAuth = () => {
-//   return useContext(AuthContext);
-// };
-
-// const AuthContext = createContext({
-//   data: dataAdded,
-// });
-
-interface AuthContextType {
+interface LoggedUserData {
   userId: number;
-  name: string;
   isAuthenticated: boolean;
+}
+interface AuthContextType {
+  userData: LoggedUserData | null;
+  setUserData: Dispatch<SetStateAction<LoggedUserData | null>>;
 }
 
 interface AuthProviderProps {
@@ -23,9 +20,8 @@ interface AuthProviderProps {
 }
 
 export const AuthContext = createContext<AuthContextType>({
-  userId: 1,
-  name: "John Doe",
-  isAuthenticated: true,
+  userData: null,
+  setUserData: () => {},
 });
 
 export const useAuth = () => {
@@ -33,11 +29,11 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
-  const [user] = useState({
-    userId: 1,
-    name: "John Doe",
-    isAuthenticated: true,
-  });
+  const [userData, setUserData] = useState<LoggedUserData | null>(null);
 
-  return <AuthContext.Provider value={user}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ userData, setUserData }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };

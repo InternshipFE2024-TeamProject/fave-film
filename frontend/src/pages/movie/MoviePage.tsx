@@ -47,7 +47,7 @@ import {
 } from "./Movie.styled";
 
 const MoviePage: React.FC = () => {
-  const { userId, isAuthenticated } = useAuth();
+  const { userData } = useAuth();
   const [currentImage, setCurrentImage] = useState(0);
   const [ratingsActive, setRatingsActive] = useState("true");
   const [commentsActive, setCommentsActive] = useState("false");
@@ -58,12 +58,13 @@ const MoviePage: React.FC = () => {
     return <div>No movie ID provided.</div>;
   }
   const parsedId = parseInt(id, 10);
+  console.log(userData);
 
-  const { data: dataUser } = useQuery(GET_USER_BY_ID(userId));
+  const { data: dataUser } = useQuery(GET_USER_BY_ID(userData?.userId ?? 0));
   const { data: dataMovie } = useQuery(GET_MOVIE_BY_ID(parsedId));
   const { data: dataReview } = useQuery(GET_REVIEW_BY_MOVIE_ID(parsedId));
   const [addToWatchlistMutation] = useMutation(
-    ADD_MOVIE_TO_WATCHLIST(userId, parsedId)
+    ADD_MOVIE_TO_WATCHLIST(userData?.userId ?? 0, parsedId)
   );
 
   useEffect(() => {
@@ -166,7 +167,7 @@ const MoviePage: React.FC = () => {
             title="Comments"
           />
           <MovieAddToWatchlist>
-            {isAuthenticated && (
+            {userData?.isAuthenticated && (
               <MovieAddToWatchListWarpper>
                 {isOnWatchedList ? (
                   <p>Added to watch list</p>

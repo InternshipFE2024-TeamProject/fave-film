@@ -5,8 +5,10 @@ import WatchListPage from "./pages/watch-list/WatchListPage";
 import "./App.css";
 import Header from "./components/header/Header";
 import LoginPage from "./pages/login/LoginPage";
+import { useAuth } from "./contexts/authContext";
 
 function App() {
+  const { userData } = useAuth();
   return (
     <>
       <Router>

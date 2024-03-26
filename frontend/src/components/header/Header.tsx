@@ -17,7 +17,7 @@ import {
 
 const Header = () => {
   const { movies } = useMovies();
-  const { isAuthenticated } = useAuth();
+  const { userData } = useAuth();
   const { inputValue, setInputValue, handleSearch, setResults } =
     useSearchContext();
   const location = useLocation();
@@ -76,8 +76,8 @@ const Header = () => {
             </InputContainer>
           )}
         </LeftSide>
-        {!isAuthenticated && <Button type="text">Log In</Button>}
-        {isAuthenticated && (
+        {!userData?.isAuthenticated && <Button type="text">Log In</Button>}
+        {userData?.isAuthenticated && (
           <Button onClickFunction={redirectToWatchlist} type="primary">
             Watch List
           </Button>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { GET_USER_BY_ID, LOGGED_USER } from "../../utils/queries";
-import { useQuery, useMutation } from "@apollo/client";
+import { LOGGED_USER } from "../../utils/queries";
+import { useMutation } from "@apollo/client";
 import Input from "../../components/input/Input";
 import Card from "../../components/card/Card";
 import {
@@ -10,15 +10,15 @@ import {
   LoginPageContainer,
   StyledForm,
 } from "./LoginPage.styled";
+import { useAuth } from "../../contexts/authContext";
 
 function LogIn() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const { data: dataAdded } = useQuery(GET_USER_BY_ID(1));
-
   const [loginUser] = useMutation(LOGGED_USER);
+  const { userData, setUserData } = useAuth();
 
   const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -29,8 +29,17 @@ function LogIn() {
           password,
         },
       });
-      console.log(response);
 
+      // console.log(response);
+      localStorage.setItem("userId", response.data.userMutation.loginUser.id);
+      localStorage.setItem("isAuthenticated", "true");
+
+      setUserData({
+        userId: response.data.userMutation.loginUser.id,
+        isAuthenticated: true,
+      });
+
+      console.log(userData);
       navigate("/");
     } catch (error) {
       console.error(error);

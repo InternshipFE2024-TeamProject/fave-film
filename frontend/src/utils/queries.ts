@@ -141,8 +141,7 @@ export const LOGGED_USER = gql`
   mutation LoginUser($email: String!, $password: String!) {
     userMutation {
       loginUser(email: $email, password: $password) {
-        email
-        firstName
+        id
       }
     }
   }

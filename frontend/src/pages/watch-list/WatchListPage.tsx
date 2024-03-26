@@ -11,24 +11,33 @@ import {
   WatchListMovieCollectionContainer,
   WatchListTitle,
 } from "./WatchListPage.styled";
+import { useEffect } from "react";
 
 const WatchListPage = () => {
-  const { userId } = useAuth();
+  const { userData } = useAuth();
 
   const [deleteMovie] = useMutation(DELETE_MOVIE_FROM_WATCHLIST, {
-    refetchQueries: [GET_USER_BY_ID(userId)],
+    refetchQueries: [GET_USER_BY_ID(userData?.userId ?? 0)],
   });
 
   const handleDelete = (movieId: number) => {
     deleteMovie({
       variables: {
-        userId: 1,
+        userId: userData?.userId,
         movieId: movieId,
       },
     });
   };
 
-  const { data: dataAdded } = useQuery(GET_USER_BY_ID(userId));
+  const { data: dataAdded, refetch } = useQuery(
+    GET_USER_BY_ID(userData?.userId ?? 0)
+  );
+  console.log(dataAdded);
+  console.log(userData);
+
+  useEffect(() => {
+    refetch();
+  }, []);
 
   return (
     <>
@@ -36,7 +45,7 @@ const WatchListPage = () => {
         <WatchListTitle>WATCHLIST</WatchListTitle>
         <WatchListMovieCollectionContainer>
           {dataAdded &&
-            dataAdded.userQuery.user.watchedList.map((movie: Movie) => (
+            dataAdded?.userQuery?.user?.watchedList?.map((movie: Movie) => (
               <MovieCardContent
                 key={movie.id}
                 picture={movie.imagesUrls[0]}
