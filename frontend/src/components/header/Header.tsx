@@ -13,6 +13,7 @@ import {
   LogoContainer,
   SearchIcon,
   ClearInput,
+  HeaderButtonsContainer,
 } from "./Header.styled";
 
 const Header = () => {
@@ -93,14 +94,14 @@ const Header = () => {
           </Button>
         )}
         {userData?.isAuthenticated && (
-          <div>
+          <HeaderButtonsContainer>
             <Button onClickFunction={redirectToWatchlist} type="primary">
               Watch List
             </Button>
             <Button onClickFunction={handleLogout} type="text">
               Log out
             </Button>
-          </div>
+          </HeaderButtonsContainer>
         )}
       </ComponentsContainer>
     </HeaderContainer>

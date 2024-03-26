@@ -22,7 +22,11 @@ export const MoviePicture = styled.img`
   }
 `;
 
-export const MovieDetailsLeft = styled.div`
+interface MovieDetailsLeftProps {
+  isHomePage?: boolean;
+}
+
+export const MovieDetailsLeft = styled.div<MovieDetailsLeftProps>`
   display: flex;
   gap: ${rem(20)};
 
@@ -30,8 +34,8 @@ export const MovieDetailsLeft = styled.div`
     gap: ${rem(5)};
 
     div {
-      max-width: ${rem(200)};
-    }
+      max-width:${({ isHomePage }) =>
+        isHomePage ? `${rem(300)}` : `${rem(180)}`}
   }
 `;
 

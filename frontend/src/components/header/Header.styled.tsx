@@ -12,7 +12,7 @@ export const HeaderContainer = styled.div`
   position: fixed;
   z-index: 999;
 
-  @media (max-width: 600px) {
+  @media (max-width: 700px) {
     padding: ${rem(40)} ${rem(10)};
   }
 `;
@@ -24,7 +24,7 @@ export const ComponentsContainer = styled.div`
   align-items: center;
 
   @media (max-width: 1280px) {
-    gap: ${rem(170)};
+    gap: ${rem(100)};
   }
 
   @media (min-width: 1280px) {
@@ -40,9 +40,9 @@ export const LeftSide = styled.div`
   display: flex;
   flex: 1;
   align-items: center;
-  gap: ${rem(60)};
+  gap: ${rem(75)};
 
-  @media (max-width: 600px) {
+  @media (max-width: 700px) {
     gap: ${rem(0)};
   }
 `;
@@ -51,6 +51,10 @@ export const LogoContainer = styled.div`
   img {
     max-width: ${rem(100)};
     object-fit: cover;
+
+    @media (max-width: 700px) {
+      max-width: ${rem(70)};
+    }
   }
 `;
 
@@ -99,4 +103,16 @@ export const ClearInput = styled(ClearIcon)<ClearInputProps>`
   visibility: ${(props) => props.hidden === true && "hidden"};
   text: center;
   color: ${pallete.SPACE_CADET};
+`;
+
+export const HeaderButtonsContainer = styled.div`
+  display: flex;
+  gap: ${rem(5)};
+
+  button {
+    font-size: ${rem(10)};
+  }
+
+  @media (max-width: 425) {
+  }
 `;

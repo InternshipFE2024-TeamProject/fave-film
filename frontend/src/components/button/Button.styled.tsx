@@ -10,6 +10,7 @@ export const StyledButton = styled.button<ButtonProps>`
   border-radius: ${rem(10)};
   font-size: ${rem(12)};
   padding: ${rem(12)};
+  white-space: nowrap;
 
   background-color: ${(props) =>
     props.type === "primary" && `${pallete.PLATINUM} `};
@@ -32,6 +33,6 @@ export const StyledButton = styled.button<ButtonProps>`
   }
 
   @media (max-width: 600px) {
-    padding: ${rem(10)};
+    padding: ${rem(8)};
   }
 `;
