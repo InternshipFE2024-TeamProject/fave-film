@@ -102,7 +102,7 @@ const MoviePage: React.FC = () => {
     navigate(`/movies/${id}/feedback-form`);
   };
 
-  if (!dataMovie || !dataReview || !dataUser) return null;
+  if (!dataMovie || !dataReview) return null;
 
   const movie: Movie = dataMovie.movieQuery.movie;
   const reviews: Review[] = dataReview.reviewQuery.reviewMovie;

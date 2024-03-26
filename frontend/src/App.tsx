@@ -18,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/movies/:id" element={<MoviePage />} />
+          {/* <Route path="/watchlist" element={<WatchListPage />} /> */}
           {!userData && <Route path="/login" element={<LoginPage />} />}
           {userData && <Route path="/watchlist" element={<WatchListPage />} />}
           <Route path="/movies/:id/feedback-form" element={<FeedbackForm />} />

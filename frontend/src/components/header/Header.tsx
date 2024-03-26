@@ -17,7 +17,7 @@ import {
 
 const Header = () => {
   const { movies } = useMovies();
-  const { userData } = useAuth();
+  const { userData, setUserData } = useAuth();
   const { inputValue, setInputValue, handleSearch, setResults } =
     useSearchContext();
   const location = useLocation();
@@ -27,6 +27,11 @@ const Header = () => {
   };
   const redirectToLogin = () => {
     navigate("/login");
+  };
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/");
+    setUserData(null);
   };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -87,11 +92,14 @@ const Header = () => {
           </Button>
         )}
         {userData?.isAuthenticated && (
-          <>
+          <div>
             <Button onClickFunction={redirectToWatchlist} type="primary">
               Watch List
             </Button>
-          </>
+            <Button onClickFunction={handleLogout} type="text">
+              Log out
+            </Button>
+          </div>
         )}
       </ComponentsContainer>
     </HeaderContainer>
