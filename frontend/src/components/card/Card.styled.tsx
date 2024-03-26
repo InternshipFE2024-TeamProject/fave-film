@@ -15,10 +15,9 @@ export const StyledCard = styled.div<StyledCardProps>`
   border-radius: ${rem(10)};
   height: fit-content;
   padding: ${rem(10)};
-  cursor: pointer;
   ${({ variant }) =>
     variant === "collection" &&
-    `border-left: ${rem(10)} solid ${FRENCH_MAUVE}`};
+    `border-left: ${rem(10)} solid ${FRENCH_MAUVE} cursor: pointer`};
   ${({ variant }) => variant === "none" && `border: none`};
   ${({ variant }) =>
     !variant && `border-top: ${rem(10)} solid ${FRENCH_MAUVE};`};

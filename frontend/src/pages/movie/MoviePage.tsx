@@ -42,7 +42,7 @@ import {
 import ReviewSection from "./components/ReviewSection";
 
 const MoviePage: React.FC = () => {
-  const { userId, isAuthenticated } = useAuth();
+  const { userData } = useAuth();
   const [currentImage, setCurrentImage] = useState(0);
   const [ratingsActive, setRatingsActive] = useState("true");
   const [commentsActive, setCommentsActive] = useState("false");
@@ -55,11 +55,11 @@ const MoviePage: React.FC = () => {
   }
   const parsedId = parseInt(id, 10);
 
-  const { data: dataUser } = useQuery(GET_USER_BY_ID(userId));
+  const { data: dataUser } = useQuery(GET_USER_BY_ID(userData?.userId ?? 0));
   const { data: dataMovie } = useQuery(GET_MOVIE_BY_ID(parsedId));
   const { data: dataReview } = useQuery(GET_REVIEW_BY_MOVIE_ID(parsedId));
   const [addToWatchlistMutation] = useMutation(
-    ADD_MOVIE_TO_WATCHLIST(userId, parsedId)
+    ADD_MOVIE_TO_WATCHLIST(userData?.userId ?? 0, parsedId)
   );
 
   useEffect(() => {
@@ -102,12 +102,14 @@ const MoviePage: React.FC = () => {
     navigate(`/movies/${id}/feedback-form`);
   };
 
-  if (!dataMovie || !dataReview || !dataUser) return null;
+  if (!dataMovie || !dataReview) return null;
 
   const movie: Movie = dataMovie.movieQuery.movie;
   const reviews: Review[] = dataReview.reviewQuery.reviewMovie;
 
-  const reviewUserId = getReviewsUserId(reviews).includes(userId);
+  const reviewUserId = getReviewsUserId(reviews).includes(
+    userData?.userId ?? 0
+  );
 
   return (
     <MovieContainer>
@@ -153,7 +155,7 @@ const MoviePage: React.FC = () => {
             func={handleComments}
             title="Comments"
           />
-          {isAuthenticated && !reviewUserId && (
+          {userData?.isAuthenticated && !reviewUserId && (
             <ReviewButton
               active="false"
               func={handleAddFeedback}
@@ -161,7 +163,7 @@ const MoviePage: React.FC = () => {
             />
           )}
           <MovieAddToWatchlist>
-            {isAuthenticated && (
+            {userData?.isAuthenticated && (
               <MovieAddToWatchListWarpper>
                 {isOnWatchedList ? (
                   <p>Added to watch list</p>
@@ -187,7 +189,12 @@ const MoviePage: React.FC = () => {
           <MovieReviewSection>
             {reviews.length > 0 ? (
               reviews.map((review, index) => (
-                <ReviewSection review={review} index={index} rating={true} />
+                <ReviewSection
+                  review={review}
+                  index={index}
+                  rating={true}
+                  key={index}
+                />
               ))
             ) : (
               <div>There are no reviews.</div>
@@ -199,7 +206,12 @@ const MoviePage: React.FC = () => {
           <MovieReviewSection>
             {reviews.length > 0 ? (
               reviews.map((review, index) => (
-                <ReviewSection review={review} index={index} comment={true} />
+                <ReviewSection
+                  review={review}
+                  index={index}
+                  comment={true}
+                  key={index}
+                />
               ))
             ) : (
               <div>There are no comments.</div>

@@ -7,7 +7,6 @@ import MovieCardContent from "../../components/movie-card-content/MovieCardConte
 import { GET_MOVIES_BY_GENRE } from "../../utils/queries";
 import { useMovies } from "../../contexts/movieContext";
 import { Movie } from "../../utils/types";
-import { useSearchContext } from "../../contexts/searchContext";
 import Dropdown from "../../components/dropdown/Dropdown";
 import {
   CardContentRecommandation,
@@ -19,6 +18,7 @@ import {
   MainContainer,
   RightConatiner,
 } from "./HomePage.styled";
+import { useSearchContext } from "../../contexts/searchContext";
 
 const HomePage = () => {
   const { movies } = useMovies();
