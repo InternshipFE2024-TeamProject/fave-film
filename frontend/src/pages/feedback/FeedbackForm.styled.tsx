@@ -12,7 +12,7 @@ export const FeedbackFormContainer = styled.div`
     margin: 0 150px 0 150px;
   }
 
-  @media (max-width: 660px) {
+  @media (max-width: 760px) {
     margin: 0 50px 0 50px;
   }
 
