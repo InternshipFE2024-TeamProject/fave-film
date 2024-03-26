@@ -15,6 +15,7 @@ import {
   FeedbackFormButtonsContainer,
   FeedbackFormContainer,
   FeedbackFormContent,
+  FeedbackFormSuccessMessage,
   FeedbackFormTitle,
   FeedbackFormWrapper,
   StyledLabel,
@@ -25,6 +26,7 @@ const FeedbackForm = () => {
   const [hover, setHover] = useState<number>(0);
   const [comment, setComment] = useState<string>("");
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const { userId } = useAuth();
   const [addReview] = useMutation(ADD_REVIEW);
   const { id } = useParams<{ id: string }>();
@@ -38,6 +40,9 @@ const FeedbackForm = () => {
 
   const showSuccessAndRedirect = () => {
     setShowSuccessMessage(true);
+    setComment("");
+    setRating(0);
+    setIsButtonDisabled(true);
 
     setTimeout(() => {
       location.replace(`/movies/${parsedId}`);
@@ -120,13 +125,26 @@ const FeedbackForm = () => {
               }
             />
 
-            {showSuccessMessage && <div>Review saved successfully!</div>}
+            {showSuccessMessage && (
+              <FeedbackFormSuccessMessage>
+                <p>Review saved successfully!</p>
+                <p>You will be redirected to movie page.</p>
+              </FeedbackFormSuccessMessage>
+            )}
             <FeedbackFormButtonsContainer>
-              <Button type="tertiary" onClickFunction={handleSave}>
+              <Button
+                type="tertiary"
+                onClickFunction={handleSave}
+                disable={isButtonDisabled}
+              >
                 Save
               </Button>
 
-              <Button type="text" onClickFunction={handleCancel}>
+              <Button
+                type="text"
+                onClickFunction={handleCancel}
+                disable={isButtonDisabled}
+              >
                 Cancel
               </Button>
             </FeedbackFormButtonsContainer>
