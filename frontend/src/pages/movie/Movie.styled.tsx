@@ -19,7 +19,7 @@ export const MovieWrapper = styled.div`
   }
 
   @media (max-width: 460px) {
-    margin: 0 0 0 0;
+    margin: 0 ${rem(10)} 0 ${rem(10)};
   }
 `;
 

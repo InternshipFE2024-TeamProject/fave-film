@@ -13,6 +13,7 @@ import {
   LogoContainer,
   SearchIcon,
   ClearInput,
+  HeaderButtonsContainer,
 } from "./Header.styled";
 
 const Header = () => {
@@ -52,9 +53,11 @@ const Header = () => {
   const isHomePage = location.pathname === "/";
   const isLoginPage = location.pathname === "/login";
 
+  console.log(!!userData);
+
   return (
     <HeaderContainer>
-      <ComponentsContainer>
+      <ComponentsContainer isAuthenticated={!!userData}>
         <LeftSide>
           <LogoContainer>
             <Link to="/">
@@ -93,14 +96,14 @@ const Header = () => {
           </Button>
         )}
         {userData?.isAuthenticated && (
-          <div>
+          <HeaderButtonsContainer>
             <Button onClickFunction={redirectToWatchlist} type="primary">
               Watch List
             </Button>
             <Button onClickFunction={handleLogout} type="text">
               Log out
             </Button>
-          </div>
+          </HeaderButtonsContainer>
         )}
       </ComponentsContainer>
     </HeaderContainer>

@@ -5,13 +5,13 @@ import { rem } from "../../utils/rem";
 export const HomePageContainer = styled.div`
   width: 100%;
   height: 100vh;
-  padding: ${rem(100)} ${rem(140)} ${rem(0)} ${rem(25)};
+  padding: ${rem(100)} ${rem(200)} ${rem(0)} ${rem(25)};
 
   @media (max-width: 1280px) {
     padding: ${rem(100)} ${rem(60)} ${rem(0)} ${rem(25)};
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 700px) {
     padding: ${rem(100)} ${rem(10)} ${rem(0)} ${rem(10)};
   }
 `;
@@ -35,10 +35,6 @@ export const LeftContainer = styled.div`
 export const FilterContainer = styled.div`
   display: flex;
   gap: ${rem(10)};
-
-  div {
-    min-width: ${rem(150)};
-  }
 `;
 
 export const CardFilters = styled.div`

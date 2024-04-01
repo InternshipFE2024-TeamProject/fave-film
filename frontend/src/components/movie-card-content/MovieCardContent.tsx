@@ -62,7 +62,7 @@ function MovieCardContent({
   return (
     <Card onClick={() => navigateToMovie(movieId)} variant="collection">
       <MovieCardWatchList>
-        <MovieDetailsLeft>
+        <MovieDetailsLeft isHomePage={isHomePage}>
           <MoviePicture src={picture} />
           <div>
             <MovieDetailsTitle>{title}</MovieDetailsTitle>

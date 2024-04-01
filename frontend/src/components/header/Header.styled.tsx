@@ -12,27 +12,31 @@ export const HeaderContainer = styled.div`
   position: fixed;
   z-index: 999;
 
-  @media (max-width: 600px) {
+  @media (max-width: 700px) {
     padding: ${rem(40)} ${rem(10)};
   }
 `;
 
-export const ComponentsContainer = styled.div`
+interface ComponentsContainerProps {
+  isAuthenticated: boolean;
+}
+
+export const ComponentsContainer = styled.div<ComponentsContainerProps>`
   height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   @media (max-width: 1280px) {
-    gap: ${rem(170)};
+    gap: ${(props) => (props.isAuthenticated ? `${rem(100)}` : `${rem(180)}`)};
   }
 
   @media (min-width: 1280px) {
-    gap: ${rem(250)};
+    gap: ${(props) => (props.isAuthenticated ? `${rem(250)}` : `${rem(320)}`)};
   }
 
-  @media (max-width: 810px) {
-    gap: ${rem(20)};
+  @media (max-width: 900px) {
+    gap: ${rem(10)};
   }
 `;
 
@@ -40,9 +44,9 @@ export const LeftSide = styled.div`
   display: flex;
   flex: 1;
   align-items: center;
-  gap: ${rem(60)};
+  gap: ${rem(75)};
 
-  @media (max-width: 600px) {
+  @media (max-width: 700px) {
     gap: ${rem(0)};
   }
 `;
@@ -51,6 +55,10 @@ export const LogoContainer = styled.div`
   img {
     max-width: ${rem(100)};
     object-fit: cover;
+
+    @media (max-width: 700px) {
+      max-width: ${rem(70)};
+    }
   }
 `;
 
@@ -60,7 +68,7 @@ export const InputContainer = styled.div`
   align-items: center;
   flex: 1;
   max-width: ${rem(900)};
-  min-width: ${rem(180)};
+  min-width: ${rem(130)};
   max-height: ${rem(50)};
 
   input {
@@ -99,4 +107,12 @@ export const ClearInput = styled(ClearIcon)<ClearInputProps>`
   visibility: ${(props) => props.hidden === true && "hidden"};
   text: center;
   color: ${pallete.SPACE_CADET};
+`;
+
+export const HeaderButtonsContainer = styled.div`
+  display: flex;
+  gap: ${rem(5)};
+  button {
+    font-size: ${rem(10)};
+  }
 `;

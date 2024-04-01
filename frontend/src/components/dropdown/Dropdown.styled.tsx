@@ -20,6 +20,7 @@ export const Background = styled.div<BackgroundProps>`
     top: ${rem(80)};
     left: 0;
     z-index: 1;
+    cursor: pointer;
   }
 `;
 
@@ -41,6 +42,7 @@ export const DropDownHeader = styled("div")<DropDownHeaderProps>`
   padding: ${rem(10)};
   border-radius: ${rem(10)};
   font-size: ${rem(14)};
+  cursor: pointer;
 
   &:focuse {
     border: 2px solid ${FRENCH_MAUVE};
@@ -76,7 +78,7 @@ export const DropDownHeader = styled("div")<DropDownHeaderProps>`
 
 export const DropDownListContainer = styled("div")`
   position: absolute;
-  top: ${rem(200)};
+  top: ${rem(185)};
   z-index: 100;
 `;
 
@@ -104,6 +106,7 @@ export const DropDownList = styled("ul")`
 export const ListItem = styled("li")`
   list-style: none;
   margin-bottom: ${rem(10)};
+  cursor: pointer;
 
   &:hover {
     color: ${FRENCH_MAUVE};

@@ -3,7 +3,6 @@ import HomePage from "./pages/home/HomePage";
 import MoviePage from "./pages/movie/MoviePage";
 import FeedbackForm from "./pages/feedback/FeedbackForm";
 import WatchListPage from "./pages/watch-list/WatchListPage";
-import "./App.css";
 import Header from "./components/header/Header";
 import LoginPage from "./pages/login/LoginPage";
 import { useAuth } from "./contexts/authContext";
