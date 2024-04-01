@@ -36,7 +36,7 @@ export const ComponentsContainer = styled.div<ComponentsContainerProps>`
   }
 
   @media (max-width: 900px) {
-    gap: ${rem(20)};
+    gap: ${rem(10)};
   }
 `;
 
@@ -68,7 +68,7 @@ export const InputContainer = styled.div`
   align-items: center;
   flex: 1;
   max-width: ${rem(900)};
-  min-width: ${rem(180)};
+  min-width: ${rem(130)};
   max-height: ${rem(50)};
 
   input {

@@ -34,5 +34,6 @@ export const StyledButton = styled.button<ButtonProps>`
 
   @media (max-width: 600px) {
     padding: ${rem(8)};
+    font-size: ${rem(10)};
   }
 `;
