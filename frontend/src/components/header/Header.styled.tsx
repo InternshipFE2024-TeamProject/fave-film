@@ -17,21 +17,25 @@ export const HeaderContainer = styled.div`
   }
 `;
 
-export const ComponentsContainer = styled.div`
+interface ComponentsContainerProps {
+  isAuthenticated: boolean;
+}
+
+export const ComponentsContainer = styled.div<ComponentsContainerProps>`
   height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   @media (max-width: 1280px) {
-    gap: ${rem(100)};
+    gap: ${(props) => (props.isAuthenticated ? `${rem(100)}` : `${rem(180)}`)};
   }
 
   @media (min-width: 1280px) {
-    gap: ${rem(250)};
+    gap: ${(props) => (props.isAuthenticated ? `${rem(250)}` : `${rem(320)}`)};
   }
 
-  @media (max-width: 810px) {
+  @media (max-width: 900px) {
     gap: ${rem(20)};
   }
 `;
@@ -108,11 +112,7 @@ export const ClearInput = styled(ClearIcon)<ClearInputProps>`
 export const HeaderButtonsContainer = styled.div`
   display: flex;
   gap: ${rem(5)};
-
   button {
     font-size: ${rem(10)};
-  }
-
-  @media (max-width: 425) {
   }
 `;

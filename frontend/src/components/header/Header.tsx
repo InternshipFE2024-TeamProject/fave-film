@@ -53,9 +53,11 @@ const Header = () => {
   const isHomePage = location.pathname === "/";
   const isLoginPage = location.pathname === "/login";
 
+  console.log(!!userData);
+
   return (
     <HeaderContainer>
-      <ComponentsContainer>
+      <ComponentsContainer isAuthenticated={!!userData}>
         <LeftSide>
           <LogoContainer>
             <Link to="/">
